@@ -9,6 +9,7 @@ public class InputManager
     private Vector2 InputDirection => inputControls.Player.Move.ReadValue<Vector2>();
 
     public event Action OnJumpPressed;
+    public event Action OnSinestesyPressed;
 
     public InputManager()
     {
@@ -16,11 +17,17 @@ public class InputManager
         inputControls.Enable();
 
         inputControls.Player.Jump.performed += OnJumpPerformed;
+        inputControls.Player.Attack.performed += OnSinestesyPerformed;
     }
+
 
     private void OnJumpPerformed(InputAction.CallbackContext obj)
     {
         OnJumpPressed?.Invoke();
+    }
+    private void OnSinestesyPerformed(InputAction.CallbackContext obj)
+    {
+        OnSinestesyPressed?.Invoke();
     }
 
     public Vector2 GetInputDirection() => InputDirection;

@@ -3,19 +3,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] float moveSpeed, jumpForce;
+    [SerializeField] float moveSpeed, jumpForce, sinestesyRange;
     
     bool canJump, jumping;
     
     Rigidbody rb;
     
     InputManager inputManager;
+    [SerializeField] GameObject ps;
     
     private void Awake()
     {
         inputManager = new InputManager();
         inputManager.OnJumpPressed += HandleJump;
+        inputManager.OnSinestesyPressed += HandleSinestesy;
     }
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -44,6 +48,21 @@ public class PlayerBehaviour : MonoBehaviour
             canJump = false;
         }
     }
+    
+    private void HandleSinestesy()
+    {
+        var soundPosition = ps.transform.position;
+        var distanceFromSound = Mathf.Abs( Vector3.Distance(soundPosition, transform.position));
+
+        if (distanceFromSound <= sinestesyRange)
+        {
+            ps.SetActive(true);
+        }
+        else
+        {
+            ps.SetActive(false);
+        }
+    }
 
     private void OnCollisionStay(Collision other)
     {
@@ -59,5 +78,11 @@ public class PlayerBehaviour : MonoBehaviour
         {
             canJump = false;
         }
+    }
+    
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, sinestesyRange);
     }
 }
