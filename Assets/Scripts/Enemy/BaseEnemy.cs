@@ -8,7 +8,7 @@ public abstract class BaseEnemy : MonoBehaviour
     [SerializeField] protected int moveSpeed;
     [SerializeField] protected float detectRange;
     
-    protected bool _isTouching;
+    public bool _isTouching;
     
     protected void TakeDamage(int damage)
     {
@@ -29,18 +29,13 @@ public abstract class BaseEnemy : MonoBehaviour
         Debug.Log("morreo");
         Destroy(gameObject);
     }
-
-    protected void FollowPlayer(Vector3 playerPosition)
-    {
-        if (!_isTouching)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, playerPosition, moveSpeed * Time.deltaTime);
-        }
-    }
     
     protected abstract void Attack();
     protected abstract void CheckPlayerInRange();
 
+    public float GetMoveSpeed() => moveSpeed;
+    public float GetDetectRange() => detectRange;
+    
     protected void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

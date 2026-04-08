@@ -1,4 +1,0 @@
-repository "Sinestesia/Sinestesia@4674161746958@cloud"
-  path "/"
-    br "/main"
-    co "/main"

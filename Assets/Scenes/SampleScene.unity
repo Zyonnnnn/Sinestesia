@@ -5421,7 +5421,9 @@ MonoBehaviour:
   strength: 0
   moveSpeed: 2
   detectRange: 10
+  _isTouching: 0
   attackRange: 5
+  _inAttack: 0
 --- !u!54 &1032985131
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5532,7 +5534,7 @@ Transform:
   m_GameObject: {fileID: 1032985129}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.041291, y: 1.29, z: 8.000714}
+  m_LocalPosition: {x: 6.6, y: 1.29, z: 10.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

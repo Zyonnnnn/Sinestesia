@@ -3,22 +3,29 @@ using UnityEngine;
 
 public class MeleeEnemy : BaseEnemy
 {
-    
+    private StateMachine StateMachine;
+
+    private void Start()
+    {
+        StateMachine = new StateMachine(this.gameObject);
+        StateMachine.TransitionTo<IdleState>();
+    }
+
     private void Update()
     {
-        CheckPlayerInRange();
+        StateMachine.OnTick();
     }
 
-    protected override void CheckPlayerInRange()
-    {
-        var playerPosition = FindFirstObjectByType<PlayerBehaviour>().transform.position;
-        var distanceFromPlayer = Mathf.Abs( Vector3.Distance(playerPosition, transform.position));
-
-        if (distanceFromPlayer <= detectRange)
-        {
-            FollowPlayer(playerPosition);
-        }
-    }
+    //protected override void CheckPlayerInRange()
+    //{
+    //    var playerPosition = FindFirstObjectByType<PlayerBehaviour>().transform.position;
+     //   var distanceFromPlayer = Mathf.Abs( Vector3.Distance(playerPosition, transform.position));
+//
+     //   if (distanceFromPlayer <= detectRange)
+      //  {
+      //      FollowPlayer(playerPosition);
+    //    }
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -37,6 +44,11 @@ public class MeleeEnemy : BaseEnemy
     }
     
     protected override void Attack()
+    {
+        
+    }
+
+    protected override void CheckPlayerInRange()
     {
         
     }
