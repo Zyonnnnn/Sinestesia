@@ -1,28 +1,49 @@
+using System;
 using UnityEngine;
-using UnityEngine.Rendering.RendererUtils;
 
 public class ChasingState : BaseState
 {
     private RangedEnemy eye;
-    private StateMachine StateMachine;
-    public override void OnStart(GameObject gameObject)
+    private StateMachine stateMachine;
+    public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
+        this.stateMachine = stateMachine;
         eye = gameObject.GetComponent<RangedEnemy>();
     }
 
     public override void OnTick()
     {
-        var playerPosition = Object.FindFirstObjectByType<PlayerBehaviour>().transform.position;
-        //var distanceFromPlayer = Mathf.Abs( Vector3.Distance(playerPosition, eye.transform.position));
+        if (!eye.Player) return;
 
-        //if (distanceFromPlayer <= eye.attackRange)
-        //{
-        //    StateMachine.TransitionTo<PreparingAttackState>();
-        //}
+        CheckPlayerPosition();
+        CheckPlayerDistance(CheckPlayerPosition());
+
+        HandleDistance(CheckPlayerDistance(CheckPlayerPosition()));
         
-        FollowPlayer(playerPosition);
+        FollowPlayer(CheckPlayerPosition());
     }
 
+    private float CheckPlayerDistance(Vector3 playerPosition)
+    {
+        return Mathf.Abs( Vector3.Distance(playerPosition, eye.transform.position));
+    }
+
+    private Vector3 CheckPlayerPosition()
+    {
+        return eye.Player.transform.position;
+    }
+
+    protected void HandleDistance(float distanceFromPlayer)
+    {
+        if (distanceFromPlayer <= eye.attackRange)
+        {
+            stateMachine.TransitionTo<PreparingAttackState>();
+        }
+        else if (distanceFromPlayer >= eye.GetDetectRange())
+        {
+            stateMachine.TransitionTo<IdleState>();
+        }
+    }
     protected void FollowPlayer(Vector3 playerPosition)
     {
         if (!eye._isTouching)

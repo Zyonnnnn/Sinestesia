@@ -1,17 +1,15 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] float moveSpeed, jumpForce, sinestesyRange;
-    
-    bool canJump, jumping;
-    
-    Rigidbody rb;
-    
-    InputManager inputManager;
-    [SerializeField] GameObject ps;
-    
+    [SerializeField] float moveSpeed, jumpForce;
+
+    private bool canJump, jumping;
+
+    private Rigidbody rb;
+    private InputManager inputManager;
+    private SinestesyDetection sd;
+
     private void Awake()
     {
         inputManager = new InputManager();
@@ -19,9 +17,9 @@ public class PlayerBehaviour : MonoBehaviour
         inputManager.OnSinestesyPressed += HandleSinestesy;
     }
 
-
     private void Start()
     {
+        sd = GetComponentInChildren<SinestesyDetection>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -31,10 +29,9 @@ public class PlayerBehaviour : MonoBehaviour
         var moveZ = inputManager.GetInputDirection().y * (moveSpeed * 100) * Time.deltaTime;
 
         rb.linearVelocity = new Vector3(moveX, rb.linearVelocity.y, moveZ);
-        
+
         if (jumping)
         {
-            Debug.Log("eita preula");
             rb.AddForce(new(0, jumpForce, 0), ForceMode.Impulse);
             jumping = false;
         }
@@ -48,19 +45,21 @@ public class PlayerBehaviour : MonoBehaviour
             canJump = false;
         }
     }
-    
+
     private void HandleSinestesy()
     {
-        var soundPosition = ps.transform.position;
-        var distanceFromSound = Mathf.Abs( Vector3.Distance(soundPosition, transform.position));
+        var ps = sd.GetClosestParticleSystem();
 
-        if (distanceFromSound <= sinestesyRange)
+        if (ps != null)
         {
-            ps.SetActive(true);
-        }
-        else
-        {
-            ps.SetActive(false);
+            if (!ps.isEmitting)
+            {
+                ps.Play();
+            }
+            else
+            {
+                ps.Stop();
+            }
         }
     }
 
@@ -78,11 +77,5 @@ public class PlayerBehaviour : MonoBehaviour
         {
             canJump = false;
         }
-    }
-    
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, sinestesyRange);
     }
 }

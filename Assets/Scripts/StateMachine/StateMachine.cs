@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class StateMachine
@@ -16,7 +15,7 @@ public class StateMachine
     {
         CurrentState?.OnEnd();
         CurrentState = new T();
-        CurrentState.OnStart(gameObject);
+        CurrentState.OnStart(gameObject, this);
     }
 
     public void OnTick()

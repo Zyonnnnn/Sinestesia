@@ -3,21 +3,23 @@ using UnityEngine;
 public class IdleState : BaseState
 {
     private RangedEnemy eye;
-    private StateMachine StateMachine;
-    public override void OnStart(GameObject gameObject)
+    private StateMachine stateMachine;
+    public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
+        this.stateMachine =  stateMachine;
         eye = gameObject.GetComponent<RangedEnemy>();
-        Debug.Log("acordei baby");
     }
 
     public override void OnTick()
     {
-        var playerPosition = Object.FindFirstObjectByType<PlayerBehaviour>().transform.position;
+        if (!eye.Player) return;
+
+        var playerPosition = eye.Player.transform.position;
         var distanceFromPlayer = Mathf.Abs( Vector3.Distance(playerPosition, eye.transform.position));
 
         if (distanceFromPlayer <= eye.GetDetectRange())
         {
-            
+            stateMachine.TransitionTo<ChasingState>();
         }
     }
 

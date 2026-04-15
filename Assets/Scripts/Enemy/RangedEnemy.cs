@@ -1,16 +1,16 @@
-using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class RangedEnemy : BaseEnemy
+class RangedEnemy : BaseEnemy
 {
     [SerializeField] public float attackRange;
     public bool _inAttack;
 
     private Rigidbody rb;
-
     private StateMachine StateMachine;
+
+    public event System.Action OnLanded;
+    
+    public PlayerBehaviour Player { get; private set; }
 
     protected void Awake()
     {
@@ -19,6 +19,8 @@ public class RangedEnemy : BaseEnemy
 
     protected void Start()
     {
+        Player = FindFirstObjectByType<PlayerBehaviour>();
+        
         StateMachine = new StateMachine(this.gameObject);
         StateMachine.TransitionTo<IdleState>();
     }
@@ -30,13 +32,6 @@ public class RangedEnemy : BaseEnemy
         CheckPlayerInRange();
     }
     
-    //protected override void Attack()
-    //{
-    //    _inAttack = true;
-    //    var lastPlayerPosition = FindFirstObjectByType<PlayerBehaviour>().transform.position;
-    //    StartCoroutine(JumpAttack(lastPlayerPosition));
-    //}
-
     protected override void Attack()
     {
         
@@ -44,29 +39,14 @@ public class RangedEnemy : BaseEnemy
 
     protected override void CheckPlayerInRange()
     {
-        var playerPosition = FindFirstObjectByType<PlayerBehaviour>().transform.position;
-        var distanceFromPlayer = Mathf.Abs( Vector3.Distance(playerPosition, transform.position));
-
-        if (distanceFromPlayer <= attackRange)
-        {
-            Attack();
-        }
-        else if (distanceFromPlayer <= detectRange && distanceFromPlayer > attackRange)
-        {
-            //FollowPlayer(playerPosition);
-            Debug.Log("la ele");
-            StateMachine.TransitionTo<ChasingState>();
-        }
+        
     }
     
-    //IEnumerator JumpAttack(Vector3  lastPlayerPosition)
-    //{
-    //    yield return new WaitForSeconds(3f);
-        
-    //    rb.AddForce(new(0, 8, 0), ForceMode.Impulse);
-
-    //    _inAttack = false;
-    //}
-
-    public object GetRigidbody() => rb;
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            OnLanded?.Invoke();
+        }
+    }
 }

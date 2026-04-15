@@ -2,22 +2,29 @@ using UnityEngine;
 
 public class PreparingAttackState : BaseState
 {
+    private readonly float preparingTime = 1;
+    private float timer;
+    
     private RangedEnemy eye;
-    private StateMachine StateMachine;
-public override void OnStart(GameObject gameObject)
-{
-    eye = gameObject.GetComponent<RangedEnemy>();
-}
+    private StateMachine stateMachine;
+    public override void OnStart(GameObject gameObject, StateMachine stateMachine)
+    {
+        this.stateMachine =  stateMachine;
+        eye = gameObject.GetComponent<RangedEnemy>();
+    }
 
-public override void OnTick()
-{
-    eye._inAttack = true;
-    var lastPlayerPosition = Object.FindFirstObjectByType<PlayerBehaviour>().transform.position;
-    //Object.StartCoroutine(JumpAttack(lastPlayerPosition));
-}
+    public override void OnTick()
+    {
+        timer += Time.deltaTime;
+        if (timer >= preparingTime)
+        {
+            stateMachine.TransitionTo<AttackingState>();
+            timer = 0;
+        }
+    }
 
-public override void OnEnd()
-{
+    public override void OnEnd()
+    {
         
-}
+    }
 }
