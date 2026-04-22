@@ -2,13 +2,19 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] float moveSpeed, jumpForce;
+    [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed;
 
-    private bool canJump, jumping;
+    private bool canJump, jumping, flipped;
 
+    [SerializeField] GameObject gc;
+    [SerializeField] LayerMask groundtest;
+
+    private SinestesyDetection sd;
     private Rigidbody rb;
     private InputManager inputManager;
-    private SinestesyDetection sd;
+
+    private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
+    private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
 
     private void Awake()
     {
@@ -23,6 +29,21 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    void Update()
+    {
+        if (inputManager.GetInputDirection().x > 0)
+        {
+            flipped = false;
+        } 
+        else if (inputManager.GetInputDirection().x < 0)
+        {
+            flipped = true;
+        }
+
+        HandleFlip();
+    }
+
+
     private void FixedUpdate()
     {
         var moveX = inputManager.GetInputDirection().x * (moveSpeed * 100) * Time.deltaTime;
@@ -34,6 +55,20 @@ public class PlayerBehaviour : MonoBehaviour
         {
             rb.AddForce(new(0, jumpForce, 0), ForceMode.Impulse);
             jumping = false;
+        }
+
+        HandleGroundCheck();
+    }
+
+    private void HandleGroundCheck()
+    {
+        if (Physics.Raycast(gc.transform.position, Vector3.down, out _, rayLenght, groundtest))
+        {
+            canJump = true;
+        }
+        else
+        {
+            canJump = false;
         }
     }
 
@@ -62,20 +97,22 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
     }
-
-    private void OnCollisionStay(Collision other)
+    
+    private void HandleFlip()
     {
-        if (other.collider.CompareTag("Ground"))
+        if (flipped)
         {
-            canJump = true;
+            transform.rotation = Quaternion.Slerp(transform.rotation, flipLeft, flipSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, flipRight, flipSpeed * Time.deltaTime);
         }
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnDrawGizmosSelected()
     {
-        if (other.collider.CompareTag("Ground"))
-        {
-            canJump = false;
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(gc.transform.position, Vector3.down * rayLenght);
     }
 }
