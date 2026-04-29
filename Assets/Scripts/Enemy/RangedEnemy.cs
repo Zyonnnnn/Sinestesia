@@ -2,7 +2,7 @@ using UnityEngine;
 
 class RangedEnemy : BaseEnemy
 {
-    [SerializeField] public float attackRange;
+    public float attackRange, jumpHeight, jumpFactor;
     public bool _inAttack;
 
     private Rigidbody rb;
@@ -27,7 +27,6 @@ class RangedEnemy : BaseEnemy
 
     private void Update()
     {
-        Debug.Log(StateMachine.CurrentState.ToString());
         StateMachine.OnTick();
         CheckPlayerInRange();
     }

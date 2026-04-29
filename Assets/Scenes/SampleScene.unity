@@ -5584,11 +5584,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  strength: 0
+  strength: 3
   moveSpeed: 2
   detectRange: 10
+  jumpStrenght: 3.35
   _isTouching: 0
   attackRange: 5
+  jumpHeight: 6.7
+  jumpFactor: 6
   _inAttack: 0
 --- !u!54 &1032985131
 Rigidbody:
