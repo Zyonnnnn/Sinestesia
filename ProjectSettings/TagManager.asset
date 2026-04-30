@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Sound
+  - EyeJump
   layers:
   - Default
   - TransparentFX
