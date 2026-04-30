@@ -17,9 +17,8 @@ public class InputManager
         inputControls.Enable();
 
         inputControls.Player.Jump.performed += OnJumpPerformed;
-        inputControls.Player.Attack.performed += OnSinestesyPerformed;
+        inputControls.Player.Synesthesy.performed += OnSinestesyPerformed;
     }
-
 
     private void OnJumpPerformed(InputAction.CallbackContext obj)
     {
@@ -32,7 +31,6 @@ public class InputManager
 
     public Vector2 GetInputDirection() => InputDirection;
     
-
     private void OnDestroy()
     {
         inputControls.Disable();
