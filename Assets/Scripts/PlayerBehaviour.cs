@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed;
+    [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc;
 
     private bool canJump, jumping, flipped;
 
@@ -15,6 +15,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
+    
+    private Vector3 hVelocity;
+    
+    public static Vector3 playerPosition { get; private set;}
 
     private void Awake()
     {
@@ -31,6 +35,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
+        playerPosition = transform.position;
+        
         if (inputManager.GetInputDirection().x > 0)
         {
             flipped = false;
@@ -39,18 +45,13 @@ public class PlayerBehaviour : MonoBehaviour
         {
             flipped = true;
         }
-
+        
         HandleFlip();
     }
 
 
     private void FixedUpdate()
     {
-        var moveX = inputManager.GetInputDirection().x * (moveSpeed * 100) * Time.deltaTime;
-        var moveZ = inputManager.GetInputDirection().y * (moveSpeed * 100) * Time.deltaTime;
-
-        rb.linearVelocity = new Vector3(moveX, rb.linearVelocity.y, moveZ);
-
         if (jumping)
         {
             rb.AddForce(new(0, jumpForce, 0), ForceMode.Impulse);
@@ -58,18 +59,23 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         HandleGroundCheck();
+        HandleMovement();
+    }
+
+    private void HandleMovement()
+    {
+        var inputDirection = inputManager.GetInputDirection();
+        var targetVelocity = new Vector3(inputDirection.x, 0f, inputDirection.y) * (moveSpeed * 100 * Time.deltaTime);
+        var speedChangeRate = inputDirection.sqrMagnitude > 0f ? acc : decc;
+        
+        hVelocity = Vector3.MoveTowards(hVelocity, targetVelocity, speedChangeRate * Time.deltaTime);
+        
+        rb.linearVelocity = new Vector3(hVelocity.x, rb.linearVelocity.y, hVelocity.z);
     }
 
     private void HandleGroundCheck()
     {
-        if (Physics.Raycast(gc.transform.position, Vector3.down, out _, rayLenght, groundtest))
-        {
-            canJump = true;
-        }
-        else
-        {
-            canJump = false;
-        }
+        canJump = Physics.Raycast(gc.transform.position, Vector3.down, out _, rayLenght, groundtest) ? true : false;
     }
 
     void HandleJump()

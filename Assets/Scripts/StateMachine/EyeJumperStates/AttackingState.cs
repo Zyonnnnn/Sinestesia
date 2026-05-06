@@ -18,7 +18,6 @@ public class AttackingState : BaseState
         if (stateMachine.HasParam("adaptedStrenght"))
         {
             var _strenght = stateMachine.GetParam<float>("adaptedStrenght");
-            Debug.Log(_strenght);
 
             JumpTowards(eye.transform.position, eye.jumpHeight, _strenght);
         }

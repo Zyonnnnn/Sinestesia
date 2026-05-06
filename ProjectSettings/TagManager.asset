@@ -7,6 +7,9 @@ TagManager:
   - Ground
   - Sound
   - EyeJump
+  - FirstFloor
+  - SecondFloor
+  - Transition_1_2
   layers:
   - Default
   - TransparentFX
