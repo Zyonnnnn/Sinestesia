@@ -15,7 +15,6 @@ public class PreparingAttackState : BaseState
 
     public override void OnTick()
     {
-
         timer += Time.deltaTime;
         if (timer >= preparingTime)
         {

@@ -67,18 +67,7 @@ public class CinemachineBehaviour : MonoBehaviour
         {
             GameObject boundObject = GameObject.FindGameObjectWithTag(zone.tag);
 
-            if (boundObject == null)
-            {
-                Debug.LogWarning($"Não encontrei nenhum objeto com a tag {zone.tag}");
-                continue;
-            }
-
             zone.boxCollider = boundObject.GetComponent<BoxCollider>();
-
-            if (zone.boxCollider == null)
-            {
-                Debug.LogWarning($"O objeto com a tag {zone.tag} não tem BoxCollider.");
-            }
         }
     }
 
@@ -109,7 +98,5 @@ public class CinemachineBehaviour : MonoBehaviour
 
         currentBoxCollider = zone.boxCollider;
         cineConf.BoundingVolume = currentBoxCollider;
-
-        Debug.Log($"Confiner mudou para: {zone.tag}");
     }
 }

@@ -1,10 +1,14 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour, IHitable
 {
-    [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc;
+    [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
 
-    private bool canJump, jumping, flipped;
+    private bool canJump, jumping, flipped, isKnockedBack;
+
+    private float knockbackTimer;
 
     [SerializeField] GameObject gc;
     [SerializeField] LayerMask groundtest;
@@ -15,10 +19,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
-    
+
     private Vector3 hVelocity;
-    
-    public static Vector3 playerPosition { get; private set;}
+
+    public static Vector3 playerPosition { get; private set; }
+
 
     private void Awake()
     {
@@ -36,40 +41,54 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         playerPosition = transform.position;
-        
-        if (inputManager.GetInputDirection().x > 0)
-        {
-            flipped = false;
-        } 
-        else if (inputManager.GetInputDirection().x < 0)
-        {
-            flipped = true;
-        }
-        
+
         HandleFlip();
+        HandleHealth();
     }
 
 
     private void FixedUpdate()
     {
-        if (jumping)
+        if (!isKnockedBack)
         {
-            rb.AddForce(new(0, jumpForce, 0), ForceMode.Impulse);
-            jumping = false;
+            HandleMovement();
+
+            if (jumping)
+            {
+                rb.AddForce(new(0, jumpForce, 0), ForceMode.Impulse);
+                jumping = false;
+            }
+        }
+        else
+        {
+            knockbackTimer -= Time.fixedDeltaTime;
+
+            if (knockbackTimer <= 0f)
+            {
+                isKnockedBack = false;
+            }
         }
 
         HandleGroundCheck();
-        HandleMovement();
     }
 
+    public void Execute(Transform executionSoruce)
+    {
+        if (!isKnockedBack)
+        {
+            HandleKnockback(executionSoruce);
+        }
+    }
+
+    #region Handlers
     private void HandleMovement()
     {
         var inputDirection = inputManager.GetInputDirection();
         var targetVelocity = new Vector3(inputDirection.x, 0f, inputDirection.y) * (moveSpeed * 100 * Time.deltaTime);
         var speedChangeRate = inputDirection.sqrMagnitude > 0f ? acc : decc;
-        
+
         hVelocity = Vector3.MoveTowards(hVelocity, targetVelocity, speedChangeRate * Time.deltaTime);
-        
+
         rb.linearVelocity = new Vector3(hVelocity.x, rb.linearVelocity.y, hVelocity.z);
     }
 
@@ -84,6 +103,14 @@ public class PlayerBehaviour : MonoBehaviour
         {
             jumping = true;
             canJump = false;
+        }
+    }
+
+    void HandleHealth()
+    {
+        if (health <= 0)
+        {
+            SceneManager.LoadScene("StartScene");
         }
     }
 
@@ -103,9 +130,14 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
     }
-    
+
     private void HandleFlip()
     {
+        if (inputManager.GetInputDirection().x != 0)
+        {
+            if (inputManager.GetInputDirection().x > 0 ? flipped = false : flipped = true) ;
+        }
+
         if (flipped)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, flipLeft, flipSpeed * Time.deltaTime);
@@ -113,6 +145,30 @@ public class PlayerBehaviour : MonoBehaviour
         else
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, flipRight, flipSpeed * Time.deltaTime);
+        }
+    }
+
+    private void HandleKnockback(Transform executionSoruce)
+    {
+        if (isKnockedBack)
+            return;
+
+        Vector3 dir = (transform.position - executionSoruce.position).normalized;
+        dir.y = -dir.y;
+
+        rb.linearVelocity = Vector3.zero;
+        rb.AddForce(dir * knockbackStrenght, ForceMode.Impulse);
+
+        isKnockedBack = true;
+        knockbackTimer = knockbackDuration;
+    }
+    #endregion
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("EyeJump"))
+        {
+            health--;
         }
     }
 
