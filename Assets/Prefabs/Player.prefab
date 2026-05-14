@@ -182,7 +182,7 @@ MonoBehaviour:
   decc: 15
   health: 3
   knockbackStrenght: 25
-  knockbackDuration: 1
+  knockbackDuration: 0.25
   gc: {fileID: 8664069889962292969}
   groundtest:
     serializedVersion: 2
