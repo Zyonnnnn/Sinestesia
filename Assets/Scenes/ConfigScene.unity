@@ -541,8 +541,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1856547727}
-        m_TargetAssemblyTypeName: mudaTelas, Assembly-CSharp
-        m_MethodName: TrocarCena
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: SceneChange
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
