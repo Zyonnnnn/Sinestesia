@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6938085931845168300}
   m_Layer: 5
   m_Name: Pause Image
-  m_TagString: Untagged
+  m_TagString: PauseImg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

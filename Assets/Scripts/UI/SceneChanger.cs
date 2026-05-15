@@ -12,12 +12,20 @@ public class SceneChanger : MonoBehaviour
 
     private void Awake()
     {
-        uiImage.SetActive(false);
+        uiImage = GameObject.FindGameObjectWithTag("PauseImg");
+    }
+
+    private void Start()
+    {
+        if (uiImage != null)
+        {
+            uiImage.SetActive(false);
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && uiImage != null)
         {
             uiImage.SetActive(!uiImage.activeSelf);
 
