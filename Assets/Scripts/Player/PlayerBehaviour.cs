@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,14 +24,18 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private Vector3 hVelocity;
 
     public static Vector3 playerPosition { get; private set; }
+    public static bool hold { get; private set; }
 
 
     private void Awake()
     {
         inputManager = new InputManager();
+
         inputManager.OnJumpPressed += HandleJump;
         inputManager.OnSinestesyPressed += HandleSinestesy;
+        inputManager.OnPickPressed += HandleInteract;
     }
+
 
     private void Start()
     {
@@ -41,6 +46,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     void Update()
     {
         playerPosition = transform.position;
+        Debug.Log(hold);
 
         HandleFlip();
         HandleHealth();
@@ -113,7 +119,10 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             SceneManager.LoadScene("StartScene");
         }
     }
-
+    void HandleInteract()
+    {
+        hold = !hold;
+    }
     private void HandleSinestesy()
     {
         var ps = sd.GetClosestParticleSystem();
@@ -169,6 +178,11 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (collision.collider.CompareTag("EyeJump"))
         {
             health--;
+        }
+        if (collision.collider.CompareTag("Lighter"))
+        {
+            IHitable hit = collision.gameObject.GetComponent<IHitable>();
+            hit.Execute(transform);
         }
     }
 

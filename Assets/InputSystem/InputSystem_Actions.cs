@@ -140,7 +140,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""f1ba0d36-48eb-4cd5-b651-1c94a6531f70"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -530,7 +530,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -573,6 +573,17 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""id"": ""d76b14d0-9989-4600-9321-565622e46cb3"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": ""Hold(duration=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Synesthesy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e131cd6-da72-41cd-b62e-e6e9f847381d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Synesthesy"",
