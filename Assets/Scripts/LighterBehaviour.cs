@@ -15,9 +15,10 @@ public class LighterBehaviour : MonoBehaviour, IHitable
         StateMachine.OnTick();
     }
 
-    public void Execute(Transform executionSoruce)
+    public void Execute(Transform executionSoruce, Rigidbody rb)
     {
         StateMachine.TransitionTo<OnHandState>();
         StateMachine.SetParam("PlayerPos", executionSoruce);
+        StateMachine.SetParam("PlayerRigidbody", rb);
     }
 }

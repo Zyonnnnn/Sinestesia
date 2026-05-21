@@ -50,7 +50,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         playerPosition = transform.position;
         
-        Debug.Log("interassao " + canInteract);
         HandleFlip();
         HandleHealth();
     }
@@ -80,7 +79,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         HandleGroundCheck();
     }
 
-    public void Execute(Transform executionSoruce)
+    public void Execute(Transform executionSoruce, Rigidbody rb)
     {
         if (!isKnockedBack)
         {
@@ -184,7 +183,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (collision.collider.CompareTag("Lighter"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
-            hit.Execute(transform);
+            hit.Execute(transform, rb);
         }
     }
     
