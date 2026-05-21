@@ -297,7 +297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Voltar
+  m_text: 'Exit
 
 '
   m_isRightToLeft: 0
@@ -493,8 +493,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -449.1925, y: -218.86633}
-  m_SizeDelta: {x: 785.2122, y: 436.8841}
+  m_AnchoredPosition: {x: -578.8879, y: -348.5617}
+  m_SizeDelta: {x: 525.8215, y: 177.4934}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &811236644
 MonoBehaviour:
@@ -813,6 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772c10910b66156408d3b497170e84a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiImage: {fileID: 0}
 --- !u!4 &1856547728
 Transform:
   m_ObjectHideFlags: 0

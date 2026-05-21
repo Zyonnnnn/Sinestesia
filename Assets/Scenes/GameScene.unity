@@ -1490,13 +1490,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 53859735}
     m_Modifications:
+    - target: {fileID: 1524930655142154563, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524930655142154563, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1161954188}
+    - target: {fileID: 1524930655142154563, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SairDoJogo
+      objectReference: {fileID: 0}
     - target: {fileID: 2510958537185036177, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
       propertyPath: m_Name
       value: Pause Image
       objectReference: {fileID: 0}
     - target: {fileID: 2510958537185036177, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6180910491347896967, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
