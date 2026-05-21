@@ -2095,6 +2095,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2036931083}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &923755473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2510958537185036177, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
+  m_PrefabInstance: {fileID: 1312436442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &961613066
 GameObject:
   m_ObjectHideFlags: 0
@@ -2510,6 +2515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneChanger
       objectReference: {fileID: 0}
+    - target: {fileID: 2685902352288497534, guid: 2a39cc5c162af6d43ad354f405566222, type: 3}
+      propertyPath: uiImage
+      value: 
+      objectReference: {fileID: 923755473}
     - target: {fileID: 4528716890901494533, guid: 2a39cc5c162af6d43ad354f405566222, type: 3}
       propertyPath: m_LocalPosition.x
       value: 726.50055
@@ -3118,6 +3127,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause Image
       objectReference: {fileID: 0}
+    - target: {fileID: 2510958537185036177, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7454983572501836089, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3180,11 +3193,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7454983572501836089, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -960
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7454983572501836089, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -850
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7454983572501836089, guid: 64f14f0a0eddd42408133021bbe6a207, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
