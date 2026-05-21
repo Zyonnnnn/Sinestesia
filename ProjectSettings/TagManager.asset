@@ -10,6 +10,8 @@ TagManager:
   - FirstFloor
   - SecondFloor
   - Transition_1_2
+  - PauseImg
+  - Lighter
   layers:
   - Default
   - TransparentFX

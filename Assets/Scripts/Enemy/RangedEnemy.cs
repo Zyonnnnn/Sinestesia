@@ -28,7 +28,6 @@ class RangedEnemy : BaseEnemy
     private void Update()
     {
         StateMachine.OnTick();
-        CheckPlayerInRange();
     }
 
     protected override void Attack()

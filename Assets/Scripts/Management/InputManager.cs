@@ -10,6 +10,7 @@ public class InputManager
 
     public event Action OnJumpPressed;
     public event Action OnSinestesyPressed;
+    public event Action OnPickPressed;
 
     public InputManager()
     {
@@ -18,6 +19,12 @@ public class InputManager
 
         inputControls.Player.Jump.performed += OnJumpPerformed;
         inputControls.Player.Synesthesy.performed += OnSinestesyPerformed;
+        inputControls.Player.Interact.performed += OnPickPerformed;
+    }
+
+    private void OnPickPerformed(InputAction.CallbackContext obj)
+    {
+        OnPickPressed?.Invoke();
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext obj)
