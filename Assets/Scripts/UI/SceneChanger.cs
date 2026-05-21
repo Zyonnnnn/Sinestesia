@@ -24,7 +24,7 @@ public class SceneChanger : MonoBehaviour
             uiImage.SetActive(false);
         }
     }
-    public void SairDoJogo()
+    public void ExitGame()
     {
         Application.Quit();
 
