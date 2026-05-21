@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class FreeState : BaseState
@@ -14,9 +15,11 @@ public class FreeState : BaseState
 
     public override void OnTick()
     {
+        
     }
 
     public override void OnEnd()
     {
+        
     }
 }

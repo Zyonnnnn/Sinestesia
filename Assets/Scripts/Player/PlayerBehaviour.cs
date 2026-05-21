@@ -8,6 +8,9 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
 
     private bool canJump, jumping, flipped, isKnockedBack;
+    public static bool canInteract { get; private set; }
+
+    public static event Action OnPicked;
 
     private float knockbackTimer;
 
@@ -16,6 +19,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     private SinestesyDetection sd;
     private Rigidbody rb;
+    private Collider coll;
     private InputManager inputManager;
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
@@ -24,9 +28,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private Vector3 hVelocity;
 
     public static Vector3 playerPosition { get; private set; }
-    public static bool hold { get; private set; }
-
-
+    
     private void Awake()
     {
         inputManager = new InputManager();
@@ -41,17 +43,17 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         sd = GetComponentInChildren<SinestesyDetection>();
         rb = GetComponent<Rigidbody>();
+        coll = GetComponent<Collider>();
     }
 
     void Update()
     {
         playerPosition = transform.position;
-        Debug.Log(hold);
-
+        
+        Debug.Log("interassao " + canInteract);
         HandleFlip();
         HandleHealth();
     }
-
 
     private void FixedUpdate()
     {
@@ -121,7 +123,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     }
     void HandleInteract()
     {
-        hold = !hold;
+        OnPicked?.Invoke();
     }
     private void HandleSinestesy()
     {
@@ -144,7 +146,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         if (inputManager.GetInputDirection().x != 0)
         {
-            if (inputManager.GetInputDirection().x > 0 ? flipped = false : flipped = true) ;
+            if (inputManager.GetInputDirection().x > 0 ? flipped = false : flipped = true);
         }
 
         if (flipped)
@@ -183,6 +185,24 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform);
+        }
+    }
+    
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("InteractArea"))
+        {
+            canInteract = true;
+            
+            Debug.Log(collision.gameObject.name);
+        }
+    }
+
+    void OnTriggerExit(Collider collision)
+    {
+        if (collision.CompareTag("InteractArea"))
+        {
+            canInteract = false;
         }
     }
 

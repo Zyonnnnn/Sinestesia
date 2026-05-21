@@ -3,8 +3,9 @@ using UnityEngine;
 public class OnHandState : BaseState
 {
     Transform playerPos;
-    LighterBehaviour lighter;
     StateMachine stateMachine;
+    
+    LighterBehaviour lighter;
 
     Vector3 distance = new(2, 0, 0);
 
@@ -12,6 +13,20 @@ public class OnHandState : BaseState
     {
         this.stateMachine = stateMachine;
         lighter = gameObject.GetComponent<LighterBehaviour>();
+        
+        PlayerBehaviour.OnPicked += HandlePicked;
+    }
+
+    private void HandlePicked()
+    {
+        if (PlayerBehaviour.canInteract)
+        {
+            
+        }
+        else
+        {
+            stateMachine.TransitionTo<FreeState>();
+        }
     }
 
     public override void OnTick()
@@ -23,13 +38,11 @@ public class OnHandState : BaseState
 
         lighter.gameObject.transform.position = playerPos.position + distance;
 
-        if (PlayerBehaviour.hold)
-        {
-            stateMachine.TransitionTo<FreeState>();
-        }
+        Debug.Log("to na mao");
     }
 
     public override void OnEnd()
     {
+        
     }
 }
