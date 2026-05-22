@@ -3,10 +3,8 @@ using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
-    [SerializeField] protected int health;
-    [SerializeField] protected int strength;
-    [SerializeField] protected int moveSpeed;
-    [SerializeField] protected float detectRange;
+    [SerializeField] protected int health, strength, moveSpeed;
+    [SerializeField] protected float detectRange, jumpStrenght;
     
     public bool _isTouching;
     
@@ -35,6 +33,7 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public float GetMoveSpeed() => moveSpeed;
     public float GetDetectRange() => detectRange;
+    public float GetJumpStrenght() => jumpStrenght;
     
     protected void OnDrawGizmosSelected()
     {

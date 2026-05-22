@@ -15,7 +15,7 @@ public class IdleState : BaseState
         if (!eye.Player) return;
 
         var playerPosition = eye.Player.transform.position;
-        var distanceFromPlayer = Mathf.Abs( Vector3.Distance(playerPosition, eye.transform.position));
+        var distanceFromPlayer = Mathf.Abs(Vector3.Distance(playerPosition, eye.transform.position));
 
         if (distanceFromPlayer <= eye.GetDetectRange())
         {

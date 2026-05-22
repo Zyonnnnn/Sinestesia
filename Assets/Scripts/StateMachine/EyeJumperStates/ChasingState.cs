@@ -5,6 +5,8 @@ public class ChasingState : BaseState
 {
     private RangedEnemy eye;
     private StateMachine stateMachine;
+
+    private float adaptedStrenght;
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
@@ -15,35 +17,31 @@ public class ChasingState : BaseState
     {
         if (!eye.Player) return;
 
-        CheckPlayerPosition();
-        CheckPlayerDistance(CheckPlayerPosition());
+        var playerPosition = eye.Player.transform.position;
+        var distance = Vector3.Distance(playerPosition, eye.transform.position);
 
-        HandleDistance(CheckPlayerDistance(CheckPlayerPosition()));
-        
-        FollowPlayer(CheckPlayerPosition());
-    }
 
-    private float CheckPlayerDistance(Vector3 playerPosition)
-    {
-        return Mathf.Abs( Vector3.Distance(playerPosition, eye.transform.position));
-    }
-
-    private Vector3 CheckPlayerPosition()
-    {
-        return eye.Player.transform.position;
-    }
-
-    protected void HandleDistance(float distanceFromPlayer)
-    {
-        if (distanceFromPlayer <= eye.attackRange)
+        if (distance <= eye.attackRange)
         {
+            float minForce = eye.GetJumpStrenght() * 0.2f;
+            float maxForce = eye.GetJumpStrenght();
+
+            float t = Mathf.Clamp01(distance / eye.attackRange);
+            float adaptedStrenght = Mathf.Lerp(minForce, maxForce, t);
+
+            stateMachine.SetParam("adaptedStrenght", adaptedStrenght);
             stateMachine.TransitionTo<PreparingAttackState>();
         }
-        else if (distanceFromPlayer >= eye.GetDetectRange())
+        else if (distance >= eye.GetDetectRange())
         {
             stateMachine.TransitionTo<IdleState>();
         }
+        else
+        {
+            FollowPlayer(playerPosition);
+        }
     }
+
     protected void FollowPlayer(Vector3 playerPosition)
     {
         if (!eye._isTouching)
@@ -54,6 +52,6 @@ public class ChasingState : BaseState
 
     public override void OnEnd()
     {
-        
+
     }
 }

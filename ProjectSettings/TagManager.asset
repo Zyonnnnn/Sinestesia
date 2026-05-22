@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Ground
   - Sound
+  - EyeJump
+  - FirstFloor
+  - SecondFloor
+  - Transition_1_2
+  - PauseImg
+  - Lighter
+  - InteractArea
   layers:
   - Default
   - TransparentFX
