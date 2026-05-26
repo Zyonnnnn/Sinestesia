@@ -9,8 +9,10 @@ public class OnHandState : BaseState
 
     LighterBehaviour lighter;
 
-    Vector3 baseDistanceX = new(0.5f, 0f, 0f);
-    Vector3 baseDistanceZ = new(0f, 0f, 0.2f);
+    float baseDistanceX = 0.5f;
+    float baseDistanceZ = 0.2f;
+
+    float velX, velZ;
 
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
@@ -45,9 +47,13 @@ public class OnHandState : BaseState
             var rotationX = playerRb.linearVelocity.x < 0f ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
             var rotationZ = playerRb.linearVelocity.z < 0f ? Quaternion.Euler(0, 90, 0) : Quaternion.Euler(0, -90, 0);
 
-            lighter.gameObject.transform.rotation = playerRb.linearVelocity.x != 0f ? rotationX : rotationZ;
+            velX = playerRb.linearVelocity.x > 0f ? baseDistanceX : -baseDistanceX;
+            velZ = playerRb.linearVelocity.z > 0f ? baseDistanceZ : -baseDistanceZ;
 
+            lighter.gameObject.transform.rotation = playerRb.linearVelocity.x != 0f ? Quaternion.Slerp(lighter.gameObject.transform.rotation, rotationX, 12 * Time.deltaTime) : Quaternion.Slerp(lighter.gameObject.transform.rotation, rotationZ, 12 * Time.deltaTime);
         }
+
+        lighter.gameObject.transform.position = playerPos.position + new Vector3(velX, 0, velZ);
     }
 
     public override void OnEnd()

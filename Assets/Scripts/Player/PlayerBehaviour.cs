@@ -26,7 +26,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
 
     private Vector3 hVelocity;
-
     public static Vector3 playerPosition { get; private set; }
     
     private void Awake()
