@@ -26273,14 +26273,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674959452}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-<<<<<<< Updated upstream
 --- !u!224 &675254430 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7188025126479869772, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
   m_PrefabInstance: {fileID: 4085998400473153584}
   m_PrefabAsset: {fileID: 0}
-=======
->>>>>>> Stashed changes
 --- !u!1 &676046246
 GameObject:
   m_ObjectHideFlags: 0
@@ -34816,14 +34813,11 @@ Transform:
   - {fileID: 1769706606}
   m_Father: {fileID: 556992488}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
 --- !u!1 &916447218 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6896629070494320752, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
   m_PrefabInstance: {fileID: 4085998400473153584}
   m_PrefabAsset: {fileID: 0}
-=======
->>>>>>> Stashed changes
 --- !u!1001 &916619470
 PrefabInstance:
   m_ObjectHideFlags: 0
