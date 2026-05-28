@@ -14,6 +14,7 @@ public class SceneChanger : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1.0f;
         uiImage = GameObject.FindGameObjectWithTag("PauseImg");
     }
 
