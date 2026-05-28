@@ -2,7 +2,8 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
+ 
 public class PlayerBehaviour : MonoBehaviour, IHitable
 {
     [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
@@ -21,6 +22,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private Rigidbody rb;
     private Collider coll;
     private InputManager inputManager;
+    public Image imagemAlvo;
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
@@ -191,7 +193,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (collision.CompareTag("InteractArea"))
         {
             canInteract = true;
-            
+            imagemAlvo.color = Color.red;
+
             Debug.Log(collision.gameObject.name);
         }
     }
@@ -201,6 +204,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (collision.CompareTag("InteractArea"))
         {
             canInteract = false;
+            imagemAlvo.color = Color.white;
+
         }
     }
 
