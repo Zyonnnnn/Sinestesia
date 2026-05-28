@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour, IHitable
 {
@@ -16,6 +17,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     [SerializeField] GameObject gc;
     [SerializeField] LayerMask groundtest;
+    public Image imagemAlvo;
+    public Color novaCor = Color.red;
 
     private SinestesyDetection sd;
     private Rigidbody rb;
@@ -193,6 +196,20 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             canInteract = true;
             
             Debug.Log(collision.gameObject.name);
+            
+            TrocarCor();
+        }
+    }
+
+    private void TrocarCor()
+    {
+        if (imagemAlvo != null)
+        {
+            imagemAlvo.color = Color.red;
+        }
+        else
+        {
+            Debug.LogWarning("Imagem alvo não definida!", gameObject);
         }
     }
 
@@ -201,6 +218,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (collision.CompareTag("InteractArea"))
         {
             canInteract = false;
+            imagemAlvo.color = Color.white;
         }
     }
 
