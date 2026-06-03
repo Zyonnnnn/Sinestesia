@@ -1,29 +1,48 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Switch;
 
 public class BreakableGround : MonoBehaviour
 {
-    Rigidbody rb;
     bool isBroken;
 
-    void Start()
+    private List<Rigidbody> childrenRb;
+    private List<GameObject> children;
+
+    void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        childrenRb = new List<Rigidbody>(GetComponentsInChildren<Rigidbody>());
+    }
+
+    private void Start()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.AddComponent<BrokenPieceBehaviour>();
+        }
     }
 
     void Update()
     {
         if (isBroken)
         {
-            rb.isKinematic = false;
+            foreach (Rigidbody rb in childrenRb)
+            { 
+                rb.isKinematic = false;
+            }
         }
         else
         {
-            rb.isKinematic = true;
+
+            foreach (Rigidbody rb in childrenRb)
+            {
+                rb.isKinematic = true;
+            }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EyeJump"))
         {

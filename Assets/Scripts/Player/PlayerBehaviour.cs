@@ -144,7 +144,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         if (inputManager.GetInputDirection().x != 0)
         {
-            if (inputManager.GetInputDirection().x > 0 ? flipped = false : flipped = true);
+            if (inputManager.GetInputDirection().x > 0 ? flipped = false : flipped = true) ;
         }
 
         if (flipped)
