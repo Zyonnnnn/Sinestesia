@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour, IHitable
@@ -8,25 +9,23 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
 
     private bool canJump, jumping, flipped, isKnockedBack;
+    private float knockbackTimer;
+    private Vector3 hVelocity;
+
     public static bool canInteract { get; private set; }
+    public static Vector3 playerPosition { get; private set; }
 
     public static event Action OnPicked;
-
-    private float knockbackTimer;
 
     [SerializeField] GameObject gc;
     [SerializeField] LayerMask groundtest;
 
     private SinestesyDetection sd;
     private Rigidbody rb;
-    private Collider coll;
     private InputManager inputManager;
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
-
-    private Vector3 hVelocity;
-    public static Vector3 playerPosition { get; private set; }
     
     private void Awake()
     {
@@ -42,7 +41,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         sd = GetComponentInChildren<SinestesyDetection>();
         rb = GetComponent<Rigidbody>();
-        coll = GetComponent<Collider>();
     }
 
     void Update()
@@ -144,7 +142,10 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         if (inputManager.GetInputDirection().x != 0)
         {
-            if (inputManager.GetInputDirection().x > 0 ? flipped = false : flipped = true) ;
+            if (inputManager.GetInputDirection().x > 0 ? flipped = false : flipped = true)
+            {
+                ;
+            }
         }
 
         if (flipped)
