@@ -152,7 +152,7 @@ MonoBehaviour:
   health: 0
   strength: 3
   moveSpeed: 2
-  detectRange: 10
+  detectRange: 12
   jumpStrenght: 3.35
   _isTouching: 0
   attackRange: 5
