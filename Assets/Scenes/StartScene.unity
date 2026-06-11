@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Synesthesia
+  m_text: Sinestesia
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: df5c323115a95e64883f5aff85eab78b, type: 2}
   m_sharedMaterial: {fileID: -7657895894973255750, guid: df5c323115a95e64883f5aff85eab78b, type: 2}
