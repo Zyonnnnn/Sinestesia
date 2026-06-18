@@ -53,7 +53,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 7
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7356597586033584472
 MonoBehaviour:
@@ -125,7 +125,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.418, z: -5.5}
-  m_LocalScale: {x: 2, y: 3.4, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1399614915626972723}
@@ -139,7 +139,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3761921220331952261}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5495902117074765545, guid: e1ecc60277c2dae459936c437f385b16, type: 3}
 --- !u!136 &5648564444715288280
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -159,8 +159,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.37
-  m_Height: 0.7
+  m_Radius: 0.5
+  m_Height: 1.75
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4651738871117047151
@@ -208,8 +208,8 @@ MonoBehaviour:
   flipSpeed: 12
   acc: 35
   decc: 15
-  health: 3
-  knockbackStrenght: 25
+  health: 45745740
+  knockbackStrenght: 5
   knockbackDuration: 0.25
   gc: {fileID: 8664069889962292969}
   groundtest:
@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 8664069889962292969}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.343, z: 0}
+  m_LocalPosition: {x: 0, y: -0.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
