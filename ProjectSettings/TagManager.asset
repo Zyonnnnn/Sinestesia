@@ -13,6 +13,7 @@ TagManager:
   - PauseImg
   - Lighter
   - InteractArea
+  - 1to2level
   layers:
   - Default
   - TransparentFX

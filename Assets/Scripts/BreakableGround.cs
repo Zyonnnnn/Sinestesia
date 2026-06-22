@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.Switch;
 
 public class BreakableGround : MonoBehaviour
 {
+    GameObject area;
     bool isBroken;
 
     private List<Rigidbody> childrenRb;
@@ -21,6 +22,7 @@ public class BreakableGround : MonoBehaviour
         {
             child.gameObject.AddComponent<BrokenPieceBehaviour>();
         }
+        area = GameObject.FindGameObjectWithTag("1to2level");
     }
 
     void Update()
@@ -31,15 +33,18 @@ public class BreakableGround : MonoBehaviour
             { 
                 rb.isKinematic = false;
             }
+            area.SetActive(true);
         }
         else
         {
-
             foreach (Rigidbody rb in childrenRb)
             {
                 rb.isKinematic = true;
             }
+            area.SetActive(false);
         }
+
+        Debug.Log(area);
     }
 
     public void OnTriggerEnter(Collider other)

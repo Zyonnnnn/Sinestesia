@@ -26,7 +26,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
-    
+
     private void Awake()
     {
         inputManager = new InputManager();
@@ -46,7 +46,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     void Update()
     {
         playerPosition = transform.position;
-        
+
         HandleFlip();
         HandleHealth();
     }
@@ -180,20 +180,27 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             health--;
         }
+
         if (collision.collider.CompareTag("Lighter"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, rb);
         }
     }
-    
+
     void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("InteractArea"))
         {
             canInteract = true;
-            
+
             Debug.Log(collision.gameObject.name);
+        }
+
+        if (collision.CompareTag("1to2level"))
+        {
+            IHitable hit = collision.gameObject.GetComponent<IHitable>();
+            hit.Execute(transform, rb);
         }
     }
 

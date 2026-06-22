@@ -7,7 +7,8 @@ using UnityEditor;
 public class SceneChanger : MonoBehaviour
 {
     public GameObject uiImage;
-    public void SceneChange(string sceneName)
+
+    public static void SceneChange(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }

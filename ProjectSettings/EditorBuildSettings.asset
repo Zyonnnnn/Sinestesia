@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FloorsScene.unity
     guid: ad474f2a49b36b44ebda28ddc4bbb6bf
+  - enabled: 1
+    path: Assets/Scenes/PuzzlesScene.unity
+    guid: 2dcba41e8096dd140bbad8a395705257
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

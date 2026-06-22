@@ -45,13 +45,15 @@ public class CinemachineBehaviour : MonoBehaviour
         CameraBoundZone targetZone = GetZoneByPlayerY(PlayerBehaviour.playerPosition.y);
 
         SetBoundingVolume(targetZone);
+
+
     }
 
     private void CreateBoundZones()
     {
-        boundZones.Add(new CameraBoundZone(float.NegativeInfinity, 7.8f, "FirstFloor"));
-        boundZones.Add(new CameraBoundZone(7.8f, 8.6f, "Transition_1_2"));
-        boundZones.Add(new CameraBoundZone(8.6f, float.PositiveInfinity, "SecondFloor"));
+        boundZones.Add(new CameraBoundZone(float.NegativeInfinity, 5.8f, "FirstFloor"));
+        boundZones.Add(new CameraBoundZone(5.8f, 9.6f, "Transition_1_2"));
+        boundZones.Add(new CameraBoundZone(9.6f, float.PositiveInfinity, "SecondFloor"));
 
         // Quando adicionar o terceiro andar, você pode trocar a zona do SecondFloor
         // e adicionar mais duas zonas assim:
