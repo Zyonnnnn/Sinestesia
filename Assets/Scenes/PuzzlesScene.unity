@@ -3766,7 +3766,7 @@ PrefabInstance:
     - target: {fileID: 2685902352288497534, guid: 2a39cc5c162af6d43ad354f405566222, type: 3}
       propertyPath: uiImage
       value: 
-      objectReference: {fileID: 1179459247}
+      objectReference: {fileID: 0}
     - target: {fileID: 4528716890901494533, guid: 2a39cc5c162af6d43ad354f405566222, type: 3}
       propertyPath: m_LocalPosition.x
       value: 726.50055
@@ -14570,7 +14570,6 @@ Transform:
   - {fileID: 1942224217}
   - {fileID: 744627921}
   - {fileID: 293910263}
-  - {fileID: 344167890}
   - {fileID: 171657034}
   - {fileID: 614938654}
   - {fileID: 1644148910}
@@ -14597,21 +14596,18 @@ Transform:
   - {fileID: 52816091}
   - {fileID: 1257817896}
   - {fileID: 1315868659}
-  - {fileID: 372561563}
   - {fileID: 642992304}
   - {fileID: 600391506}
   - {fileID: 327770488}
   - {fileID: 1119771955}
   - {fileID: 1077454076}
   - {fileID: 726885484}
-  - {fileID: 2004140625}
   - {fileID: 1802317116}
   - {fileID: 1269471762}
   - {fileID: 1205622053}
   - {fileID: 555184740}
   - {fileID: 1739875178}
   - {fileID: 30520676}
-  - {fileID: 345921132}
   - {fileID: 1747310597}
   - {fileID: 568913270}
   - {fileID: 738671521}
@@ -14657,7 +14653,6 @@ Transform:
   - {fileID: 1679432054}
   - {fileID: 802108588}
   - {fileID: 1599514806}
-  - {fileID: 348481956}
   - {fileID: 946761230}
   - {fileID: 1401690517}
   - {fileID: 1558740259}
@@ -28256,10 +28251,6 @@ SceneRoots:
   - {fileID: 988808172}
   - {fileID: 537385624}
   - {fileID: 993223626}
-  - {fileID: 1678908429}
-  - {fileID: 1942224217}
-  - {fileID: 744627921}
-  - {fileID: 293910263}
   - {fileID: 1988054260}
   - {fileID: 361056681}
   - {fileID: 291407361}
