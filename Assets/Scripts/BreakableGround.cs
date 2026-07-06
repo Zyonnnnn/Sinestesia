@@ -43,8 +43,6 @@ public class BreakableGround : MonoBehaviour
             }
             area.SetActive(false);
         }
-
-        Debug.Log(area);
     }
 
     public void OnTriggerEnter(Collider other)
