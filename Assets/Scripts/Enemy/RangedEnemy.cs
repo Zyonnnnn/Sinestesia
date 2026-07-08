@@ -49,7 +49,7 @@ class RangedEnemy : BaseEnemy
         else if (collision.gameObject.CompareTag("Player"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
-            hit.Execute(transform, null);
+            hit.Execute(transform, null, 0);
         }
     }
 }

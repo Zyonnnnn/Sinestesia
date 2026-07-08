@@ -199,7 +199,7 @@ MonoBehaviour:
   flipSpeed: 12
   acc: 35
   decc: 15
-  health: 45745740
+  health: 10
   knockbackStrenght: 5
   knockbackDuration: 0.25
   gc: {fileID: 8664069889962292969}

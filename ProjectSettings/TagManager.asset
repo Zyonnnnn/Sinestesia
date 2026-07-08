@@ -14,6 +14,7 @@ TagManager:
   - Lighter
   - InteractArea
   - 1to2level
+  - 2to3level
   layers:
   - Default
   - TransparentFX

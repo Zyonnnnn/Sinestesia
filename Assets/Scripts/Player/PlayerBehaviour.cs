@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour, IHitable
 {
+    #region Variables
     [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
 
     private bool canJump, jumping, flipped, isKnockedBack;
@@ -26,7 +27,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
-
+    #endregion
+    #region Setup
     private void Awake()
     {
         inputManager = new InputManager();
@@ -36,13 +38,20 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         inputManager.OnPickPressed += HandleInteract;
     }
 
-
     private void Start()
     {
         sd = GetComponentInChildren<SinestesyDetection>();
         rb = GetComponent<Rigidbody>();
     }
-
+    public void Execute(Transform executionSoruce, Rigidbody rb, int i)
+    {
+        if (!isKnockedBack)
+        {
+            HandleKnockback(executionSoruce);
+        }
+    }
+    #endregion
+    #region Loop
     void Update()
     {
         playerPosition = transform.position;
@@ -50,7 +59,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         HandleFlip();
         HandleHealth();
     }
-
     private void FixedUpdate()
     {
         if (!isKnockedBack)
@@ -75,15 +83,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
         HandleGroundCheck();
     }
-
-    public void Execute(Transform executionSoruce, Rigidbody rb)
-    {
-        if (!isKnockedBack)
-        {
-            HandleKnockback(executionSoruce);
-        }
-    }
-
+    #endregion
     #region Handlers
     private void HandleMovement()
     {
@@ -173,7 +173,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         knockbackTimer = knockbackDuration;
     }
     #endregion
-
+    #region Collision
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("EyeJump"))
@@ -184,7 +184,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (collision.collider.CompareTag("Lighter"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
-            hit.Execute(transform, rb);
+            hit.Execute(transform, rb, 0);
         }
     }
 
@@ -200,7 +200,13 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (collision.CompareTag("1to2level"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
-            hit.Execute(transform, rb);
+            hit.Execute(transform, rb, 1);
+        }
+
+        if (collision.CompareTag("2to3level"))
+        {
+            IHitable hit = collision.gameObject.GetComponent<IHitable>();
+            hit.Execute(transform, rb, 2);
         }
     }
 
@@ -212,9 +218,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         }
     }
 
+    #endregion
+    #region Debug
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(gc.transform.position, Vector3.down * rayLenght);
     }
+    #endregion
 }

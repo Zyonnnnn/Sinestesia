@@ -2,5 +2,5 @@
 
 internal interface IHitable
 {
-    public void Execute(Transform executionSoruce, Rigidbody rb);
+    public void Execute(Transform executionSoruce, Rigidbody rb, int key);
 }
