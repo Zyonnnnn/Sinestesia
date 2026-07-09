@@ -8,6 +8,7 @@ public class OnHandState : BaseState
     StateMachine stateMachine;
 
     LighterBehaviour lighter;
+    ParticleSystem ps;
 
     float baseDistanceX = 0.5f;
     float baseDistanceZ = 0.2f;
@@ -18,6 +19,7 @@ public class OnHandState : BaseState
     {
         this.stateMachine = stateMachine;
         lighter = gameObject.GetComponent<LighterBehaviour>();
+        ps = gameObject.GetComponent<ParticleSystem>();
 
         PlayerBehaviour.OnPicked += HandlePicked;
     }
@@ -27,6 +29,18 @@ public class OnHandState : BaseState
         if (PlayerBehaviour.canInteract)
         {
             lighter.gameObject.GetComponent<BoxCollider>().enabled = !lighter.gameObject.GetComponent<BoxCollider>().enabled;
+
+            if (ps != null)
+            {
+                if (!ps.isEmitting)
+                {
+                    ps.Play();
+                }
+                else
+                {
+                    ps.Stop();
+                }
+            }
         }
         else
         {

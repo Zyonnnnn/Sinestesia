@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8340826491356530871}
   - component: {fileID: 7356597586033584472}
   - component: {fileID: 7723042295386303185}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SinestesyRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 5648564444715288280}
   - component: {fileID: 4651738871117047151}
   - component: {fileID: 3109051483410746528}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9009146761683222574}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundChecker
   m_TagString: GameController
   m_Icon: {fileID: 0}
@@ -288,6 +288,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e1ecc60277c2dae459936c437f385b16, type: 3}
       propertyPath: m_Name
       value: imundissa
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e1ecc60277c2dae459936c437f385b16, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
