@@ -95,12 +95,10 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
         rb.linearVelocity = new Vector3(hVelocity.x, rb.linearVelocity.y, hVelocity.z);
     }
-
     private void HandleGroundCheck()
     {
         canJump = Physics.Raycast(gc.transform.position, Vector3.down, out _, rayLenght, groundtest) ? true : false;
     }
-
     void HandleJump()
     {
         if (canJump)
@@ -109,7 +107,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             canJump = false;
         }
     }
-
     void HandleHealth()
     {
         if (health <= 0)
@@ -137,7 +134,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             }
         }
     }
-
     private void HandleFlip()
     {
         if (inputManager.GetInputDirection().x != 0)
@@ -157,7 +153,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             transform.rotation = Quaternion.Slerp(transform.rotation, flipRight, flipSpeed * Time.deltaTime);
         }
     }
-
     private void HandleKnockback(Transform executionSoruce)
     {
         if (isKnockedBack)

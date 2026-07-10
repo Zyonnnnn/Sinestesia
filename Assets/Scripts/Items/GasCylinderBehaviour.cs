@@ -31,8 +31,6 @@ public class GasCylinderBehaviour : MonoBehaviour
                 if (colliders[i].TryGetComponent(out Rigidbody rb))
                 {
                     rb.AddExplosionForce(explosionForce * 1000, transform.position, explosionRadius);
-
-                    Debug.Log(rb.name);
                 }
             }
         }
