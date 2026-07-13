@@ -14,12 +14,12 @@ class RangedEnemy : BaseEnemy
 
     protected void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        Player = FindFirstObjectByType<PlayerBehaviour>();
     }
 
     protected void Start()
     {
-        Player = FindFirstObjectByType<PlayerBehaviour>();
+        rb = GetComponent<Rigidbody>();
 
         StateMachine = new StateMachine(this.gameObject);
         StateMachine.TransitionTo<IdleState>();
@@ -28,16 +28,6 @@ class RangedEnemy : BaseEnemy
     private void Update()
     {
         StateMachine.OnTick();
-    }
-
-    protected override void Attack()
-    {
-
-    }
-
-    protected override void CheckPlayerInRange()
-    {
-
     }
 
     private void OnCollisionEnter(Collision collision)
