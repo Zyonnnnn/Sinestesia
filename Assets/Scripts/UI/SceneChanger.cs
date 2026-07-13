@@ -7,16 +7,13 @@ using UnityEditor;
 public class SceneChanger : MonoBehaviour
 {
     public GameObject uiImage;
-
-    public static void SceneChange(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+    public GameObject pauseMenu;
 
     private void Awake()
     {
         Time.timeScale = 1.0f;
         uiImage = GameObject.FindGameObjectWithTag("PauseImg");
+        pauseMenu = GameObject.FindGameObjectWithTag("Buttons");
     }
 
     private void Start()
@@ -25,17 +22,24 @@ public class SceneChanger : MonoBehaviour
         {
             uiImage.SetActive(false);
         }
+        if (pauseMenu != null)
+        {
+            pauseMenu.SetActive(false);
+        }
     }
-    public void ExitGame()
-    {
-        Application.Quit();
-
-#if UNITY_EDITOR //Importa funções exclusivas do editor da Unity.
-        EditorApplication.isPlaying = false;
-#endif
-    }
-
     private void Update()
+    {
+        MenuSetActive();
+    }
+    
+    public static void SceneChange(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    
+
+    private void MenuSetActive()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && uiImage != null)
         {
@@ -43,5 +47,14 @@ public class SceneChanger : MonoBehaviour
 
             Time.timeScale = uiImage.activeSelf ? 0f : 1f;
         }
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+
+#if UNITY_EDITOR //Importa funções exclusivas do editor da Unity.
+        EditorApplication.isPlaying = false;
+#endif
     }
 }

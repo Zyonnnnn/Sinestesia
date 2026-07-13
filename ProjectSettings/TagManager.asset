@@ -15,6 +15,9 @@ TagManager:
   - InteractArea
   - 1to2level
   - 2to3level
+  - Buttons
+  - MainMenu
+  - ConfigMenu
   layers:
   - Default
   - TransparentFX
