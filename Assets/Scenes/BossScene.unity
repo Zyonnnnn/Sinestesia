@@ -5237,6 +5237,7 @@ GameObject:
   - component: {fileID: 2140560961}
   - component: {fileID: 2140560960}
   - component: {fileID: 2140560959}
+  - component: {fileID: 2140560962}
   m_Layer: 0
   m_Name: Tentacle
   m_TagString: Untagged
@@ -5333,6 +5334,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140560957}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2140560962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140560957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3982aee2d0bbf6a4ca377030565b8f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2143855427
 GameObject:
   m_ObjectHideFlags: 0

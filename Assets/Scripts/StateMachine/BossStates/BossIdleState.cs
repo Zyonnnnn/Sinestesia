@@ -13,7 +13,10 @@ public class BossIdleState : BaseState
 
     public override void OnTick()
     {
-
+        if (Input.GetButtonDown("Fire1"))
+        {
+            stateMachine.TransitionTo<BossChasingState>();
+        }
     }
 
     public override void OnEnd()
