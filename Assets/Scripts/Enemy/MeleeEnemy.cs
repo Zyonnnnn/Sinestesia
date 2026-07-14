@@ -5,6 +5,13 @@ public class MeleeEnemy : BaseEnemy
 {
     private StateMachine StateMachine;
 
+
+    public PlayerBehaviour Player { get; private set; }
+
+    private void Awake()
+    {
+        Player = FindFirstObjectByType<PlayerBehaviour>();
+    }
     private void Start()
     {
         StateMachine = new StateMachine(this.gameObject);
@@ -15,17 +22,6 @@ public class MeleeEnemy : BaseEnemy
     {
         StateMachine.OnTick();
     }
-
-    //protected override void CheckPlayerInRange()
-    //{
-    //    var playerPosition = FindFirstObjectByType<PlayerBehaviour>().transform.position;
-     //   var distanceFromPlayer = Mathf.Abs( Vector3.Distance(playerPosition, transform.position));
-//
-     //   if (distanceFromPlayer <= detectRange)
-      //  {
-      //      FollowPlayer(playerPosition);
-    //    }
-    //}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -41,15 +37,5 @@ public class MeleeEnemy : BaseEnemy
         {
             _isTouching = false;
         }
-    }
-    
-    protected override void Attack()
-    {
-        
-    }
-
-    protected override void CheckPlayerInRange()
-    {
-        
     }
 }
