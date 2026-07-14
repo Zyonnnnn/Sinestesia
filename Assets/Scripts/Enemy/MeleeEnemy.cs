@@ -15,7 +15,7 @@ public class MeleeEnemy : BaseEnemy
     private void Start()
     {
         StateMachine = new StateMachine(this.gameObject);
-        StateMachine.TransitionTo<IdleState>();
+        StateMachine.TransitionTo<BossIdleState>();
     }
 
     private void Update()
