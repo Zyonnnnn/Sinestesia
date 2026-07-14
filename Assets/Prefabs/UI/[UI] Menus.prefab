@@ -167,12 +167,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 249383906824945488}
     - target: {fileID: 1022931385312342365, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022931385312342365, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1213073223417489782, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548827286572761584, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628508538382239685, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2945595566052340768, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -190,13 +202,33 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SceneChange
       objectReference: {fileID: 0}
+    - target: {fileID: 3788116286808315504, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4761393412716893044, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
       propertyPath: m_Name
       value: '[Canvas] Pause menu'
       objectReference: {fileID: 0}
+    - target: {fileID: 4761393412716893044, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246357181012259505, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5246357181012259505, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
       propertyPath: m_TagString
       value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061356320255784844, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896629070494320752, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6896629070494320752, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
       propertyPath: m_IsActive
@@ -286,6 +318,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7429484151725425601, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7554805625185911288, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -298,9 +334,25 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SceneChanger, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 7594434741001043950, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671289705137166954, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074711518649670466, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8235931441918349381, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
       propertyPath: m_Layer
-      value: 5
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9099467989670513302, guid: 4b2d5c2d9c30bb94f92c743de22e61a0, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
