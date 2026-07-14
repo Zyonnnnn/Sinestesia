@@ -20,7 +20,6 @@ public class ChasingState : BaseState
         var playerPosition = eye.Player.transform.position;
         var distance = Vector3.Distance(playerPosition, eye.transform.position);
 
-
         if (distance <= eye.attackRange)
         {
             float minForce = eye.GetJumpStrenght() * 0.2f;
