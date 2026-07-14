@@ -3,23 +3,17 @@ using UnityEngine;
 
 public class TriggerSinestesia : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    GameObject olhoSinestesia;
+    private void Awake()
     {
         
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.CompareTag("Player")
+        if (other.CompareTag("Player")
         {
-            
+            olhoSinestesia = olhoSinestesia.;
         }
     }
 }
