@@ -28,9 +28,6 @@ public abstract class BaseEnemy : MonoBehaviour
         Destroy(gameObject);
     }
     
-    protected abstract void Attack();
-    protected abstract void CheckPlayerInRange();
-
     public float GetMoveSpeed() => moveSpeed;
     public float GetDetectRange() => detectRange;
     public float GetJumpStrenght() => jumpStrenght;
