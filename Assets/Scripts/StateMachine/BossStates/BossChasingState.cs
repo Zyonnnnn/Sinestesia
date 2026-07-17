@@ -9,9 +9,12 @@ public class BossChasingState : BaseState
 
     private float timer = 3f;
 
+    public static bool isMoving;
+
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
+
         boss = gameObject.GetComponent<MeleeEnemy>();
         tentacle = gameObject.GetComponentInChildren<TentacleBehaviour>();
     }
@@ -26,10 +29,12 @@ public class BossChasingState : BaseState
         if (distance >= boss.GetDetectRange())
         {
             stateMachine.TransitionTo<BossIdleState>();
+            isMoving = false;
         }
         else
         {
             FollowPlayer(playerPosition);
+            isMoving = true;
         }
     }
 

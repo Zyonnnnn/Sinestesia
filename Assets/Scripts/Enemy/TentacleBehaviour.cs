@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class TentacleBehaviour : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    SpriteRenderer spr;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        spr = GetComponentInChildren<SpriteRenderer>();
+    }
+    
     void Update()
     {
-        
+
+        if (BossChasingState.isMoving)
+        {
+            spr.enabled = true;
+        }
+        else
+        {
+            spr.enabled = false;
+        }
     }
 }
