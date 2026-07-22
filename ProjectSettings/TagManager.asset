@@ -18,6 +18,7 @@ TagManager:
   - MainMenu
   - ConfigMenu
   - Buttons
+  - Sinestesia
   layers:
   - Default
   - TransparentFX
