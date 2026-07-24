@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class TriggerSinestesia : MonoBehaviour
 {
+    private static readonly int Sinestesia = Animator.StringToHash("Sinestesia");
     [SerializeField] private GameObject olhoSinestesia;
     [SerializeField] private Animator animator;
 
@@ -18,13 +19,13 @@ public class TriggerSinestesia : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            animator.Play("Eye_Opening");
+            animator.SetBool("Sinestesia", true);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         
-        animator.Play("Eye_Closing"); 
+        animator.SetBool("Sinestesia", false);    
     }
 }
