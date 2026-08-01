@@ -9,6 +9,8 @@ public class BossStunnedState : BaseState
     {
         this.stateMachine = stateMachine;
         boss = gameObject.GetComponent<MeleeEnemy>();
+
+        Debug.Log("Boss is stunned!");
     }
 
     public override void OnTick()

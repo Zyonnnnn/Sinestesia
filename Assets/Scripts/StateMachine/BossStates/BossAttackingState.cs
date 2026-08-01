@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 
 public class BossAttackingState : BaseState
 {
@@ -21,14 +22,18 @@ public class BossAttackingState : BaseState
 
     public override void OnTick()
     {
-        if (collider.providesContacts)
+        Bounds bounds = collider.bounds;
+
+        bool colliding = Physics.CheckBox(bounds.center, bounds.extents, collider.transform.rotation, LayerMask.GetMask("groundtest"));
+
+        if (colliding)
         {
             stateMachine.TransitionTo<BossStunnedState>();
         }
         else
         {
             Debug.Log("caindo");
-            tentacle.transform.position = new(tentacle.transform.position.x, tentacle.transform.position.y * -0.0001f * Time.deltaTime, tentacle.transform.position.z);
+            tentacle.transform.position += Vector3.down * 25f * Time.deltaTime;
         }
     }
 
@@ -37,6 +42,3 @@ public class BossAttackingState : BaseState
 
     }
 }
-
-//FUI LEVA MEU CACHORRO PRA PASSEA
-
