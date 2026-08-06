@@ -15,6 +15,10 @@ TagManager:
   - InteractArea
   - 1to2level
   - 2to3level
+  - MainMenu
+  - ConfigMenu
+  - Buttons
+  - Sinestesia
   layers:
   - Default
   - TransparentFX
@@ -24,7 +28,7 @@ TagManager:
   - UI
   - explodable
   - dontflamable
-  - 
+  - Menu
   - 
   - 
   - 

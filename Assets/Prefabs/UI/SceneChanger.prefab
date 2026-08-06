@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiImage: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  mMenu: {fileID: 0}
+  cMenu: {fileID: 0}
