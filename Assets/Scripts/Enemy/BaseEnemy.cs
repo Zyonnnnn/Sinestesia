@@ -5,7 +5,7 @@ public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] protected int health, strength;
     [SerializeField] protected float detectRange, jumpStrenght, moveSpeed;
-    
+
     public bool _isTouching;
     
     protected void TakeDamage(int damage)

@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class BossPreparingAttack : BaseState
 {
-    private MeleeEnemy boss;
-    private TentacleBehaviour tentacle;
-
     private StateMachine stateMachine;
 
     float timer = 1f;
@@ -12,8 +9,6 @@ public class BossPreparingAttack : BaseState
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
-        boss = gameObject.GetComponent<MeleeEnemy>();
-        tentacle = gameObject.GetComponentInChildren<TentacleBehaviour>();
     }
 
     public override void OnTick()
@@ -22,6 +17,7 @@ public class BossPreparingAttack : BaseState
 
         if (timer <= 0f)
         {
+            BossChasingState.isMoving = false;
             stateMachine.TransitionTo<BossAttackingState>();
         }
     }

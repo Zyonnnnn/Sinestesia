@@ -5,6 +5,7 @@ public class MeleeEnemy : BaseEnemy
 {
     private StateMachine StateMachine;
 
+    [SerializeField] public static LayerMask layerMask;
 
     public PlayerBehaviour Player { get; private set; }
 
