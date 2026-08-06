@@ -1,32 +1,28 @@
 using UnityEngine;
-using UnityEditor;
 
 public class BossAttackingState : BaseState
 {
-    private MeleeEnemy boss;
     private TentacleBehaviour tentacle;
-
     private StateMachine stateMachine;
-
-    Collider collider;
+    private Transform bossRoot;
+    private Collider tentacleCollider;
+    private int groundMask;
+    private readonly Collider[] groundHits = new Collider[8];
 
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
+        bossRoot = gameObject.transform;
 
-        boss = gameObject.GetComponent<MeleeEnemy>();
         tentacle = gameObject.GetComponentInChildren<TentacleBehaviour>();
+        tentacleCollider = tentacle.GetComponent<Collider>();
 
-        collider = tentacle.GetComponent<Collider>();
+        groundMask = LayerMask.GetMask("groundtest");
     }
 
     public override void OnTick()
     {
-        Bounds bounds = collider.bounds;
-
-        bool colliding = Physics.CheckBox(bounds.center, bounds.extents, collider.transform.rotation, LayerMask.GetMask("groundtest"));
-
-        if (colliding)
+        if (IsTouchingGround())
         {
             stateMachine.TransitionTo<BossStunnedState>();
         }
@@ -40,5 +36,29 @@ public class BossAttackingState : BaseState
     public override void OnEnd()
     {
 
+    }
+
+    private bool IsTouchingGround()
+    {
+        Bounds bounds = tentacleCollider.bounds;
+        int hitCount = Physics.OverlapBoxNonAlloc(
+            bounds.center,
+            bounds.extents,
+            groundHits,
+            Quaternion.identity,
+            groundMask,
+            QueryTriggerInteraction.Ignore);
+
+        for (int i = 0; i < hitCount; i++)
+        {
+            Collider hit = groundHits[i];
+
+            if (hit != tentacleCollider && !hit.transform.IsChildOf(bossRoot))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
