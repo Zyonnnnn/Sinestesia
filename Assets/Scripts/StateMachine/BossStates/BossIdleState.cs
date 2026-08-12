@@ -15,6 +15,7 @@ public class BossIdleState : BaseState
         tentacle = gameObject.GetComponentInChildren<TentacleBehaviour>();
         
         stateMachine.SetParam("tentaclePosition", tentacle.transform.position);
+        stateMachine.SetParam("velocity", boss.GetStrength());
     }
 
     public override void OnTick()

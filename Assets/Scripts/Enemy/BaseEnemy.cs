@@ -31,7 +31,8 @@ public abstract class BaseEnemy : MonoBehaviour
     public float GetMoveSpeed() => moveSpeed;
     public float GetDetectRange() => detectRange;
     public float GetJumpStrenght() => jumpStrenght;
-    
+    public float GetStrength() => strength;
+
     protected void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
