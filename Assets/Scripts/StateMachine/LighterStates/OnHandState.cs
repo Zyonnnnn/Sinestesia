@@ -1,10 +1,8 @@
-using UnityEditor;
 using UnityEngine;
 
 public class OnHandState : BaseState
 {
     Transform playerPos;
-    Rigidbody playerRb;
     StateMachine stateMachine;
 
     InputManager inputManager;
@@ -14,7 +12,7 @@ public class OnHandState : BaseState
     float baseDistanceX = 0.5f;
     float baseDistanceZ = 0.2f;
 
-    float velX, velZ;
+    Vector3 holdOffset;
 
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
@@ -22,6 +20,7 @@ public class OnHandState : BaseState
         lighter = gameObject.GetComponent<LighterBehaviour>();
         ps = gameObject.GetComponent<ParticleSystem>();
         inputManager = new InputManager();
+        holdOffset = new Vector3(baseDistanceX, 0f, 0f);
 
         PlayerBehaviour.OnPicked += HandlePicked;
     }
@@ -52,35 +51,42 @@ public class OnHandState : BaseState
 
     public override void OnTick()
     {
-        Debug.Log(inputManager.GetInputDirection());
-
-        if (stateMachine.HasParam("PlayerPos") && stateMachine.HasParam("PlayerRigidbody"))
+        if (stateMachine.HasParam("PlayerPos"))
         {
             playerPos = stateMachine.GetParam<Transform>("PlayerPos");
-            playerRb = stateMachine.GetParam<Rigidbody>("PlayerRigidbody");
         }
 
-        if (inputManager.GetInputDirection().magnitude != 0f)
+        if (playerPos == null)
         {
-            var rotationX = inputManager.GetInputDirection().x < 0f ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
-            var rotationZ = inputManager.GetInputDirection().y < 0f ? Quaternion.Euler(0, 90, 0) : Quaternion.Euler(0, -90, 0);
-
-            velX = inputManager.GetInputDirection().x > 0f ? baseDistanceX : -baseDistanceX;
-            velZ = inputManager.GetInputDirection().y > 0f ? baseDistanceZ : -baseDistanceZ;
-
-            lighter.gameObject.transform.rotation = inputManager.GetInputDirection().x != 0f ? Quaternion.Slerp(lighter.gameObject.transform.rotation, rotationX, 12 * Time.deltaTime) : Quaternion.Slerp(lighter.gameObject.transform.rotation, rotationZ, 12 * Time.deltaTime);
+            return;
         }
-        else
+
+        Vector2 inputDirection = inputManager.GetInputDirection();
+
+        if (inputDirection.sqrMagnitude > 0f)
         {
-            velX = 0f;
-            velZ = 0f;
+            Quaternion targetRotation;
+
+            if (Mathf.Abs(inputDirection.x) >= Mathf.Abs(inputDirection.y))
+            {
+                targetRotation = inputDirection.x < 0f ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+                holdOffset = new Vector3(inputDirection.x > 0f ? baseDistanceX : -baseDistanceX, 0f, 0f);
+            }
+            else
+            {
+                targetRotation = inputDirection.y < 0f ? Quaternion.Euler(0, 90, 0) : Quaternion.Euler(0, -90, 0);
+                float sideOffset = holdOffset.x != 0f ? holdOffset.x : baseDistanceX;
+                holdOffset = new Vector3(sideOffset, 0f, inputDirection.y > 0f ? baseDistanceZ : -baseDistanceZ);
+            }
+
+            lighter.transform.rotation = Quaternion.Slerp(lighter.transform.rotation, targetRotation, 12 * Time.deltaTime);
         }
 
-        lighter.gameObject.transform.position = playerPos.position + new Vector3(velX, 0, velZ);
+        lighter.transform.position = playerPos.position + holdOffset;
     }
 
     public override void OnEnd()
     {
-
+        PlayerBehaviour.OnPicked -= HandlePicked;
     }
 }

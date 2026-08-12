@@ -6,7 +6,9 @@ public class BossAttackingState : BaseState
     private StateMachine stateMachine;
     private Transform bossRoot;
     private Collider tentacleCollider;
+
     private int groundMask;
+
     private readonly Collider[] groundHits = new Collider[8];
 
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
@@ -29,7 +31,7 @@ public class BossAttackingState : BaseState
         else
         {
             Debug.Log("caindo");
-            tentacle.transform.position += Vector3.down * 25f * Time.deltaTime;
+            tentacle.transform.position += Vector3.down * stateMachine.GetParam<float>("velocity") * Time.deltaTime;
         }
     }
 

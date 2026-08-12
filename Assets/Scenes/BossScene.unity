@@ -3992,7 +3992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  strength: 0
+  strength: 30
   detectRange: 15
   jumpStrenght: 0
   moveSpeed: 3
