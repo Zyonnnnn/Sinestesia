@@ -20,6 +20,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     [SerializeField] GameObject gc;
     [SerializeField] LayerMask groundtest;
+    [SerializeField] private SpriteRenderer SpriteRenderer;
+    [SerializeField] private Animator Animator;
 
     private SinestesyDetection sd;
     private Rigidbody rb;
@@ -94,6 +96,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         hVelocity = Vector3.MoveTowards(hVelocity, targetVelocity, speedChangeRate * Time.deltaTime);
 
         rb.linearVelocity = new Vector3(hVelocity.x, rb.linearVelocity.y, hVelocity.z);
+        
+        Animator.SetBool("Walk", true);
     }
     private void HandleGroundCheck()
     {
@@ -111,6 +115,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         if (health <= 0)
         {
+            Animator.SetTrigger("Death");
             SceneManager.LoadScene("StartScene");
         }
     }
