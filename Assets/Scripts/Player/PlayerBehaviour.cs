@@ -21,7 +21,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     [SerializeField] GameObject gc;
     [SerializeField] LayerMask groundtest;
     [SerializeField] private SpriteRenderer SpriteRenderer;
-    [SerializeField] private Animator Animator;
+    [SerializeField] private Animator animator;
 
     private SinestesyDetection sd;
     private Rigidbody rb;
@@ -44,6 +44,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         sd = GetComponentInChildren<SinestesyDetection>();
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
     {
@@ -87,6 +88,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     }
     #endregion
     #region Handlers
+    // ReSharper disable Unity.PerformanceAnalysis
     private void HandleMovement()
     {
         var inputDirection = inputManager.GetInputDirection();
@@ -97,7 +99,9 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
         rb.linearVelocity = new Vector3(hVelocity.x, rb.linearVelocity.y, hVelocity.z);
         
-        Animator.SetBool("Walk", true);
+        bool isMoving = inputDirection.sqrMagnitude > 0f;
+        animator.SetBool("Walk", isMoving);
+        Debug.Log($"Movendo: {isMoving}, Velocidade: {rb.linearVelocity.magnitude}");
     }
     private void HandleGroundCheck()
     {
@@ -115,8 +119,9 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         if (health <= 0)
         {
-            Animator.SetTrigger("Death");
-            SceneManager.LoadScene("StartScene");
+            animator.SetTrigger("Die");
+
+            //SceneManager.LoadScene("StartScene");
         }
     }
     void HandleInteract()
