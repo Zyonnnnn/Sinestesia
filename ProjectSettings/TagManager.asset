@@ -19,6 +19,7 @@ TagManager:
   - ConfigMenu
   - Buttons
   - Sinestesia
+  - Death
   layers:
   - Default
   - TransparentFX

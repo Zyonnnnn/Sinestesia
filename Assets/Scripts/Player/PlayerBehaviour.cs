@@ -1,7 +1,5 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour, IHitable
@@ -212,6 +210,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, rb, 2);
+        }
+        
+        if (collision.CompareTag("Death"))
+        {
+            IHitable hit = collision.gameObject.GetComponent<IHitable>();
+            hit.Execute(transform, rb, 0);
         }
     }
 
