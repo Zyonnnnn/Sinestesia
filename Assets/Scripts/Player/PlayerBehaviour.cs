@@ -135,6 +135,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             if (!ps.isEmitting)
             {
                 ps.Play();
+                animator.SetTrigger("Sinestesia");
             }
             else
             {
