@@ -1,23 +1,65 @@
+using System.Collections;
 using UnityEngine;
 
 public class GasCylinderBehaviour : MonoBehaviour
 {
     [SerializeField] float explosionForce = 10;
     [SerializeField] float explosionRadius = 10;
+    [SerializeField] float explosionDelay = 3f;
 
     Collider[] colliders = new Collider[20];
 
     [SerializeField] LayerMask layerMask;
+    [SerializeField] Collider parentTriggerCollider;
+
+    ParticleSystem ps;
+
+    bool exploded;
+
+    private void Awake()
+    {
+        ps = GetComponent<ParticleSystem>();
+        parentTriggerCollider = GetComponent<Collider>();
+    }
+
+    void Start()
+    {
+        ps.Stop();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (exploded || !IsParentTriggerTouching(other))
+        {
+            return;
+        }
+
         if (other.CompareTag("Lighter"))
         {
-            //vou programar alguma coisa pro fogo que nao importe quantas vezes ative ok entao nao hao problemas nisso!!!!!
-            Debug.Log("peguei fogo rs");
-
-            ExplodeNonAlloc();
+            exploded = true;
+            StartCoroutine(Explode());
         }
+    }
+
+    bool IsParentTriggerTouching(Collider other)
+    {
+        if (parentTriggerCollider == null)
+        {
+            return true;
+        }
+
+        return Physics.ComputePenetration(parentTriggerCollider, parentTriggerCollider.transform.position, parentTriggerCollider.transform.rotation, other, other.transform.position, other.transform.rotation, out _, out _);
+    }
+
+    IEnumerator Explode()
+    {
+        ps.Play();
+
+        yield return new WaitForSeconds(explosionDelay);
+
+        ExplodeNonAlloc();
+
+        Destroy(gameObject);
     }
 
     void ExplodeNonAlloc()
