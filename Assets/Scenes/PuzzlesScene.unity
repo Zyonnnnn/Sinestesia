@@ -27185,6 +27185,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   olhoSinestesia: {fileID: 630541472}
   animator: {fileID: 630541474}
+  animatorP: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1660418781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8609e0fd45d0224488a19f9e9644d308, type: 3}
