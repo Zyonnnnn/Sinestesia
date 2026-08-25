@@ -99,7 +99,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         
         bool isMoving = inputDirection.sqrMagnitude > 0f;
         animator.SetBool("Walk", isMoving);
-        Debug.Log($"Movendo: {isMoving}, Velocidade: {rb.linearVelocity.magnitude}");
     }
     private void HandleGroundCheck()
     {
