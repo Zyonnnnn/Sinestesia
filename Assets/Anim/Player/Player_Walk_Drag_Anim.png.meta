@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9d5512c0a4683c844aefd0bdacb93fdc
+guid: bc296845c0e60fc41a7d058b7bad6ced
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,29 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_idle_anim_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 4000
-        width: 1100
-        height: 2000
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 002ffdfb06723074ba104307d852a31d
-      internalID: 418268610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_idle_anim_1
+      name: Player_Walk_Drag_Anim_0
       rect:
         serializedVersion: 2
         x: 0
@@ -134,14 +112,58 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 510113a5d21f70d4086a3270235c2c38
-      internalID: 1374156206
+      spriteID: 183beab2fa5cf5749a0750db1cd0299a
+      internalID: -1797328586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_idle_anim_2
+      name: Player_Walk_Drag_Anim_1
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 2000
+        width: 1100
+        height: 2000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6a5dfa25acb0424db7ae44d820c13c6
+      internalID: -1710500624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Walk_Drag_Anim_2
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 2000
+        width: 1100
+        height: 2000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82db87ae50a7f4945a04fd84a0596e4d
+      internalID: 140691222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Walk_Drag_Anim_3
       rect:
         serializedVersion: 2
         x: 0
@@ -156,8 +178,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab130e08f6b6c304aa531ed050d42456
-      internalID: 2078531250
+      spriteID: bb52e5ba452aa9748899d10398e5e9c5
+      internalID: -1936839566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Walk_Drag_Anim_4
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 0
+        width: 1100
+        height: 2000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99dac4c82a9e8d640beafc3b83d1114c
+      internalID: -519626825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Walk_Drag_Anim_5
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 0
+        width: 1100
+        height: 2000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 354ee62affc07b74794ab46bec54cac8
+      internalID: -157266563
       vertices: []
       indices: 
       edges: []
@@ -166,7 +232,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b2e5af50e1d86044bb700d0a8be89b3b
+    spriteID: 424d43bd3ea1fbe4aa831c573bc069bd
     internalID: 0
     vertices: []
     indices: 
@@ -176,9 +242,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player_idle_anim_0: 418268610
-      Player_idle_anim_1: 1374156206
-      Player_idle_anim_2: 2078531250
+      Player_Walk_Drag_Anim_0: -1797328586
+      Player_Walk_Drag_Anim_1: -1710500624
+      Player_Walk_Drag_Anim_2: 140691222
+      Player_Walk_Drag_Anim_3: -1936839566
+      Player_Walk_Drag_Anim_4: -519626825
+      Player_Walk_Drag_Anim_5: -157266563
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

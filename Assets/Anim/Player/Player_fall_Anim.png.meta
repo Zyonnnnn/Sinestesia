@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9d5512c0a4683c844aefd0bdacb93fdc
+guid: 48ae87dd3ea64274b928c625eca7af2b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,29 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_idle_anim_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 4000
-        width: 1100
-        height: 2000
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 002ffdfb06723074ba104307d852a31d
-      internalID: 418268610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_idle_anim_1
+      name: Player_fall_Anim_0
       rect:
         serializedVersion: 2
         x: 0
@@ -134,14 +112,58 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 510113a5d21f70d4086a3270235c2c38
-      internalID: 1374156206
+      spriteID: 2c6047740ed2e84428a46ff301625262
+      internalID: 1322665376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_idle_anim_2
+      name: Player_fall_Anim_1
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 2000
+        width: 1100
+        height: 2000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2f4ec1b336aac74c816d2e5d390ecd2
+      internalID: -1283474400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_fall_Anim_2
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 2000
+        width: 1100
+        height: 2000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3e9a731a6675a44fb057f3f4f7ec2f8
+      internalID: -1222148817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_fall_Anim_3
       rect:
         serializedVersion: 2
         x: 0
@@ -156,8 +178,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab130e08f6b6c304aa531ed050d42456
-      internalID: 2078531250
+      spriteID: 616b5be04e27cc246ba0ac47879117cc
+      internalID: 626579532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_fall_Anim_4
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 0
+        width: 1100
+        height: 2000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2ffc3a67be471240a2791b4b5295916
+      internalID: -457802545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_fall_Anim_5
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 0
+        width: 1100
+        height: 2000
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d34a761e5af30934ab2712112d046617
+      internalID: 137871084
       vertices: []
       indices: 
       edges: []
@@ -166,7 +232,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b2e5af50e1d86044bb700d0a8be89b3b
+    spriteID: f3fee8ca03577404c909436b1237d3cc
     internalID: 0
     vertices: []
     indices: 
@@ -176,9 +242,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Player_idle_anim_0: 418268610
-      Player_idle_anim_1: 1374156206
-      Player_idle_anim_2: 2078531250
+      Player_fall_Anim_0: 1322665376
+      Player_fall_Anim_1: -1283474400
+      Player_fall_Anim_2: -1222148817
+      Player_fall_Anim_3: 626579532
+      Player_fall_Anim_4: -457802545
+      Player_fall_Anim_5: 137871084
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
