@@ -10,6 +10,7 @@ public class SceneChanger : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject mMenu;
     public GameObject cMenu;
+    public GameObject deathMenu;
 
     private void Awake()
     {
@@ -17,6 +18,7 @@ public class SceneChanger : MonoBehaviour
         uiImage = GameObject.FindGameObjectWithTag("PauseImg");
         mMenu = GameObject.FindGameObjectWithTag("MainMenu");
         cMenu = GameObject.FindGameObjectWithTag("ConfigMenu");
+        deathMenu = GameObject.FindGameObjectWithTag("[UI] Death");
     }
 
     private void Start()
@@ -27,9 +29,10 @@ public class SceneChanger : MonoBehaviour
             cMenu.SetActive(false);
         }
         
-        if (uiImage != null)
+        if (uiImage != null && deathMenu != null)
         {
             uiImage.SetActive(false);
+            deathMenu.SetActive(false);
         }
         
     }
@@ -42,8 +45,6 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-
-    
 
     private void MenuSetActive()
     {

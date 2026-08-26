@@ -22,6 +22,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     [SerializeField] private Animator animator;
 
     private SinestesyDetection sd;
+    public GameObject deathMenu;
     private Rigidbody rb;
     private InputManager inputManager;
 
@@ -43,6 +44,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         sd = GetComponentInChildren<SinestesyDetection>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        deathMenu = GameObject.FindGameObjectWithTag("[UI] Death");
     }
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
     {
@@ -117,8 +119,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (health <= 0)
         {
             animator.SetTrigger("Die");
-
-            //SceneManager.LoadScene("StartScene");
+            deathMenu.SetActive(true);
         }
     }
     void HandleInteract()
