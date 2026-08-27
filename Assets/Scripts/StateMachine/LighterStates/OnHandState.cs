@@ -9,7 +9,7 @@ public class OnHandState : BaseState
     LighterBehaviour lighter;
     ParticleSystem ps;
 
-    float baseDistanceX = 0.5f;
+    float baseDistanceX = 0.6f;
     float baseDistanceZ = 0.2f;
 
     Vector3 holdOffset;
@@ -87,6 +87,7 @@ public class OnHandState : BaseState
 
     public override void OnEnd()
     {
+        ps.Stop();
         PlayerBehaviour.OnPicked -= HandlePicked;
     }
 }

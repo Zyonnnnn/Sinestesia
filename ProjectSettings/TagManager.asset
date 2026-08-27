@@ -21,6 +21,8 @@ TagManager:
   - Sinestesia
   - Death
   - DeathM
+  - GasCollision
+  - SinestesyAreaTrigger
   layers:
   - Default
   - TransparentFX

@@ -11686,10 +11686,11 @@ GameObject:
   - component: {fileID: 993223622}
   - component: {fileID: 993223621}
   - component: {fileID: 993223627}
+  - component: {fileID: 993223629}
   - component: {fileID: 993223628}
   m_Layer: 0
   m_Name: GasCylinder
-  m_TagString: Untagged
+  m_TagString: GasCollision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21867,7 +21868,7 @@ Transform:
   m_GameObject: {fileID: 1619262231}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.99, y: 4.507, z: 14.96}
+  m_LocalPosition: {x: 44.99, y: 1.48, z: 14.96}
   m_LocalScale: {x: 0.08, y: 0.17, z: 0.08}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27152,8 +27153,8 @@ GameObject:
   - component: {fileID: 1660195626}
   - component: {fileID: 1660195627}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: SinestesyDetection
+  m_TagString: SinestesyAreaTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27208,8 +27209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   olhoSinestesia: {fileID: 630541472}
   animator: {fileID: 630541474}
-  animatorP: {fileID: 0}
-  player: {fileID: 0}
+  animatorP: {fileID: 1777775181}
+  player: {fileID: 2083470232}
 --- !u!4 &1660418781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8609e0fd45d0224488a19f9e9644d308, type: 3}
@@ -29302,6 +29303,11 @@ MeshFilter:
 --- !u!4 &1777775180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8159369871419413416, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
+  m_PrefabInstance: {fileID: 1484455528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1777775181 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7089138737894826052, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
   m_PrefabInstance: {fileID: 1484455528}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1783467042

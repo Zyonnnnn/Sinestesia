@@ -30,8 +30,10 @@ public class TriggerSinestesia : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        
-        animator.SetBool("Sinestesia", false);    
-        animatorP.SetBool("Sinestesia", false);
+        if (other.CompareTag("Player"))
+        {
+            animator.SetBool("Sinestesia", false);
+            animatorP.SetBool("Sinestesia", false);
+        }
     }
 }
