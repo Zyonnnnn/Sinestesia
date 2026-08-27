@@ -17,12 +17,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     public static event Action OnPicked;
 
     [SerializeField] GameObject gc;
+    [SerializeField] GameObject deathMenu;
     [SerializeField] LayerMask groundtest;
     [SerializeField] private SpriteRenderer SpriteRenderer;
     [SerializeField] private Animator animator;
 
     private SinestesyDetection sd;
-    public GameObject deathMenu;
     private Rigidbody rb;
     private InputManager inputManager;
 
@@ -37,6 +37,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         inputManager.OnJumpPressed += HandleJump;
         inputManager.OnSinestesyPressed += HandleSinestesy;
         inputManager.OnPickPressed += HandleInteract;
+        deathMenu = (GameObject)FindFirstObjectByType(typeof(DeathM));
+        Debug.LogWarning($"UI Death Name: {deathMenu.name}");
     }
 
     private void Start()
@@ -44,7 +46,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         sd = GetComponentInChildren<SinestesyDetection>();
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-        deathMenu = GameObject.FindGameObjectWithTag("[UI] Death");
+        
     }
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
     {
@@ -228,6 +230,9 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         }
     }
 
+    #endregion
+    #region Getter
+    public float GetHealth() => health;
     #endregion
     #region Debug
     private void OnDrawGizmosSelected()

@@ -12,17 +12,23 @@ public class SceneChanger : MonoBehaviour
     public GameObject cMenu;
     public GameObject deathMenu;
 
+    private int health;
+
+    private PlayerBehaviour playerBehaviour;
+
     private void Awake()
     {
         Time.timeScale = 1.0f;
         uiImage = GameObject.FindGameObjectWithTag("PauseImg");
         mMenu = GameObject.FindGameObjectWithTag("MainMenu");
         cMenu = GameObject.FindGameObjectWithTag("ConfigMenu");
-        deathMenu = GameObject.FindGameObjectWithTag("[UI] Death");
+        deathMenu = GameObject.FindGameObjectWithTag("DeathM");
+        health = playerBehaviour.GetHealth;
     }
 
     private void Start()
     {
+
         if (mMenu != null && cMenu != null)
         {
             mMenu.SetActive(true);

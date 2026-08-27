@@ -20,7 +20,7 @@ TagManager:
   - Buttons
   - Sinestesia
   - Death
-  - '[UI] Death'
+  - DeathM
   layers:
   - Default
   - TransparentFX
