@@ -12,6 +12,8 @@ public class OnHandState : BaseState
     float baseDistanceX = 0.6f;
     float baseDistanceZ = 0.2f;
 
+    bool inArea;
+
     Vector3 holdOffset;
 
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
@@ -25,32 +27,11 @@ public class OnHandState : BaseState
         PlayerBehaviour.OnPicked += HandlePicked;
     }
 
-    private void HandlePicked()
-    {
-        if (PlayerBehaviour.canInteract)
-        {
-            lighter.gameObject.GetComponent<BoxCollider>().enabled = !lighter.gameObject.GetComponent<BoxCollider>().enabled;
-
-            if (ps != null)
-            {
-                if (!ps.isEmitting)
-                {
-                    ps.Play();
-                }
-                else
-                {
-                    ps.Stop();
-                }
-            }
-        }
-        else
-        {
-            stateMachine.TransitionTo<FreeState>();
-        }
-    }
 
     public override void OnTick()
     {
+        inArea = PlayerBehaviour.canInteract;
+
         if (stateMachine.HasParam("PlayerPos"))
         {
             playerPos = stateMachine.GetParam<Transform>("PlayerPos");
@@ -89,5 +70,31 @@ public class OnHandState : BaseState
     {
         ps.Stop();
         PlayerBehaviour.OnPicked -= HandlePicked;
+    }
+    private void HandlePicked()
+    {
+        Debug.Log("to pegando mulher? " + PlayerBehaviour.canInteract);
+
+        if (inArea)
+        {
+            lighter.gameObject.GetComponent<BoxCollider>().enabled = !lighter.gameObject.GetComponent<BoxCollider>().enabled;
+
+            if (ps != null)
+            {
+                if (!ps.isEmitting)
+                {
+                    ps.Play();
+                }
+                else
+                {
+                    ps.Stop();
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("fuck you bitch");
+            stateMachine.TransitionTo<FreeState>();
+        }
     }
 }

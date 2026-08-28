@@ -12,22 +12,25 @@ public class SceneChanger : MonoBehaviour
     public GameObject cMenu;
     public GameObject deathMenu;
 
-    private int health;
+    private float health;
 
     private PlayerBehaviour playerBehaviour;
 
     private void Awake()
     {
         Time.timeScale = 1.0f;
+        
         uiImage = GameObject.FindGameObjectWithTag("PauseImg");
         mMenu = GameObject.FindGameObjectWithTag("MainMenu");
         cMenu = GameObject.FindGameObjectWithTag("ConfigMenu");
         deathMenu = GameObject.FindGameObjectWithTag("DeathM");
-        health = playerBehaviour.GetHealth;
+
+        playerBehaviour = gameObject.GetComponent<PlayerBehaviour>();
     }
 
     private void Start()
     {
+        Debug.Log(health);
 
         if (mMenu != null && cMenu != null)
         {
@@ -41,6 +44,7 @@ public class SceneChanger : MonoBehaviour
             deathMenu.SetActive(false);
         }
         
+        //health = playerBehaviour.GetHealth();
     }
     private void Update()
     {
