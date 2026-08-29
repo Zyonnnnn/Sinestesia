@@ -12,7 +12,7 @@ public class SceneChanger : MonoBehaviour
     public GameObject cMenu;
     public GameObject deathMenu;
 
-    private int health;
+    public float health;
 
     private PlayerBehaviour playerBehaviour;
 
@@ -23,7 +23,7 @@ public class SceneChanger : MonoBehaviour
         mMenu = GameObject.FindGameObjectWithTag("MainMenu");
         cMenu = GameObject.FindGameObjectWithTag("ConfigMenu");
         deathMenu = GameObject.FindGameObjectWithTag("DeathM");
-        health = playerBehaviour.GetHealth;
+        health = playerBehaviour.GetHealth();
     }
 
     private void Start()
@@ -45,11 +45,20 @@ public class SceneChanger : MonoBehaviour
     private void Update()
     {
         MenuSetActive();
+        Debug.Log(health);
     }
     
     public static void SceneChange(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void DeathMenuSetActive()
+    {
+        if (health <= 0)
+        {
+            deathMenu.SetActive(true);
+        }
     }
 
     private void MenuSetActive()

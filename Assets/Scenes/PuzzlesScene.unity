@@ -11686,7 +11686,6 @@ GameObject:
   - component: {fileID: 993223622}
   - component: {fileID: 993223621}
   - component: {fileID: 993223627}
-  - component: {fileID: 993223629}
   - component: {fileID: 993223628}
   m_Layer: 0
   m_Name: GasCylinder
@@ -11796,9 +11795,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionForce: 10
   explosionRadius: 7.5
+  explosionDelay: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  parentTriggerCollider: {fileID: 0}
 --- !u!212 &993223628
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21695,6 +21696,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1168382687}
   m_LocalEulerAnglesHint: {x: -3.63, y: 74.551, z: -13.92}
+--- !u!1 &1609898405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1445247292188886417, guid: e8ba42e89e90d4b40964522328a1fc41, type: 3}
+  m_PrefabInstance: {fileID: 1751472488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1611829619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 10430e3bc9e12844da95998cdd86002b, type: 3}
@@ -27209,8 +27215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   olhoSinestesia: {fileID: 630541472}
   animator: {fileID: 630541474}
-  animatorP: {fileID: 1777775181}
-  player: {fileID: 2083470232}
+  animatorP: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1660418781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8609e0fd45d0224488a19f9e9644d308, type: 3}
@@ -29003,6 +29009,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4293244705598142257, guid: e8ba42e89e90d4b40964522328a1fc41, type: 3}
+      propertyPath: deathMenu
+      value: 
+      objectReference: {fileID: 250917391}
+    - target: {fileID: 4293244705598142257, guid: e8ba42e89e90d4b40964522328a1fc41, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1609898405}
     - target: {fileID: 4464104453394957735, guid: e8ba42e89e90d4b40964522328a1fc41, type: 3}
       propertyPath: m_Name
       value: '[UI] Menus'
@@ -29303,11 +29317,6 @@ MeshFilter:
 --- !u!4 &1777775180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8159369871419413416, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
-  m_PrefabInstance: {fileID: 1484455528}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1777775181 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7089138737894826052, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
   m_PrefabInstance: {fileID: 1484455528}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1783467042
@@ -33929,7 +33938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6025866925518885258, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6025866925518885258, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
       propertyPath: m_TagString
@@ -33944,7 +33953,8 @@ PrefabInstance:
       value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7955439240015233080, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6025866925518885258, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}

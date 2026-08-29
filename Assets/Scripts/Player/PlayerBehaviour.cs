@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerBehaviour : MonoBehaviour, IHitable
 {
     #region Variables
-    [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
+    [SerializeField] public float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
 
     private bool canJump, jumping, flipped, isKnockedBack;
     private float knockbackTimer;
@@ -37,8 +37,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         inputManager.OnJumpPressed += HandleJump;
         inputManager.OnSinestesyPressed += HandleSinestesy;
         inputManager.OnPickPressed += HandleInteract;
-        deathMenu = (GameObject)FindFirstObjectByType(typeof(DeathM));
-        Debug.LogWarning($"UI Death Name: {deathMenu.name}");
+        
     }
 
     private void Start()
