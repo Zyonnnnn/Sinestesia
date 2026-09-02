@@ -7,9 +7,7 @@ using UnityEngine.Serialization;
 public class PlayerBehaviour : MonoBehaviour, IHitable
 {
     #region Variables
-
-    [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, health, acc, decc;
-    [SerializeField] float knockbackStrenght, knockbackDuration;
+    [SerializeField] public float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
 
     private bool canJump, jumping, flipped, isKnockedBack;
     private float knockbackTimer;
@@ -44,6 +42,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         inputManager.OnJumpPressed += HandleJump;
         inputManager.OnSinestesyPressed += HandleSinestesy;
         inputManager.OnPickPressed += HandleInteract;
+        
     }
 
     private void Start()
