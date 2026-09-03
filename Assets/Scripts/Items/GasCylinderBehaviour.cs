@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using Random = System.Random;
 
 public class GasCylinderBehaviour : MonoBehaviour
 {
@@ -58,7 +60,6 @@ public class GasCylinderBehaviour : MonoBehaviour
         {
             if (ps != null)
             {
-
                 ps.Play();
             }
         }
@@ -71,7 +72,9 @@ public class GasCylinderBehaviour : MonoBehaviour
             return true;
         }
 
-        return Physics.ComputePenetration(parentTriggerCollider, parentTriggerCollider.transform.position, parentTriggerCollider.transform.rotation, other, other.transform.position, other.transform.rotation, out _, out _);
+        return Physics.ComputePenetration(parentTriggerCollider, parentTriggerCollider.transform.position,
+            parentTriggerCollider.transform.rotation, other, other.transform.position, other.transform.rotation, out _,
+            out _);
     }
 
     IEnumerator Explode()
@@ -89,7 +92,7 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     private void SpawnExplosion()
     {
-        foreach(var ps in explosionPs)
+        foreach (var ps in explosionPs)
         {
             if (ps != null)
             {
@@ -109,6 +112,11 @@ public class GasCylinderBehaviour : MonoBehaviour
                 if (colliders[i].TryGetComponent(out Rigidbody rb))
                 {
                     rb.AddExplosionForce(explosionForce * 1000, transform.position, explosionRadius);
+                    
+                    if (UnityEngine.Random.Range(0, 2) == 0)
+                    {
+                        Destroy(rb.gameObject);
+                    }
                 }
             }
         }

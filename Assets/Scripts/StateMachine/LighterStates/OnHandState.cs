@@ -94,6 +94,7 @@ public class OnHandState : BaseState
         else
         {
             Debug.Log("fuck you bitch");
+            
             stateMachine.TransitionTo<FreeState>();
         }
     }

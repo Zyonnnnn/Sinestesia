@@ -1,8 +1,6 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour, IHitable
 {
@@ -53,7 +51,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        deathMenu = GameObject.FindGameObjectWithTag("DeathM");
+        var menuDie = GameObject.FindGameObjectWithTag("DeathM");
+        //deathMenu = menuDie.GetComponent<GameObject>();
     }
 
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
