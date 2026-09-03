@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GasCylinderBehaviour : MonoBehaviour
@@ -14,17 +16,29 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     ParticleSystem ps;
 
+    [SerializeField] List<ParticleSystem> explosionPs = new();
+
     bool exploded;
 
     private void Awake()
     {
         ps = GetComponent<ParticleSystem>();
         parentTriggerCollider = GetComponent<Collider>();
+
+        var expPs = GameObject.FindGameObjectsWithTag("explodeEffect");
     }
 
     void Start()
     {
         ps.Stop();
+
+        foreach (var ps in explosionPs)
+        {
+            if (ps != null)
+            {
+                ps.Stop();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +52,15 @@ public class GasCylinderBehaviour : MonoBehaviour
         {
             exploded = true;
             StartCoroutine(Explode());
+        }
+
+        foreach (var ps in explosionPs)
+        {
+            if (ps != null)
+            {
+
+                ps.Play();
+            }
         }
     }
 
@@ -57,9 +80,22 @@ public class GasCylinderBehaviour : MonoBehaviour
 
         yield return new WaitForSeconds(explosionDelay);
 
+        SpawnExplosion();
+
         ExplodeNonAlloc();
 
         Destroy(gameObject);
+    }
+
+    private void SpawnExplosion()
+    {
+        foreach(var ps in explosionPs)
+        {
+            if (ps != null)
+            {
+                ps.Play();
+            }
+        }
     }
 
     void ExplodeNonAlloc()

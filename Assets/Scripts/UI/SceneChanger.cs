@@ -25,7 +25,7 @@ public class SceneChanger : MonoBehaviour
         cMenu = GameObject.FindGameObjectWithTag("ConfigMenu");
         deathMenu = GameObject.FindGameObjectWithTag("DeathM");
 
-        playerBehaviour = gameObject.GetComponent<PlayerBehaviour>()();
+        playerBehaviour = gameObject.GetComponent<PlayerBehaviour>();
     }
 
     private void Start()
