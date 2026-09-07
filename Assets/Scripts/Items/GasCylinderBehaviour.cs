@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Random = System.Random;
+using System.Linq;
 
 public class GasCylinderBehaviour : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     ParticleSystem ps;
 
-    [SerializeField] List<ParticleSystem> explosionPs = new();
+    [SerializeField] List<GameObject> explosionPs = new();
 
     bool exploded;
 
@@ -26,21 +27,11 @@ public class GasCylinderBehaviour : MonoBehaviour
     {
         ps = GetComponent<ParticleSystem>();
         parentTriggerCollider = GetComponent<Collider>();
-
-        var expPs = GameObject.FindGameObjectsWithTag("explodeEffect");
     }
 
     void Start()
     {
         ps.Stop();
-
-        foreach (var ps in explosionPs)
-        {
-            if (ps != null)
-            {
-                ps.Stop();
-            }
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,13 +47,6 @@ public class GasCylinderBehaviour : MonoBehaviour
             StartCoroutine(Explode());
         }
 
-        foreach (var ps in explosionPs)
-        {
-            if (ps != null)
-            {
-                ps.Play();
-            }
-        }
     }
 
     bool IsParentTriggerTouching(Collider other)
@@ -92,12 +76,9 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     private void SpawnExplosion()
     {
-        foreach (var ps in explosionPs)
+        foreach (var explosion in explosionPs)
         {
-            if (ps != null)
-            {
-                ps.Play();
-            }
+            Instantiate(explosion, transform.position, Quaternion.identity);
         }
     }
 
