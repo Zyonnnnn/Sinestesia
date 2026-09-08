@@ -5,7 +5,7 @@ public abstract class BaseEnemy : MonoBehaviour
 {
     [SerializeField] protected int health, strength;
     [SerializeField] protected float detectRange, jumpStrenght, moveSpeed;
-    
+
     public bool _isTouching;
     
     protected void TakeDamage(int damage)
@@ -31,7 +31,8 @@ public abstract class BaseEnemy : MonoBehaviour
     public float GetMoveSpeed() => moveSpeed;
     public float GetDetectRange() => detectRange;
     public float GetJumpStrenght() => jumpStrenght;
-    
+    public float GetStrength() => strength;
+
     protected void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

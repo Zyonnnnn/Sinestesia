@@ -19,6 +19,12 @@ TagManager:
   - ConfigMenu
   - Buttons
   - Sinestesia
+  - Death
+  - DeathM
+  - GasCollision
+  - SinestesyAreaTrigger
+  - '[UI] Death'
+  - explodeEffect
   layers:
   - Default
   - TransparentFX

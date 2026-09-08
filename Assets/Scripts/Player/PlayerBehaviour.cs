@@ -1,25 +1,26 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour, IHitable
 {
     #region Variables
-    [SerializeField] float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
+    [SerializeField] public float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
 
     private bool canJump, jumping, flipped, isKnockedBack;
     private float knockbackTimer;
     private Vector3 hVelocity;
 
-    public static bool canInteract { get; private set; }
+    public static bool canInteract {  get; private set; }
     public static Vector3 playerPosition { get; private set; }
 
     public static event Action OnPicked;
 
     [SerializeField] GameObject gc;
+    [SerializeField] GameObject deathMenu;
     [SerializeField] LayerMask groundtest;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator animator;
 
     private SinestesyDetection sd;
     private Rigidbody rb;
@@ -27,8 +28,11 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
+
     #endregion
+
     #region Setup
+
     private void Awake()
     {
         inputManager = new InputManager();
@@ -36,13 +40,21 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         inputManager.OnJumpPressed += HandleJump;
         inputManager.OnSinestesyPressed += HandleSinestesy;
         inputManager.OnPickPressed += HandleInteract;
+        
     }
 
     private void Start()
     {
         sd = GetComponentInChildren<SinestesyDetection>();
         rb = GetComponent<Rigidbody>();
+
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        var menuDie = GameObject.FindGameObjectWithTag("DeathM");
+        //deathMenu = menuDie.GetComponent<GameObject>();
     }
+
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
     {
         if (!isKnockedBack)
@@ -50,8 +62,11 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             HandleKnockback(executionSoruce);
         }
     }
+
     #endregion
+
     #region Loop
+
     void Update()
     {
         playerPosition = transform.position;
@@ -59,6 +74,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         HandleFlip();
         HandleHealth();
     }
+
     private void FixedUpdate()
     {
         if (!isKnockedBack)
@@ -67,6 +83,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
             if (jumping)
             {
+                animator.SetTrigger("Jump");
                 rb.AddForce(new(0, jumpForce, 0), ForceMode.Impulse);
                 jumping = false;
             }
@@ -83,8 +100,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
         HandleGroundCheck();
     }
+
     #endregion
+
     #region Handlers
+
+    // ReSharper disable Unity.PerformanceAnalysis
     private void HandleMovement()
     {
         var inputDirection = inputManager.GetInputDirection();
@@ -94,11 +115,16 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         hVelocity = Vector3.MoveTowards(hVelocity, targetVelocity, speedChangeRate * Time.deltaTime);
 
         rb.linearVelocity = new Vector3(hVelocity.x, rb.linearVelocity.y, hVelocity.z);
+
+        bool isMoving = inputDirection.sqrMagnitude > 0f;
+        animator.SetBool("Walk", isMoving);
     }
+
     private void HandleGroundCheck()
     {
         canJump = Physics.Raycast(gc.transform.position, Vector3.down, out _, rayLenght, groundtest) ? true : false;
     }
+
     void HandleJump()
     {
         if (canJump)
@@ -107,17 +133,21 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             canJump = false;
         }
     }
+
     void HandleHealth()
     {
         if (health <= 0)
         {
-            SceneManager.LoadScene("StartScene");
+            animator.SetTrigger("Die");
+            deathMenu.SetActive(true);
         }
     }
+
     void HandleInteract()
     {
         OnPicked?.Invoke();
     }
+
     private void HandleSinestesy()
     {
         var ps = sd.GetClosestParticleSystem();
@@ -127,6 +157,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             if (!ps.isEmitting)
             {
                 ps.Play();
+                animator.SetTrigger("Sinestesia");
             }
             else
             {
@@ -134,6 +165,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             }
         }
     }
+
     private void HandleFlip()
     {
         if (inputManager.GetInputDirection().x != 0)
@@ -144,15 +176,10 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             }
         }
 
-        if (flipped)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, flipLeft, flipSpeed * Time.deltaTime);
-        }
-        else
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, flipRight, flipSpeed * Time.deltaTime);
-        }
+        transform.rotation =
+            Quaternion.Slerp(transform.rotation, flipped ? flipLeft : flipRight, flipSpeed * Time.deltaTime);
     }
+
     private void HandleKnockback(Transform executionSoruce)
     {
         if (isKnockedBack)
@@ -167,8 +194,11 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         isKnockedBack = true;
         knockbackTimer = knockbackDuration;
     }
+
     #endregion
+
     #region Collision
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("EyeJump"))
@@ -185,13 +215,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.CompareTag("InteractArea"))
-        {
-            canInteract = true;
-
-            Debug.Log(collision.gameObject.name);
-        }
-
         if (collision.CompareTag("1to2level"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
@@ -202,6 +225,20 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, rb, 2);
+        }
+
+        if (collision.CompareTag("Death"))
+        {
+            IHitable hit = collision.gameObject.GetComponent<IHitable>();
+            hit.Execute(transform, rb, 0);
+        }
+    }
+
+    void OnTriggerStay(Collider collision)
+    {
+        if (collision.CompareTag("InteractArea"))
+        {
+            canInteract = true;
         }
     }
 
@@ -214,11 +251,20 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     }
 
     #endregion
+
+    #region Get
+
+    public float GetHealth() => health;
+
+    #endregion
+
     #region Debug
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(gc.transform.position, Vector3.down * rayLenght);
     }
+
     #endregion
 }

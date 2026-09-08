@@ -1,5 +1,3 @@
-using System;
-using UnityEditor;
 using UnityEngine;
 
 public class FreeState : BaseState
@@ -11,6 +9,9 @@ public class FreeState : BaseState
     {
         this.stateMachine = stateMachine;
         lighter = gameObject.GetComponent<LighterBehaviour>();
+        
+        
+        lighter.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 10, ForceMode.Impulse);
     }
 
     public override void OnTick()

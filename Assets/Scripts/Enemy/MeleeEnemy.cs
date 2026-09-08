@@ -5,6 +5,7 @@ public class MeleeEnemy : BaseEnemy
 {
     private StateMachine StateMachine;
 
+    [SerializeField] public static LayerMask layerMask;
 
     public PlayerBehaviour Player { get; private set; }
 
@@ -15,7 +16,7 @@ public class MeleeEnemy : BaseEnemy
     private void Start()
     {
         StateMachine = new StateMachine(this.gameObject);
-        StateMachine.TransitionTo<IdleState>();
+        StateMachine.TransitionTo<BossIdleState>();
     }
 
     private void Update()
