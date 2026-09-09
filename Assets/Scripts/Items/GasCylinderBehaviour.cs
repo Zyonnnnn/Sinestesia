@@ -46,8 +46,6 @@ public class GasCylinderBehaviour : MonoBehaviour
         PlayerBehaviour.OnPicked += HandlePicked;
 
         ps.Stop();
-
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     private void Update()
