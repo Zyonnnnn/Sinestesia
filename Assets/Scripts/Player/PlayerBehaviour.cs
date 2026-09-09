@@ -11,7 +11,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private float knockbackTimer;
     private Vector3 hVelocity;
 
-    public static bool canInteract {  get; private set; }
+    public static bool canInteract { get; private set; }
     public static Vector3 playerPosition { get; private set; }
 
     public static event Action OnPicked;
