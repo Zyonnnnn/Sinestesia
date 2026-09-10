@@ -10,11 +10,6 @@ public class SceneChanger : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject mMenu;
     public GameObject cMenu;
-    public GameObject deathMenu;
-
-    public float health;
-
-    private PlayerBehaviour playerBehaviour;
 
     private void Awake()
     {
@@ -38,10 +33,9 @@ public class SceneChanger : MonoBehaviour
             cMenu.SetActive(false);
         }
         
-        if (uiImage != null && deathMenu != null)
+        if (uiImage != null)
         {
             uiImage.SetActive(false);
-            deathMenu.SetActive(false);
         }
     }
     private void Update()
@@ -74,8 +68,9 @@ public class SceneChanger : MonoBehaviour
         Debug.LogWarning("LIGANDO TELA DE MENU!");
         deathMenu.SetActive(true);
     }
+}
 
-    private void MenuSetActive()
+public void MenuSetActive()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && uiImage != null)
         {
