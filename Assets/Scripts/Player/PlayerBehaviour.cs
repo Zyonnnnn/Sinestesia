@@ -145,6 +145,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     void HandleInteract()
     {
+        //aparentemente oprecisa de algo aqui pra funcionar na build 
         OnPicked?.Invoke();
     }
 
