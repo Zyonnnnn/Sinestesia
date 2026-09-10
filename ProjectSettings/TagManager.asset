@@ -25,6 +25,7 @@ TagManager:
   - SinestesyAreaTrigger
   - '[UI] Death'
   - explodeEffect
+  - Dialogue
   layers:
   - Default
   - TransparentFX

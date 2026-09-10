@@ -145,7 +145,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     void HandleInteract()
     {
-        //aparentemente oprecisa de algo aqui pra funcionar na build 
+        rb.AddForce(Vector3.up * 1, ForceMode.Impulse);
         OnPicked?.Invoke();
     }
 
