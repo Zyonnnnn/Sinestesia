@@ -7,6 +7,7 @@ using UnityEditor;
 public class SceneChanger : MonoBehaviour
 {
     public GameObject uiImage;
+    public GameObject pauseMenu;
     public GameObject mMenu;
     public GameObject cMenu;
 
@@ -49,7 +50,15 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void MenuSetActive()
+private void DeathMenuSetActive()
+{
+    if (health <= 0)
+    {
+        deathMenu.SetActive(true);
+    }
+}
+
+public void MenuSetActive()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && uiImage != null)
         {
@@ -60,18 +69,7 @@ public class SceneChanger : MonoBehaviour
             Time.timeScale = uiImage.activeSelf ? 0f : 1f;
         }
     }
-
-    public void MenuDisable()
-    {
-        if (uiImage != null)
-        {
-            uiImage.SetActive(!uiImage.activeSelf);
-            mMenu.SetActive(true);
-            cMenu.SetActive(false);
-
-            Time.timeScale = uiImage.activeSelf ? 0f : 1f;
-        }
-    }
+    
     public void ConfigMenu()
     {
         if (mMenu != null && cMenu != null)
