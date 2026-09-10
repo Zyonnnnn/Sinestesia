@@ -2,12 +2,10 @@ using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using EasyTextEffects;
 
 public class Dialogue : MonoBehaviour
 {
     TextMeshProUGUI text;
-    TextEffect effects;
     
     [SerializeField] private string[] lines;
     [SerializeField] private float textSpeed;
@@ -17,7 +15,6 @@ public class Dialogue : MonoBehaviour
     void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
-        effects = GetComponent<TextEffect>();
     }
 
     private void Start()
