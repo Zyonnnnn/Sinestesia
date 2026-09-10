@@ -49,14 +49,11 @@ public class SceneChanger : MonoBehaviour
         {
             uiImage.SetActive(false);
         }
-<<<<<<< Updated upstream
-=======
 
         if (deathMenu != null)
         {
             deathMenu.SetActive(false);
         }
->>>>>>> Stashed changes
     }
 
     private void Update()
@@ -75,22 +72,20 @@ public class SceneChanger : MonoBehaviour
     {
         if (playerObj != null)
         {
-<<<<<<< Updated upstream
             DeathMenuSetActive();
         }
     }
+
     public void Reiniciar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-=======
-            health = playerBehaviour.GetHealth();
-            if (health <= 0)
-            {
-                DeathMenuSetActive();
-            }
+        health = playerBehaviour.GetHealth();
+        if (health <= 0)
+        {
+            DeathMenuSetActive();
         }
->>>>>>> Stashed changes
     }
+
 
     private void DeathMenuSetActive()
     {
