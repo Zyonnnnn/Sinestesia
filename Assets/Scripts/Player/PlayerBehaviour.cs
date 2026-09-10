@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,13 +12,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private float knockbackTimer;
     private Vector3 hVelocity;
 
-    public static bool canInteract {  get; private set; }
+    public static bool canInteract { get; private set; }
     public static Vector3 playerPosition { get; private set; }
 
     public static event Action OnPicked;
 
     [SerializeField] GameObject gc;
-    [SerializeField] GameObject deathMenu;
     [SerializeField] LayerMask groundtest;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
@@ -40,7 +40,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         inputManager.OnJumpPressed += HandleJump;
         inputManager.OnSinestesyPressed += HandleSinestesy;
         inputManager.OnPickPressed += HandleInteract;
-        
+
     }
 
     private void Start()
@@ -52,7 +52,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         var menuDie = GameObject.FindGameObjectWithTag("DeathM");
-        //deathMenu = menuDie.GetComponent<GameObject>();
     }
 
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
@@ -138,9 +137,16 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         if (health <= 0)
         {
-            animator.SetTrigger("Die");
-            deathMenu.SetActive(true);
+            StartCoroutine(Die());
         }
+    }
+
+    IEnumerator Die()
+    {
+        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(1);
+        Time.timeScale = 0f;
+
     }
 
     void HandleInteract()
