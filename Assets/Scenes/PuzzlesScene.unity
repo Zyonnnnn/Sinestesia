@@ -33982,7 +33982,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8749169917816001617, guid: e8ba42e89e90d4b40964522328a1fc41, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ba42e89e90d4b40964522328a1fc41, type: 3}
@@ -38861,6 +38862,10 @@ PrefabInstance:
     - target: {fileID: 7515379239492346049, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
       propertyPath: m_Name
       value: '[UI] Morte'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7515379239492346049, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
