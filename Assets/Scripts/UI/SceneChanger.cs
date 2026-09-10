@@ -24,8 +24,8 @@ public class SceneChanger : MonoBehaviour
         mMenu = GameObject.FindGameObjectWithTag("MainMenu");
         cMenu = GameObject.FindGameObjectWithTag("ConfigMenu");
         deathMenu = GameObject.FindGameObjectWithTag("DeathM");
-
-        playerBehaviour = gameObject.GetComponent<PlayerBehaviour>();
+        playerBehaviour = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
+        Debug.LogWarning("PlayerBehaviour: " + playerBehaviour.gameObject.name);
     }
 
     private void Start()
@@ -43,26 +43,36 @@ public class SceneChanger : MonoBehaviour
             uiImage.SetActive(false);
             deathMenu.SetActive(false);
         }
-        
-        //health = playerBehaviour.GetHealth();
+      
+
     }
     private void Update()
     {
         MenuSetActive();
         Debug.Log(health);
+        CheckHealth();
     }
-    
+
     public static void SceneChange(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
+    private void CheckHealth()
+    {
+        health = playerBehaviour.GetHealth();
+        if (health <=0) 
+        {
+            DeathMenuSetActive();
+
+        }
+
+    }
+
     private void DeathMenuSetActive()
     {
-        if (health <= 0)
-        {
+            Debug.LogWarning("LIGANDO TELA DE MENU!");
             deathMenu.SetActive(true);
-        }
     }
 
     private void MenuSetActive()
