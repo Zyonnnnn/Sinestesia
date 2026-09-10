@@ -43,8 +43,6 @@ public class SceneChanger : MonoBehaviour
             uiImage.SetActive(false);
             deathMenu.SetActive(false);
         }
-      
-
     }
     private void Update()
     {
@@ -64,15 +62,17 @@ public class SceneChanger : MonoBehaviour
         if (health <=0) 
         {
             DeathMenuSetActive();
-
         }
-
+    }
+    public void Reiniciar()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void DeathMenuSetActive()
     {
-            Debug.LogWarning("LIGANDO TELA DE MENU!");
-            deathMenu.SetActive(true);
+        Debug.LogWarning("LIGANDO TELA DE MENU!");
+        deathMenu.SetActive(true);
     }
 
     private void MenuSetActive()
