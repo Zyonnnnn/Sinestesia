@@ -10,21 +10,33 @@ public class SceneChanger : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject mMenu;
     public GameObject cMenu;
+    public GameObject deathMenu;
+    private GameObject playerObj;
+
+    PlayerBehaviour playerBehaviour;
+    float health;
 
     private void Awake()
     {
         Time.timeScale = 1.0f;
-        
+
         uiImage = GameObject.FindGameObjectWithTag("PauseImg");
         mMenu = GameObject.FindGameObjectWithTag("MainMenu");
         cMenu = GameObject.FindGameObjectWithTag("ConfigMenu");
         deathMenu = GameObject.FindGameObjectWithTag("DeathM");
-        playerBehaviour = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
-        Debug.LogWarning("PlayerBehaviour: " + playerBehaviour.gameObject.name);
+
+        playerObj = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()
     {
+        if (playerObj != null)
+        {
+            playerBehaviour = playerObj.GetComponent<PlayerBehaviour>();
+            health = playerBehaviour.GetHealth();
+            Debug.LogWarning("PlayerBehaviour: " + playerBehaviour.gameObject.name);
+        }
+
         Debug.Log(health);
 
         if (mMenu != null && cMenu != null)
@@ -32,12 +44,21 @@ public class SceneChanger : MonoBehaviour
             mMenu.SetActive(true);
             cMenu.SetActive(false);
         }
-        
+
         if (uiImage != null)
         {
             uiImage.SetActive(false);
         }
+<<<<<<< Updated upstream
+=======
+
+        if (deathMenu != null)
+        {
+            deathMenu.SetActive(false);
+        }
+>>>>>>> Stashed changes
     }
+
     private void Update()
     {
         MenuSetActive();
@@ -52,15 +73,23 @@ public class SceneChanger : MonoBehaviour
 
     private void CheckHealth()
     {
-        health = playerBehaviour.GetHealth();
-        if (health <=0) 
+        if (playerObj != null)
         {
+<<<<<<< Updated upstream
             DeathMenuSetActive();
         }
     }
     public void Reiniciar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+=======
+            health = playerBehaviour.GetHealth();
+            if (health <= 0)
+            {
+                DeathMenuSetActive();
+            }
+        }
+>>>>>>> Stashed changes
     }
 
     private void DeathMenuSetActive()
@@ -68,9 +97,8 @@ public class SceneChanger : MonoBehaviour
         Debug.LogWarning("LIGANDO TELA DE MENU!");
         deathMenu.SetActive(true);
     }
-}
 
-public void MenuSetActive()
+    public void MenuSetActive()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && uiImage != null)
         {
@@ -81,7 +109,7 @@ public void MenuSetActive()
             Time.timeScale = uiImage.activeSelf ? 0f : 1f;
         }
     }
-    
+
     public void ConfigMenu()
     {
         if (mMenu != null && cMenu != null)
