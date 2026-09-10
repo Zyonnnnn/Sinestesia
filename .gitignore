@@ -73,3 +73,62 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Samples/Easy Text Effects.meta
+Assets/Samples/Easy Text Effects/1.0.8.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_Fade.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_Fade.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_Gradient.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_Gradient.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_GradientPerChar.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_GradientPerChar.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_GradientVertical.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_GradientVertical.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_Title.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Color_Title.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Bounce.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Bounce.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Dangle.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Dangle.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Shake.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Shake.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_SlideBottom.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_SlideBottom.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_SlideTop.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_SlideTop.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Wave.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Wave.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Wiggle.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Move_Wiggle.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/PerVertex_Dangle.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/PerVertex_Dangle.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/PerVertex_Fold.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/PerVertex_Fold.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/PerVertex_Sliding.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/PerVertex_Sliding.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/PerVertex_StrechWave.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/PerVertex_StrechWave.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Rotate_Default.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Rotate_Default.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Rotate_Pendulum.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Rotate_Pendulum.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Rotate_Swing.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Rotate_Swing.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Scale_Default.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Scale_Default.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Scale_Title.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Effects/Scale_Title.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/FiraCode-VariableFont_wght SDF.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/FiraCode-VariableFont_wght SDF.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/FiraCode-VariableFont_wght.ttf
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/FiraCode-VariableFont_wght.ttf.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/Lexend-VariableFont_wght SDF Custom.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/Lexend-VariableFont_wght SDF Custom.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/Lexend-VariableFont_wght SDF.asset
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/Lexend-VariableFont_wght SDF.asset.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/Lexend-VariableFont_wght.ttf
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Fonts/Lexend-VariableFont_wght.ttf.meta
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Ready-to-use Effects.unity
+Assets/Samples/Easy Text Effects/1.0.8/Ready-to-use Effects/Ready-to-use Effects.unity.meta
