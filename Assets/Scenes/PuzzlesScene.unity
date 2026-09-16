@@ -38784,6 +38784,74 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 574918927163716493, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_text
+      value: '- Back to menu -'
+      objectReference: {fileID: 0}
+    - target: {fileID: 574918927163716493, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
+    - target: {fileID: 574918927163716493, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 574918927163716493, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 574918927163716493, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 574918927163716493, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1401183770304477537, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
+    - target: {fileID: 574918927163716493, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 574918927163716493, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814371481061070703, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_text
+      value: '- Retry -'
+      objectReference: {fileID: 0}
+    - target: {fileID: 814371481061070703, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
+    - target: {fileID: 814371481061070703, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814371481061070703, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814371481061070703, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 814371481061070703, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1401183770304477537, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
+    - target: {fileID: 814371481061070703, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 814371481061070703, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215659957676745157, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_Name
+      value: first screem
+      objectReference: {fileID: 0}
     - target: {fileID: 4628691681151218248, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -38867,6 +38935,34 @@ PrefabInstance:
     - target: {fileID: 7515379239492346049, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
       propertyPath: m_Name
       value: '[UI] Morte'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106970525350464783, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_Name
+      value: Retry
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434158319169489058, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_text
+      value: You die
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434158319169489058, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontStyle
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434158319169489058, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434158319169489058, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434158319169489058, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434158319169489058, guid: 9be5bec603c0d3244bdb0b38abfa7331, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

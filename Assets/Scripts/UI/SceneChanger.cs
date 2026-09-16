@@ -38,23 +38,12 @@ public class SceneChanger : MonoBehaviour
         }
 
         Debug.Log(health);
-
-        if (mMenu != null && cMenu != null)
-        {
+        
             mMenu.SetActive(true);
             cMenu.SetActive(false);
-        }
-
-        if (uiImage != null)
-        {
             uiImage.SetActive(false);
-        }
-
-        if (deathMenu != null)
-        {
             deathMenu.SetActive(false);
         }
-    }
 
     private void Update()
     {
@@ -68,9 +57,10 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void CheckHealth()
     {
-        if (playerObj != null)
+        if (health <= 0)
         {
             DeathMenuSetActive();
         }
@@ -80,10 +70,6 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         health = playerBehaviour.GetHealth();
-        if (health <= 0)
-        {
-            DeathMenuSetActive();
-        }
     }
 
 
