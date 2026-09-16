@@ -16,6 +16,7 @@ public class OnHandState : BaseState
 
     Vector3 holdOffset;
 
+    private bool canFire;
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
@@ -30,6 +31,10 @@ public class OnHandState : BaseState
 
     public override void OnTick()
     {
+        stateMachine.SetParam("canFire", canFire);
+        
+        Debug.Log("canfire do onhand: " + canFire + " canfire do statemachine: " + stateMachine.GetParam<bool>("canFire"));
+        
         inArea = PlayerBehaviour.canInteract;
 
         if (stateMachine.HasParam("PlayerPos"))
@@ -77,6 +82,8 @@ public class OnHandState : BaseState
 
         if (inArea)
         {
+            canFire = !canFire;
+            
             lighter.gameObject.GetComponent<BoxCollider>().enabled = !lighter.gameObject.GetComponent<BoxCollider>().enabled;
 
             if (ps != null)

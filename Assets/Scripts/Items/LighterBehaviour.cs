@@ -5,6 +5,8 @@ public class LighterBehaviour : MonoBehaviour, IHitable
 {
     StateMachine StateMachine;
     ParticleSystem ps;
+    
+    public bool canFire;
 
     private void Awake()
     {
@@ -22,6 +24,8 @@ public class LighterBehaviour : MonoBehaviour, IHitable
     private void Update()
     {
         StateMachine.OnTick();
+
+        canFire = StateMachine.CurrentState is OnHandState && StateMachine.GetParam<bool>("canFire");
     }
 
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)

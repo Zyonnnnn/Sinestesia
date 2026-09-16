@@ -60,7 +60,7 @@ public class GasCylinderBehaviour : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Lighter"))
+        if (other.CompareTag("Lighter") && other.GetComponent<LighterBehaviour>().canFire)
         {
             exploded = true;
             StartCoroutine(Explode());
