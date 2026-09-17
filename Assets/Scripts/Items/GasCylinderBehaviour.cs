@@ -21,7 +21,9 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     ParticleSystem ps;
     Rigidbody rb;
+    
     GameObject player;
+    GameObject wall;
 
     [SerializeField] List<GameObject> explosionPs = new();
 
@@ -39,6 +41,7 @@ public class GasCylinderBehaviour : MonoBehaviour
         parentTriggerCollider = GetComponent<Collider>();
 
         player = GameObject.FindGameObjectWithTag("Player");
+        wall = GameObject.FindGameObjectWithTag("BreakWall");
     }
 
     void Start()
@@ -90,6 +93,7 @@ public class GasCylinderBehaviour : MonoBehaviour
 
         ExplodeNonAlloc();
 
+        Destroy(wall);
         Destroy(gameObject);
     }
 
