@@ -73,13 +73,12 @@ public class OnHandState : BaseState
 
     public override void OnEnd()
     {
+        Debug.Log("OnEnd");
         ps.Stop();
         PlayerBehaviour.OnPicked -= HandlePicked;
     }
     private void HandlePicked()
     {
-        Debug.Log("to pegando mulher? " + PlayerBehaviour.canInteract);
-
         if (inArea)
         {
             canFire = !canFire;
@@ -100,8 +99,6 @@ public class OnHandState : BaseState
         }
         else
         {
-            Debug.Log("fuck you bitch");
-            
             stateMachine.TransitionTo<FreeState>();
         }
     }
