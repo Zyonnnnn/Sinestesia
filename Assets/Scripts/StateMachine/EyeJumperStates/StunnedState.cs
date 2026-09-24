@@ -7,11 +7,15 @@ public class StunnedState : BaseState
     
     private RangedEnemy eye;
     private StateMachine stateMachine;
+    private Animator eyeAnim;
+
     
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
         this.stateMachine =  stateMachine;
         eye = gameObject.GetComponent<RangedEnemy>();
+        eyeAnim = gameObject.GetComponent<Animator>();
+
     }
 
     public override void OnTick()

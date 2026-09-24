@@ -7,6 +7,7 @@ class RangedEnemy : BaseEnemy
 
     private Rigidbody rb;
     private StateMachine StateMachine;
+    Animator animator;
 
     public event System.Action OnLanded;
 
@@ -20,6 +21,7 @@ class RangedEnemy : BaseEnemy
     protected void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 
         StateMachine = new StateMachine(this.gameObject);
         StateMachine.TransitionTo<IdleState>();
