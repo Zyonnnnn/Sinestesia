@@ -28,6 +28,7 @@ TagManager:
   - Dialogue
   - BreakWall
   - GetUpAreaTrigger
+  - AreaSnap
   layers:
   - Default
   - TransparentFX
