@@ -7,10 +7,17 @@ public class PreparingAttackState : BaseState
     
     private RangedEnemy eye;
     private StateMachine stateMachine;
+    private Animator eyeAnim;
+
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
         this.stateMachine =  stateMachine;
         eye = gameObject.GetComponent<RangedEnemy>();
+        eyeAnim = eye.GetComponent<Animator>();
+        eyeAnim.SetTrigger("GoingJump");
+        Debug.Log("Going to Attack");
+
+
     }
 
     public override void OnTick()
