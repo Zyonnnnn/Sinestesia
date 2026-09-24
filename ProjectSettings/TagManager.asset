@@ -27,6 +27,7 @@ TagManager:
   - explodeEffect
   - Dialogue
   - BreakWall
+  - GetUpAreaTrigger
   layers:
   - Default
   - TransparentFX

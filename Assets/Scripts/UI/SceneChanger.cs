@@ -37,18 +37,15 @@ public class SceneChanger : MonoBehaviour
             Debug.LogWarning("PlayerBehaviour: " + playerBehaviour.gameObject.name);
         }
 
-        Debug.Log(health);
-        
-            mMenu.SetActive(true);
-            cMenu.SetActive(false);
-            uiImage.SetActive(false);
-            deathMenu.SetActive(false);
-        }
+        mMenu.SetActive(true);
+        cMenu.SetActive(false);
+        uiImage.SetActive(false);
+        deathMenu.SetActive(false);
+    }
 
     private void Update()
     {
         MenuSetActive();
-        Debug.Log(health);
         CheckHealth();
     }
 
