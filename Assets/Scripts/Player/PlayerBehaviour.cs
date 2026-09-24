@@ -247,6 +247,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             canInteract = true;
         }
+
+        if (collision.CompareTag("GetUpAreaTrigger"))
+        {
+            IHitable hit = collision.gameObject.GetComponent<IHitable>();
+            hit.Execute(transform, rb, 1);
+        }
     }
 
     void OnTriggerExit(Collider collision)
@@ -254,6 +260,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (collision.CompareTag("InteractArea"))
         {
             canInteract = false;
+        }
+        
+        if (collision.CompareTag("GetUpAreaTrigger"))
+        {
+            IHitable hit = collision.gameObject.GetComponent<IHitable>();
+            hit.Execute(transform, rb, 2);
         }
     }
 

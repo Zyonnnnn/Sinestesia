@@ -11,6 +11,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private float textSpeed;
     
     int index;
+    [SerializeField] public int code;
     
     void Awake()
     {
@@ -20,7 +21,6 @@ public class Dialogue : MonoBehaviour
     private void Start()
     {
         text.text = string.Empty;
-        StartDialogue();
     }
 
     // Update is called once per frame
@@ -40,7 +40,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    void StartDialogue()
+    public void StartDialogue()
     {
         index = 0;
 
@@ -58,6 +58,7 @@ public class Dialogue : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 
