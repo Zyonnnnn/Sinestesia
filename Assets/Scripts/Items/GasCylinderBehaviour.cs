@@ -24,6 +24,7 @@ public class GasCylinderBehaviour : MonoBehaviour
     
     GameObject player;
     GameObject wall;
+    [SerializeField] GameObject light;
 
     [SerializeField] List<GameObject> explosionPs = new();
 
@@ -42,6 +43,7 @@ public class GasCylinderBehaviour : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
         wall = GameObject.FindGameObjectWithTag("BreakWall");
+        light = GameObject.FindGameObjectWithTag("LightFire");
     }
 
     void Start()
@@ -49,11 +51,7 @@ public class GasCylinderBehaviour : MonoBehaviour
         PlayerBehaviour.OnPicked += HandlePicked;
 
         ps.Stop();
-    }
-
-    private void Update()
-    {
-        
+        light.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -86,6 +84,7 @@ public class GasCylinderBehaviour : MonoBehaviour
     IEnumerator Explode()
     {
         ps.Play();
+        light.SetActive(true);
 
         yield return new WaitForSeconds(explosionDelay);
 
@@ -103,6 +102,7 @@ public class GasCylinderBehaviour : MonoBehaviour
         {
             Instantiate(explosion, transform.position, Quaternion.identity);
         }
+
     }
 
     void ExplodeNonAlloc()

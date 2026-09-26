@@ -5063,7 +5063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4785945925494440137, guid: 3d5c877c3cd65e64e84d1e69d4529511, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.2798605
+      value: 9.130139
       objectReference: {fileID: 0}
     - target: {fileID: 4785945925494440137, guid: 3d5c877c3cd65e64e84d1e69d4529511, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10776,6 +10776,7 @@ Transform:
   m_Children:
   - {fileID: 1660195625}
   - {fileID: 1771662511}
+  - {fileID: 8602289434798624552}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &993223627
@@ -10800,6 +10801,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   parentTriggerCollider: {fileID: 0}
+  light: {fileID: 1774506486987900561, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
   explosionPs:
   - {fileID: 7011422725736782674, guid: 496162c98bd24024abea058535d77519, type: 3}
   - {fileID: 284461615537443157, guid: d8dafdddbaf275548af3485aa8b6c821, type: 3}
@@ -14722,7 +14724,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 1
     light: {fileID: 2895693162918700236, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
     randomDistribution: 1
@@ -22431,7 +22433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8159369871419413416, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.24
+      value: 15.17
       objectReference: {fileID: 0}
     - target: {fileID: 8159369871419413416, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28896,7 +28898,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 1
     light: {fileID: 2895693162918700236, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
     randomDistribution: 1
@@ -31019,7 +31021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3856041112996346752, guid: 201d76bc2d4a6dd41a865f6837d1dc9a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.2798605
+      value: 9.130139
       objectReference: {fileID: 0}
     - target: {fileID: 3856041112996346752, guid: 201d76bc2d4a6dd41a865f6837d1dc9a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -35850,7 +35852,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 1
+    enabled: 0
     ratio: 1
     light: {fileID: 2895693162918700236, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
     randomDistribution: 1
@@ -50849,6 +50851,72 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0572f64098ce9645a2d7fc3ea49c1cd, type: 3}
+--- !u!1001 &8602289434798624551
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 993223626}
+    m_Modifications:
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774506486987900561, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_Name
+      value: Fire Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774506486987900561, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+--- !u!4 &8602289434798624552 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 904505982935375427, guid: 3d16240183f375645b8f9c163d6b37c3, type: 3}
+  m_PrefabInstance: {fileID: 8602289434798624551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

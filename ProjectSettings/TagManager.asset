@@ -29,6 +29,7 @@ TagManager:
   - BreakWall
   - GetUpAreaTrigger
   - AreaSnap
+  - LightFire
   layers:
   - Default
   - TransparentFX
