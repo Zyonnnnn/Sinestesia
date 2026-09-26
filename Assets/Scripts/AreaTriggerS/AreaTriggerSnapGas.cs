@@ -3,18 +3,6 @@ using UnityEngine;
 
 public class AreaTriggerSnapGas : MonoBehaviour
 {
-    ParticleSystem ps;
-
-    private void Awake()
-    {
-        ps = GetComponent<ParticleSystem>();
-    }
-
-    private void Start()
-    {
-        ps.Stop();
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("GasCollision"))

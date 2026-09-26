@@ -4,6 +4,12 @@ using UnityEngine;
 public class SinestesyDetection : MonoBehaviour
 {
     private List<GameObject> soundObjectsInRange = new();
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GameObject.FindGameObjectWithTag("Sinestesia").GetComponent<Animator>();
+    }
 
     public ParticleSystem GetClosestParticleSystem()
     {
@@ -35,6 +41,7 @@ public class SinestesyDetection : MonoBehaviour
     {
         if (other.CompareTag("Sound") && !soundObjectsInRange.Contains(other.gameObject))
         {
+            animator.SetBool("Sinestesia", true);
             soundObjectsInRange.Add(other.gameObject);
         }
     }
@@ -43,6 +50,7 @@ public class SinestesyDetection : MonoBehaviour
     {
         if (other.CompareTag("Sound"))
         {
+            animator.SetBool("Sinestesia", false);
             soundObjectsInRange.Remove(other.gameObject);
         }
     }
