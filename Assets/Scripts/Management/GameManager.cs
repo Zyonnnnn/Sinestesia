@@ -9,22 +9,15 @@ public class GameManager : MonoBehaviour
     Dialogue dialogue;
     PlayerBehaviour player;
 
-    private List<int> dialogueChoice;
     void Awake()
     {
         dialogue = GameObject.Find("Dialogue").GetComponent<Dialogue>();
         player = GameObject.Find("Player").GetComponent<PlayerBehaviour>();
-        
-        dialogueChoice = new List<int>();
     }
 
     void Start()
     {
-        dialogueChoice.Add(dialogue.code);
-        
         dialogue.gameObject.SetActive(false);
-        
-        Debug.Log(dialogueChoice);
     }
 
     void Update()
@@ -32,12 +25,8 @@ public class GameManager : MonoBehaviour
         
     }
     
-    public void ActivateDialogue(int code)
+    public void ActivateDialogue()
     {
-        if (dialogueChoice.Contains(code))
-        {
-            
-        }
         dialogue.gameObject.SetActive(true);
     }
 }

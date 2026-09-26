@@ -801,7 +801,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: FloorsScene
+          m_StringArgument: PuzzlesScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &593021337
@@ -1293,6 +1293,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   mMenu: {fileID: 0}
   cMenu: {fileID: 0}
+  deathMenu: {fileID: 0}
 --- !u!4 &1476699688
 Transform:
   m_ObjectHideFlags: 0

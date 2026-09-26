@@ -13,6 +13,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private Vector3 hVelocity;
 
     public static bool canInteract { get; private set; }
+    public bool textToFecart;
     public static Vector3 playerPosition { get; private set; }
 
     public static event Action OnPicked;
@@ -95,6 +96,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         }
         else
         {
+            rb.linearVelocity = Vector3.zero;
             knockbackTimer -= Time.fixedDeltaTime;
 
             if (knockbackTimer <= 0f)

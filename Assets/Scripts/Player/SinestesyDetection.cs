@@ -6,9 +6,11 @@ public class SinestesyDetection : MonoBehaviour
     private List<GameObject> soundObjectsInRange = new();
     Animator animator;
 
+    PlayerBehaviour playerBehaviour;
     private void Start()
     {
         animator = GameObject.FindGameObjectWithTag("Sinestesia").GetComponent<Animator>();
+        playerBehaviour = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
     }
 
     public ParticleSystem GetClosestParticleSystem()
@@ -25,7 +27,7 @@ public class SinestesyDetection : MonoBehaviour
             {
                 continue;
             }
-            
+
             var dist = Vector3.Distance(obj.transform.position, playerPos);
             if (dist < minDist)
             {
@@ -41,6 +43,7 @@ public class SinestesyDetection : MonoBehaviour
     {
         if (other.CompareTag("Sound") && !soundObjectsInRange.Contains(other.gameObject))
         {
+            playerBehaviour.textToFecart = true;
             animator.SetBool("Sinestesia", true);
             soundObjectsInRange.Add(other.gameObject);
         }
@@ -54,4 +57,5 @@ public class SinestesyDetection : MonoBehaviour
             soundObjectsInRange.Remove(other.gameObject);
         }
     }
+
 }

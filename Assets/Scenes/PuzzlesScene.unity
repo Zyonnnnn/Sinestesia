@@ -15152,7 +15152,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15, y: 0.2, z: 5}
+  m_Size: {x: 10, y: 0.2, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &988808172
 Transform:
@@ -15163,7 +15163,7 @@ Transform:
   m_GameObject: {fileID: 988808170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.38, y: 1, z: 20.53}
+  m_LocalPosition: {x: 38.62, y: 1, z: 17.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22594,7 +22594,7 @@ Transform:
   m_GameObject: {fileID: 1130609275}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.32, y: 0.79, z: 20.84}
+  m_LocalPosition: {x: 37.44, y: 0.79, z: 19.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23239,7 +23239,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: -90, y: 0, z: 0}
-    m_Scale: {x: 5, y: 5, z: 1}
+    m_Scale: {x: 8, y: 8, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -23437,7 +23437,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 25
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -27431,7 +27431,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 5, z: 1}
+  m_Size: {x: 8, y: 1, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1144297004
 GameObject:
@@ -47690,7 +47690,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 1, z: 5}
+  m_Size: {x: 7, y: 1, z: 7}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1933270214
 Transform:
@@ -47701,7 +47701,7 @@ Transform:
   m_GameObject: {fileID: 1933270212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.32, y: 0.79, z: 20.84}
+  m_LocalPosition: {x: 36.74, y: 0.79, z: 20.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47719,6 +47719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f665d49236728ab45b6e983b55a8b5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snapped: 0
 --- !u!1 &1940776947
 GameObject:
   m_ObjectHideFlags: 0
@@ -54632,6 +54633,18 @@ PrefabInstance:
     - target: {fileID: 2286855235652341211, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
       propertyPath: m_fontSizeBase
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460471558758741842, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
+      propertyPath: lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460471558758741842, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
+      propertyPath: 'lines.Array.data[0]'
+      value: Aperte Q para usar a sinestesia
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460471558758741842, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
+      propertyPath: 'lines.Array.data[1]'
+      value: Aperte E para usar itens
       objectReference: {fileID: 0}
     - target: {fileID: 4689012204461629018, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
       propertyPath: m_Pivot.x

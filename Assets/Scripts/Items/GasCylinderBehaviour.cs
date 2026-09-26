@@ -21,6 +21,8 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     ParticleSystem ps;
     Rigidbody rb;
+
+    AreaTriggerSnapGas areaTriggerSnapGas;
     
     GameObject player;
     GameObject wall;
@@ -44,6 +46,7 @@ public class GasCylinderBehaviour : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         wall = GameObject.FindGameObjectWithTag("BreakWall");
         light = GameObject.FindGameObjectWithTag("LightFire");
+        areaTriggerSnapGas = GameObject.FindGameObjectWithTag("AreaSnap").GetComponent<AreaTriggerSnapGas>();
     }
 
     void Start()
@@ -61,7 +64,7 @@ public class GasCylinderBehaviour : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Lighter") && other.GetComponent<LighterBehaviour>().canFire && transform.position == new Vector3(37.25f, 1.5f, 20f))
+        if (other.CompareTag("Lighter") && other.GetComponent<LighterBehaviour>().canFire && areaTriggerSnapGas.snapped)
         {
             exploded = true;
             StartCoroutine(Explode());
