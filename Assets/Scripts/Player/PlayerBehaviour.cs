@@ -8,7 +8,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     #region Variables
     [SerializeField] public float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
 
-    private bool canJump, jumping, flipped, isKnockedBack;
+    private bool canJump, canMove, jumping, flipped, isKnockedBack;
     private float knockbackTimer;
     private Vector3 hVelocity;
 
@@ -52,6 +52,9 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         var menuDie = GameObject.FindGameObjectWithTag("DeathM");
+
+
+        canMove = true;
     }
 
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
@@ -70,13 +73,16 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         playerPosition = transform.position;
 
-        HandleFlip();
+        if (canMove)
+        {
+            HandleFlip();
+        }
         HandleHealth();
     }
 
     private void FixedUpdate()
     {
-        if (!isKnockedBack)
+        if (!isKnockedBack && canMove)
         {
             HandleMovement();
 
@@ -143,6 +149,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     IEnumerator Die()
     {
+        canMove = false;
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1);
         Time.timeScale = 0f;
@@ -164,11 +171,14 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             if (!ps.isEmitting)
             {
                 ps.Play();
-                animator.SetTrigger("Sinestesia");
+                animator.SetBool("Sinestesia", true);
+                canMove = false;
             }
             else
             {
                 ps.Stop();
+                animator.SetBool("Sinestesia", false);
+                canMove = true;
             }
         }
     }
@@ -261,7 +271,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             canInteract = false;
         }
-        
+
         if (collision.CompareTag("GetUpAreaTrigger"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
