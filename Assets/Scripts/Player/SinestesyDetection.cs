@@ -5,7 +5,7 @@ public class SinestesyDetection : MonoBehaviour
 {
     private List<GameObject> soundObjectsInRange = new();
     Animator animator;
-
+    public bool isSinestesiaActive;
     PlayerBehaviour playerBehaviour;
     private void Start()
     {
@@ -43,7 +43,7 @@ public class SinestesyDetection : MonoBehaviour
     {
         if (other.CompareTag("Sound") && !soundObjectsInRange.Contains(other.gameObject))
         {
-            playerBehaviour.textToFecart = true;
+            isSinestesiaActive = true;
             animator.SetBool("Sinestesia", true);
             soundObjectsInRange.Add(other.gameObject);
         }
@@ -53,6 +53,7 @@ public class SinestesyDetection : MonoBehaviour
     {
         if (other.CompareTag("Sound"))
         {
+            isSinestesiaActive = false;
             animator.SetBool("Sinestesia", false);
             soundObjectsInRange.Remove(other.gameObject);
         }

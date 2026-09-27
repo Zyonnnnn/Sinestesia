@@ -8,12 +8,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     #region Variables
     [SerializeField] public float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
 
-    private bool canJump, canMove, jumping, flipped, isKnockedBack;
+    private bool canJump, canMove, jumping, flipped, isKnockedBack, canPick, onHand;
     private float knockbackTimer;
     private Vector3 hVelocity;
 
+
     public static bool canInteract { get; private set; }
-    public bool textToFecart;
     public static Vector3 playerPosition { get; private set; }
 
     public static event Action OnPicked;
@@ -154,12 +154,20 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         canMove = false;
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1);
-        Time.timeScale = 0f;
-
+        //Time.timeScale = 0f;
     }
 
     void HandleInteract()
     {
+        if (!onHand)
+        {
+            canPick = true;
+        }
+        else
+        {
+            onHand = false;
+        }
+
         rb.AddForce(Vector3.up * 1, ForceMode.Impulse);
         OnPicked?.Invoke();
     }
@@ -189,10 +197,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         if (inputManager.GetInputDirection().x != 0)
         {
-            if (inputManager.GetInputDirection().x > 0 ? flipped = false : flipped = true)
-            {
-                ;
-            }
+            if (inputManager.GetInputDirection().x > 0 ? flipped = false : flipped = true) ;
         }
 
         transform.rotation =
@@ -224,12 +229,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             health--;
         }
-
-        if (collision.collider.CompareTag("Lighter"))
-        {
-            IHitable hit = collision.gameObject.GetComponent<IHitable>();
-            hit.Execute(transform, rb, 0);
-        }
     }
 
     void OnTriggerEnter(Collider collision)
@@ -250,6 +249,17 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, rb, 0);
+        }
+
+        if (canPick)
+        {
+            if (collision.GetComponent<Collider>().CompareTag("Lighter"))
+            {
+                onHand = true;
+                canPick = false;
+                IHitable hit = collision.gameObject.GetComponent<IHitable>();
+                hit.Execute(transform, rb, 0);
+            }
         }
     }
 
