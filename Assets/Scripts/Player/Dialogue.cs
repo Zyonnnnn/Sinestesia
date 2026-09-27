@@ -11,13 +11,10 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private float textSpeed;
     
     int index;
-
-    PlayerBehaviour playerBehaviour;
     
     void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
-        playerBehaviour = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
     }
 
     private void Start()
@@ -26,7 +23,7 @@ public class Dialogue : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && playerBehaviour.textToFecart)
+        if (Input.GetMouseButtonDown(0))
         {
             if (text.text == lines[index])
             {
