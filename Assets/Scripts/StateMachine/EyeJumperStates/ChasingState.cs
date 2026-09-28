@@ -5,14 +5,17 @@ public class ChasingState : BaseState
 {
     private RangedEnemy eye;
     private StateMachine stateMachine;
+    private SpriteRenderer spriteRenderer;
     private Animator eyeAnim;
 
     private float adaptedStrenght;
+
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
         eye = gameObject.GetComponent<RangedEnemy>();
         eyeAnim = eye.GetComponent<Animator>();
+        spriteRenderer = eye.GetComponent<SpriteRenderer>();
     }
 
     public override void OnTick()
@@ -47,10 +50,13 @@ public class ChasingState : BaseState
     {
         if (!eye._isTouching)
         {
-            eyeAnim.SetBool("Walk", true);
-            eyeAnim.SetBool("Idle", false);
+            if (eye.isFalling == false)
+            {
+                eyeAnim.SetBool("isWalking", true);
+            }
 
-            eye.transform.position = Vector3.MoveTowards(eye.transform.position, playerPosition, eye.GetMoveSpeed() * Time.deltaTime);
+            eye.transform.position = Vector3.MoveTowards(eye.transform.position, playerPosition,
+                eye.GetMoveSpeed() * Time.deltaTime);
         }
     }
 

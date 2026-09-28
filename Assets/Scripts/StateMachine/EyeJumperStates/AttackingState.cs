@@ -29,12 +29,12 @@ public class AttackingState : BaseState
             var _strenght = stateMachine.GetParam<float>("adaptedStrenght");
             JumpTowards(eye.transform.position, eye.jumpHeight, _strenght);
         }
-        
+
         mass = eyeRb.mass;
 
         eye.OnLanded += HandleLanded;
     }
-    
+
     public void JumpTowards(Vector3 eyePosition, float jumpHeight, float forwardForce)
     {
         var playerPosition = eye.Player.transform.position;
@@ -49,7 +49,11 @@ public class AttackingState : BaseState
 
     private void HandleLanded()
     {
-        eyeAnim.SetBool("Fall", false);
+        if (eye.isFalling == false)
+        {
+            eyeAnim.SetBool("isWalking", false);
+        }
+
         stateMachine.TransitionTo<StunnedState>();
     }
 
@@ -63,10 +67,9 @@ public class AttackingState : BaseState
         if (hasReachedApex && eyeRb.linearVelocity.y < 0f)
         {
             eyeRb.mass = 20f;
-            eyeAnim.SetBool("Fall", true);
         }
-        
     }
+
     public override void OnEnd()
     {
         eyeRb.mass = mass;

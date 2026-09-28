@@ -7,11 +7,12 @@ class RangedEnemy : BaseEnemy
 
     private Rigidbody rb;
     private StateMachine StateMachine;
-    
+
     Animator animator;
     private SpriteRenderer sp;
 
     public event System.Action OnLanded;
+    public bool isFalling;
 
     public PlayerBehaviour Player { get; private set; }
 
@@ -33,24 +34,18 @@ class RangedEnemy : BaseEnemy
     private void Update()
     {
         StateMachine.OnTick();
-
-        if (rb.linearVelocity.x != 0)
-        {
-            if (rb.linearVelocity.x > 0)
-            {
-                sp.flipX = true;
-            }
-            else
-            {
-                sp.flipX = false;
-            }
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            if (collision.gameObject.name == "coiso")
+            {
+                isFalling = true;
+                animator.SetTrigger("fall");
+            }
+
             OnLanded?.Invoke();
         }
         else if (collision.gameObject.CompareTag("Player"))

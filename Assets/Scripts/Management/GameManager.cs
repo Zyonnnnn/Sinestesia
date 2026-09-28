@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        dialogue = GameObject.Find("Dialogue").GetComponent<Dialogue>();
+        //dialogue = GameObject.Find("Dialogue").GetComponent<Dialogue>();
         playerBehaviour = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
         sinestesyDetection = playerBehaviour.GetComponentInChildren<SinestesyDetection>();
 
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        dialogue.gameObject.SetActive(false);
+        //dialogue.gameObject.SetActive(false);
         sinestesyEffect.SetActive(false);
 
         inputManager.OnSinestesyPressed += HandleSinestesy;
