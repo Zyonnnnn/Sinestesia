@@ -8,10 +8,14 @@ public class IdleState : BaseState
 
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
-        this.stateMachine =  stateMachine;
+        this.stateMachine = stateMachine;
         eye = gameObject.GetComponent<RangedEnemy>();
         eyeAnim = gameObject.GetComponent<Animator>();
-        eyeAnim.SetBool("Walk", false);
+
+        if (eye.isFalling == false)
+        {
+            eyeAnim.SetBool("isWalking", false);
+        }
     }
 
     public override void OnTick()
@@ -29,6 +33,5 @@ public class IdleState : BaseState
 
     public override void OnEnd()
     {
-        
     }
 }

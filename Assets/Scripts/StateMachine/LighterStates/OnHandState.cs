@@ -33,8 +33,6 @@ public class OnHandState : BaseState
     {
         stateMachine.SetParam("canFire", canFire);
         
-        Debug.Log("canfire do onhand: " + canFire + " canfire do statemachine: " + stateMachine.GetParam<bool>("canFire"));
-        
         inArea = PlayerBehaviour.canInteract;
 
         if (stateMachine.HasParam("PlayerPos"))

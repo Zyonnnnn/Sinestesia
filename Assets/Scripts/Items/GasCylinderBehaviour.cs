@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,6 +58,14 @@ public class GasCylinderBehaviour : MonoBehaviour
         light.SetActive(false);
     }
 
+    private void Update()
+    {
+        //if (areaTriggerSnapGas.snapped)
+        //{
+        //    rb.linearVelocity = Vector3.zero;
+        //}
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (exploded || !IsParentTriggerTouching(other))
@@ -64,8 +73,9 @@ public class GasCylinderBehaviour : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Lighter") && other.GetComponent<LighterBehaviour>().canFire && areaTriggerSnapGas.snapped)
+        if (other.CompareTag("Lighter") && other.GetComponent<LighterBehaviour>().canFire)
         {
+            Destroy(other.gameObject);
             exploded = true;
             StartCoroutine(Explode());
         }
