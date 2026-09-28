@@ -7,7 +7,9 @@ class RangedEnemy : BaseEnemy
 
     private Rigidbody rb;
     private StateMachine StateMachine;
+    
     Animator animator;
+    private SpriteRenderer sp;
 
     public event System.Action OnLanded;
 
@@ -22,6 +24,7 @@ class RangedEnemy : BaseEnemy
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
 
         StateMachine = new StateMachine(this.gameObject);
         StateMachine.TransitionTo<IdleState>();
@@ -30,6 +33,18 @@ class RangedEnemy : BaseEnemy
     private void Update()
     {
         StateMachine.OnTick();
+
+        if (rb.linearVelocity.x != 0)
+        {
+            if (rb.linearVelocity.x > 0)
+            {
+                sp.flipX = true;
+            }
+            else
+            {
+                sp.flipX = false;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

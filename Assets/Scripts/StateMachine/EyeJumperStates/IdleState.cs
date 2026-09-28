@@ -12,6 +12,7 @@ public class IdleState : BaseState
         eye = gameObject.GetComponent<RangedEnemy>();
         eyeAnim = gameObject.GetComponent<Animator>();
         eyeAnim.SetBool("Walk", false);
+        eyeAnim.SetBool("Idle", true);
     }
 
     public override void OnTick()

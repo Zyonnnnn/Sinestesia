@@ -11,6 +11,8 @@ public class AttackingState : BaseState
     private Animator eyeAnim;
     private bool hasReachedApex;
 
+    private float mass;
+
 
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
@@ -20,13 +22,15 @@ public class AttackingState : BaseState
         eyeRb = gameObject.GetComponent<Rigidbody>();
         eyeAnim = gameObject.GetComponent<Animator>();
 
-        hasReachedApex = false; // <- adicionar esta linha
+        hasReachedApex = false;
 
         if (stateMachine.HasParam("adaptedStrenght"))
         {
             var _strenght = stateMachine.GetParam<float>("adaptedStrenght");
             JumpTowards(eye.transform.position, eye.jumpHeight, _strenght);
         }
+        
+        mass = eyeRb.mass;
 
         eye.OnLanded += HandleLanded;
     }
@@ -45,6 +49,7 @@ public class AttackingState : BaseState
 
     private void HandleLanded()
     {
+        eyeAnim.SetBool("Fall", false);
         stateMachine.TransitionTo<StunnedState>();
     }
 
@@ -57,13 +62,14 @@ public class AttackingState : BaseState
 
         if (hasReachedApex && eyeRb.linearVelocity.y < 0f)
         {
+            eyeRb.mass = 20f;
             eyeAnim.SetBool("Fall", true);
         }
         
     }
     public override void OnEnd()
     {
-        eyeAnim.SetBool("Fall", false);
+        eyeRb.mass = mass;
         eye.OnLanded -= HandleLanded;
     }
 }

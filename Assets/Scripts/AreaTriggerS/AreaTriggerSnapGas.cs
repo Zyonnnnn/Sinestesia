@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AreaTriggerSnapGas : MonoBehaviour
 {
-    public bool snapped;
+    public bool snapped = false;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("GasCollision"))

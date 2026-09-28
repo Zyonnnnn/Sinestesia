@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f4eaed5a0830d4c9f5e07d4bedb7d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSinestesiaActive: 0
 --- !u!54 &7723042295386303185
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -272,7 +273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4503207415060444483}
-  - component: {fileID: 3734042887159472387}
+  - component: {fileID: 322666254208990853}
   m_Layer: 7
   m_Name: Collision
   m_TagString: Untagged
@@ -295,8 +296,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8159369871419413416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &3734042887159472387
-MeshCollider:
+--- !u!136 &322666254208990853
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -313,10 +314,11 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8664069889962292969
 GameObject:
   m_ObjectHideFlags: 0

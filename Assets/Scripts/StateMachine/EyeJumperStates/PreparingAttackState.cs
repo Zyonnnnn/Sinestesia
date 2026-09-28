@@ -15,9 +15,6 @@ public class PreparingAttackState : BaseState
         eye = gameObject.GetComponent<RangedEnemy>();
         eyeAnim = eye.GetComponent<Animator>();
         eyeAnim.SetTrigger("GoingJump");
-        Debug.Log("Going to Attack");
-
-
     }
 
     public override void OnTick()

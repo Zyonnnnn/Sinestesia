@@ -23,6 +23,7 @@ public class StunnedState : BaseState
         timer += Time.deltaTime;
         if (timer >= stunTime)
         {
+            eyeAnim.SetBool("Idle", true);
             stateMachine.TransitionTo<IdleState>();
             timer = 0;
         }

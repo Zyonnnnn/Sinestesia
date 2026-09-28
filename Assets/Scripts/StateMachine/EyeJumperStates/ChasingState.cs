@@ -48,7 +48,7 @@ public class ChasingState : BaseState
         if (!eye._isTouching)
         {
             eyeAnim.SetBool("Walk", true);
-            Debug.Log("Walking");
+            eyeAnim.SetBool("Idle", false);
 
             eye.transform.position = Vector3.MoveTowards(eye.transform.position, playerPosition, eye.GetMoveSpeed() * Time.deltaTime);
         }
@@ -56,6 +56,5 @@ public class ChasingState : BaseState
 
     public override void OnEnd()
     {
-        eyeAnim.SetBool("Walk", false);
     }
 }
