@@ -30,6 +30,8 @@ TagManager:
   - GetUpAreaTrigger
   - AreaSnap
   - LightFire
+  - LighterImg
+  - CrowbarImg
   layers:
   - Default
   - TransparentFX
