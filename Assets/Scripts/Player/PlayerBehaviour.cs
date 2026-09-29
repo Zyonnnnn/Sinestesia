@@ -165,6 +165,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         }
         else
         {
+            canPick = false;
             onHand = false;
         }
 

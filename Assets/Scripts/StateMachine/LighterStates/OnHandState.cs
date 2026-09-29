@@ -8,6 +8,9 @@ public class OnHandState : BaseState
     InputManager inputManager;
     LighterBehaviour lighter;
     ParticleSystem ps;
+    SpriteRenderer lighterRenderer;
+    
+    ItemsUIBehaviour hud;
 
     float baseDistanceX = 0.6f;
     float baseDistanceZ = 0.2f;
@@ -17,24 +20,49 @@ public class OnHandState : BaseState
     Vector3 holdOffset;
 
     private bool canFire;
+    public bool isFired;
+
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
+
         lighter = gameObject.GetComponent<LighterBehaviour>();
         ps = gameObject.GetComponent<ParticleSystem>();
+        lighterRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
+        hud = GameObject.FindGameObjectWithTag("LighterImg").GetComponent<ItemsUIBehaviour>();
+
         inputManager = new InputManager();
         holdOffset = new Vector3(baseDistanceX, 0f, 0f);
 
         PlayerBehaviour.OnPicked += HandlePicked;
+        
+        lighterRenderer.enabled = false;
+        hud.lighterImage.enabled = true;
     }
 
 
     public override void OnTick()
     {
         stateMachine.SetParam("canFire", canFire);
-        
+
         inArea = PlayerBehaviour.canInteract;
 
+        HandlePosAndRot();
+    }
+
+    public override void OnEnd()
+    {
+        hud.lighterImage.enabled = false;
+        lighterRenderer.enabled = true;
+        
+        ps.Stop();
+        
+        PlayerBehaviour.OnPicked -= HandlePicked;
+    }
+
+    void HandlePosAndRot()
+    {
         if (stateMachine.HasParam("PlayerPos"))
         {
             playerPos = stateMachine.GetParam<Transform>("PlayerPos");
@@ -63,35 +91,27 @@ public class OnHandState : BaseState
                 holdOffset = new Vector3(sideOffset, 0f, inputDirection.y > 0f ? baseDistanceZ : -baseDistanceZ);
             }
 
-            lighter.transform.rotation = Quaternion.Slerp(lighter.transform.rotation, targetRotation, 12 * Time.deltaTime);
+            lighter.transform.rotation =
+                Quaternion.Slerp(lighter.transform.rotation, targetRotation, 12 * Time.deltaTime);
         }
 
         lighter.transform.position = playerPos.position + holdOffset;
     }
 
-    public override void OnEnd()
-    {
-        Debug.Log("OnEnd");
-        ps.Stop();
-        PlayerBehaviour.OnPicked -= HandlePicked;
-    }
     private void HandlePicked()
     {
         if (inArea)
         {
             canFire = !canFire;
-            
-            lighter.gameObject.GetComponent<BoxCollider>().enabled = !lighter.gameObject.GetComponent<BoxCollider>().enabled;
+            lighter.gameObject.GetComponent<BoxCollider>().enabled =
+                !lighter.gameObject.GetComponent<BoxCollider>().enabled;
 
             if (ps != null)
             {
                 if (!ps.isEmitting)
                 {
+                    isFired = true;
                     ps.Play();
-                }
-                else
-                {
-                    ps.Stop();
                 }
             }
         }
