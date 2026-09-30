@@ -34,7 +34,6 @@ public class SceneChanger : MonoBehaviour
         {
             playerBehaviour = playerObj.GetComponent<PlayerBehaviour>();
             health = playerBehaviour.GetHealth();
-            Debug.LogWarning("PlayerBehaviour: " + playerBehaviour.gameObject.name);
         }
 
         mMenu.SetActive(true);
@@ -54,7 +53,6 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    // ReSharper disable Unity.PerformanceAnalysis
     private void CheckHealth()
     {
         if (health <= 0)
