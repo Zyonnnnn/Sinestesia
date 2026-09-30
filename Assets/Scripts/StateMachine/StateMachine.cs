@@ -38,7 +38,6 @@ public class StateMachine
     public bool HasParam(string key) => parameters.ContainsKey(key);
 
     public void ClearParams() => parameters.Clear();
-
     public void OnTick()
     {
         CurrentState?.OnTick();

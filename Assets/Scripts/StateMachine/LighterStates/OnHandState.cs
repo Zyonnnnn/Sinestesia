@@ -1,3 +1,7 @@
+using System;
+using System.Collections;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OnHandState : BaseState
@@ -102,9 +106,7 @@ public class OnHandState : BaseState
     {
         if (inArea)
         {
-            canFire = !canFire;
-            lighter.gameObject.GetComponent<BoxCollider>().enabled =
-                !lighter.gameObject.GetComponent<BoxCollider>().enabled;
+            FireCoroutine(2);
 
             if (ps != null)
             {
@@ -120,4 +122,16 @@ public class OnHandState : BaseState
             stateMachine.TransitionTo<FreeState>();
         }
     }
+
+    private async void FireCoroutine(float t)
+    {
+        canFire = true;
+        lighter.gameObject.GetComponent<BoxCollider>().enabled = true;
+
+        await Task.Delay(TimeSpan.FromSeconds(t));
+
+        canFire = false;
+        lighter.gameObject.GetComponent<BoxCollider>().enabled = false;
+    }
+
 }

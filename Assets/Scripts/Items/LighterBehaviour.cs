@@ -3,17 +3,20 @@ using UnityEngine;
 
 public class LighterBehaviour : MonoBehaviour, IHitable
 {
-    StateMachine StateMachine;
+    StateMachine stateMachine;
     ParticleSystem ps;
-    
+
+    ItemsUIBehaviour hud;
+
     public bool canFire;
 
     private void Awake()
     {
-        StateMachine = new StateMachine(this.gameObject);
-        StateMachine.TransitionTo<FreeState>();
+        stateMachine = new StateMachine(this.gameObject);
+        stateMachine.TransitionTo<FreeState>();
 
         ps = GetComponent<ParticleSystem>();
+        hud = GameObject.FindGameObjectWithTag("LighterImg").GetComponent<ItemsUIBehaviour>();
     }
 
     private void Start()
@@ -23,21 +26,26 @@ public class LighterBehaviour : MonoBehaviour, IHitable
 
     private void Update()
     {
-        StateMachine.OnTick();
+        stateMachine.OnTick();
 
-        canFire = StateMachine.CurrentState is OnHandState && StateMachine.GetParam<bool>("canFire");
+        canFire = stateMachine.CurrentState is OnHandState && stateMachine.GetParam<bool>("canFire");
     }
 
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
     {
-        StateMachine.SetParam("PlayerPos", executionSoruce);
-        StateMachine.SetParam("PlayerRigidbody", rb);
+        stateMachine.SetParam("PlayerPos", executionSoruce);
+        stateMachine.SetParam("PlayerRigidbody", rb);
 
-        if (StateMachine.CurrentState is OnHandState)
+        if (stateMachine.CurrentState is OnHandState)
         {
             return;
         }
 
-        StateMachine.TransitionTo<OnHandState>();
+        stateMachine.TransitionTo<OnHandState>();
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(hud.lighterImage.gameObject);
     }
 }
