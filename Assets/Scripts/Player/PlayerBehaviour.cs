@@ -12,7 +12,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private float knockbackTimer;
     private Vector3 hVelocity;
 
-
     public static bool canInteract { get; private set; }
     public static Vector3 playerPosition { get; private set; }
 
@@ -53,7 +52,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         var menuDie = GameObject.FindGameObjectWithTag("DeathM");
-
 
         canMove = true;
     }
@@ -305,7 +303,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(gc.transform.position, Vector3.down * rayLenght);
+        //Gizmos.DrawRay(gc.transform.position, Vector3.down * rayLenght);
     }
 
     #endregion
