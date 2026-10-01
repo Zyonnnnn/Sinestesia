@@ -2,16 +2,18 @@ using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class Dialogue : MonoBehaviour
 {
     TextMeshProUGUI text;
-    
+
     [SerializeField] private string[] lines;
     [SerializeField] private float textSpeed;
-    
+
     int index;
-    
+    bool canStart;
+
     void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
@@ -23,25 +25,34 @@ public class Dialogue : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (canStart)
         {
-            if (text.text == lines[index])
+            if (Input.GetMouseButtonDown(0))
             {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                text.text = lines[index];
+                if (text.text == lines[index])
+                {
+                    NextLine();
+                }
+                else
+                {
+                    StopAllCoroutines();
+                    text.text = lines[index];
+                }
             }
         }
     }
 
     public void StartDialogue()
     {
+        canStart = true;
         index = 0;
 
         StartCoroutine(TypeLine());
+    }
+
+    public void StopDialogue()
+    {
+        StopAllCoroutines();
     }
 
     void NextLine()

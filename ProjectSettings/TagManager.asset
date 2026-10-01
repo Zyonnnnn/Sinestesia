@@ -32,6 +32,9 @@ TagManager:
   - LightFire
   - LighterImg
   - CrowbarImg
+  - Crowbar
+  - GameManager
+  - Fog
   layers:
   - Default
   - TransparentFX
@@ -42,7 +45,7 @@ TagManager:
   - explodable
   - dontflamable
   - Menu
-  - 
+  - grabbable
   - 
   - 
   - 

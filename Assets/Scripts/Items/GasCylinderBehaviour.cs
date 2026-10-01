@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GasCylinderBehaviour : MonoBehaviour
@@ -31,8 +32,7 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     [SerializeField] List<GameObject> explosionPs = new();
 
-    bool exploded;
-    bool picked;
+    bool exploded, picked, fogDiminish;
 
     Vector3 holdOffset;
 
@@ -60,10 +60,24 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(fogDiminish);
         //if (areaTriggerSnapGas.snapped)
         //{
         //    rb.linearVelocity = Vector3.zero;
         //}
+    }
+
+    private void FixedUpdate()
+    {
+        if (fogDiminish && RenderSettings.fogDensity >= 0f)
+        {
+            RenderSettings.fogDensity -= 0.002f;
+        }
+        var fogPs = GameObject.FindGameObjectWithTag("Fog");
+        if (fogPs != null)
+        {
+            Destroy(fogPs);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,6 +89,7 @@ public class GasCylinderBehaviour : MonoBehaviour
 
         if (other.CompareTag("Lighter") && other.GetComponent<LighterBehaviour>().canFire)
         {
+            fogDiminish = true;
             Destroy(other.gameObject);
             exploded = true;
             StartCoroutine(Explode());
