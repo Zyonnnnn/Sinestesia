@@ -35,6 +35,7 @@ TagManager:
   - Crowbar
   - GameManager
   - Fog
+  - AreaDamage
   layers:
   - Default
   - TransparentFX

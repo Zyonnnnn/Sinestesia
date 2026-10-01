@@ -16,6 +16,9 @@ public class IdleState : BaseState
         {
             eyeAnim.SetBool("isWalking", false);
         }
+
+        eye.inAttack = false;
+        eye.areaDmg.SetActive(false);
     }
 
     public override void OnTick()

@@ -32,6 +32,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     #endregion
 
     #region Setup
+    Color initColor;
 
     private void Awake()
     {
@@ -54,6 +55,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         var menuDie = GameObject.FindGameObjectWithTag("DeathM");
 
         canMove = true;
+        initColor = spriteRenderer.material.color;
     }
 
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
@@ -154,6 +156,13 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         yield return new WaitForSeconds(1);
         //Time.timeScale = 0f;
     }
+    IEnumerator DamageAnim()
+    {
+        spriteRenderer.material.color = Color.red;
+
+        yield return new WaitForSeconds(0.5f);
+        spriteRenderer.material.color = initColor;
+    }
 
     void HandleInteract()
     {
@@ -226,12 +235,19 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         if (collision.collider.CompareTag("EyeJump"))
         {
+            StartCoroutine(DamageAnim());
             health--;
         }
     }
 
     void OnTriggerEnter(Collider collision)
     {
+        if (collision.CompareTag("AreaDamage"))
+        {
+            StartCoroutine(DamageAnim());
+            health--;
+        }
+
         if (collision.CompareTag("1to2level"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();

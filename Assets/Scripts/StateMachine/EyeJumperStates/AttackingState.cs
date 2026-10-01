@@ -9,6 +9,8 @@ public class AttackingState : BaseState
     private Rigidbody eyeRb;
     private RangedEnemy eye;
     private Animator eyeAnim;
+
+    ParticleSystem eyePs;
     private bool hasReachedApex;
 
     private float mass;
@@ -21,6 +23,7 @@ public class AttackingState : BaseState
         eye = gameObject.GetComponent<RangedEnemy>();
         eyeRb = gameObject.GetComponent<Rigidbody>();
         eyeAnim = gameObject.GetComponent<Animator>();
+        eyePs = gameObject.GetComponentInChildren<ParticleSystem>();
 
         hasReachedApex = false;
 
@@ -49,6 +52,15 @@ public class AttackingState : BaseState
 
     private void HandleLanded()
     {
+        ScreenShake screenShake = GameObject.FindObjectOfType<ScreenShake>();
+        
+        if (screenShake != null)
+        {
+            screenShake.start = true;
+        }
+
+        eyePs.Play();
+
         if (eye.isFalling == false)
         {
             eyeAnim.SetBool("isWalking", false);
@@ -64,9 +76,11 @@ public class AttackingState : BaseState
             hasReachedApex = true;
         }
 
-        if (hasReachedApex && eyeRb.linearVelocity.y < 0f)
+        if (hasReachedApex)
         {
-            eyeRb.mass = 20f;
+            eye.areaDmg.SetActive(true);
+            eye.inAttack = true;
+            eyeRb.AddForce(Vector3.down * 10f, ForceMode.Impulse);
         }
     }
 

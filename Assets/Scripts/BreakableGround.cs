@@ -30,7 +30,7 @@ public class BreakableGround : MonoBehaviour
         if (isBroken)
         {
             foreach (Rigidbody rb in childrenRb)
-            { 
+            {
                 rb.isKinematic = false;
             }
             area.SetActive(true);
@@ -49,7 +49,10 @@ public class BreakableGround : MonoBehaviour
     {
         if (other.CompareTag("EyeJump"))
         {
-            isBroken = true;
+            if (other.gameObject.GetComponent<RangedEnemy>().inAttack)
+            {
+                isBroken = true;
+            }
         }
     }
 }

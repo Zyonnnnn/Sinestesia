@@ -16,6 +16,7 @@ public class StunnedState : BaseState
         eye = gameObject.GetComponent<RangedEnemy>();
         eyeAnim = gameObject.GetComponent<Animator>();
 
+        eye.areaDmg.SetActive(false);
     }
 
     public override void OnTick()
