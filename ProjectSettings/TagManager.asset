@@ -36,6 +36,7 @@ TagManager:
   - GameManager
   - Fog
   - AreaDamage
+  - Fade
   layers:
   - Default
   - TransparentFX

@@ -42,7 +42,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playerBehaviour.SetActive(false);
+        if (SceneManager.GetActiveScene().name == "FloorsScene")
+        {
+            playerBehaviour.SetActive(false);
+        }
         //dialogue.gameObject.SetActive(false);
         sinestesyEffect.SetActive(false);
 
