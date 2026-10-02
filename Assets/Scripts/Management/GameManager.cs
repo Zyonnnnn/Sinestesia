@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
     bool onSinestesy, isFading;
 
     Dialogue dialogue;
-    PlayerBehaviour playerBehaviour;
+    GameObject playerBehaviour;
     SinestesyDetection sinestesyDetection;
 
     InputManager inputManager;
@@ -32,8 +33,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        dialogue = GameObject.Find("Dialogue").GetComponent<Dialogue>();
-        playerBehaviour = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
+        //dialogue = GameObject.Find("Dialogue").GetComponent<Dialogue>();
+        playerBehaviour = GameObject.Find("Player");
         sinestesyDetection = playerBehaviour.GetComponentInChildren<SinestesyDetection>();
 
         inputManager = new InputManager();
@@ -41,6 +42,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "FloorsScene")
+        {
+            playerBehaviour.SetActive(false);
+        }
         //dialogue.gameObject.SetActive(false);
         sinestesyEffect.SetActive(false);
 

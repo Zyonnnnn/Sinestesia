@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using System.Collections;
 
 public class SceneChanger : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class SceneChanger : MonoBehaviour
 
     PlayerBehaviour playerBehaviour;
     float health;
+
+    public Image fadeImg;
 
     private void Awake()
     {
