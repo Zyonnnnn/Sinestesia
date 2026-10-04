@@ -3,17 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GasCylinderBehaviour : MonoBehaviour
 {
-    [SerializeField] float explosionForce = 10;
-    [SerializeField] float explosionRadius = 10;
-    [SerializeField] float explosionDelay = 3f;
-    [SerializeField] float baseDistanceX;
-    [SerializeField] float baseDistanceZ;
+    [SerializeField] float explosionForce = 10, explosionRadius = 10, explosionDelay = 3f, baseDistanceX, baseDistanceZ, grabRadius = 3f;
 
-
-    [SerializeField] float grabRadius = 3f;
+    Vector3 playerVel;
 
     Collider[] colliders = new Collider[20];
 
@@ -23,11 +19,10 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     ParticleSystem ps;
     Rigidbody rb;
-
+    SpriteRenderer sp;
     AreaTriggerSnapGas areaTriggerSnapGas;
-    
-    GameObject player;
-    GameObject wall;
+
+    GameObject player, wall;
     [SerializeField] GameObject light;
 
     [SerializeField] List<GameObject> explosionPs = new();
@@ -42,6 +37,7 @@ public class GasCylinderBehaviour : MonoBehaviour
 
         ps = GetComponent<ParticleSystem>();
         rb = GetComponent<Rigidbody>();
+        sp = GetComponent<SpriteRenderer>();
         parentTriggerCollider = GetComponent<Collider>();
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -53,6 +49,7 @@ public class GasCylinderBehaviour : MonoBehaviour
     void Start()
     {
         PlayerBehaviour.OnPicked += HandlePicked;
+        playerVel = player.GetComponent<Rigidbody>().linearVelocity;
 
         ps.Stop();
         light.SetActive(false);
@@ -60,11 +57,33 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(fogDiminish);
         //if (areaTriggerSnapGas.snapped)
         //{
         //    rb.linearVelocity = Vector3.zero;
         //}
+        if (picked)
+        {
+            if (Vector3.Distance(player.transform.position, transform.position) < grabRadius)
+            {
+                player.GetComponent<Rigidbody>().linearVelocity -= playerVel * 0.5f;
+                player.GetComponent<Animator>().SetBool("BujaoWalk", true);
+
+                holdOffset = new Vector3(baseDistanceX, 0f, baseDistanceZ);
+                transform.position = player.transform.position + holdOffset;
+                sp.enabled = false;
+
+            }
+            else
+            {
+                picked = false;
+            }
+        }
+        else
+        {
+            player.GetComponent<Rigidbody>().linearVelocity = playerVel;
+            player.GetComponent<Animator>().SetBool("BujaoWalk", false);
+            sp.enabled = true;
+        }
     }
 
     private void FixedUpdate()
