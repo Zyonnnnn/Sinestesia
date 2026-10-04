@@ -2785,6 +2785,7 @@ MonoBehaviour:
   mMenu: {fileID: 0}
   cMenu: {fileID: 0}
   deathMenu: {fileID: 0}
+  fadeImg: {fileID: 0}
 --- !u!4 &1476699688
 Transform:
   m_ObjectHideFlags: 0

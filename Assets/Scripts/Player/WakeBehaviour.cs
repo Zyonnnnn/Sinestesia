@@ -17,7 +17,7 @@ public class WakeBehaviour : MonoBehaviour
             player.SetActive(true);
             player.transform.position = transform.position;
 
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

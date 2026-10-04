@@ -11,6 +11,8 @@ public class OnHandState : BaseState
 
     InputManager inputManager;
     LighterBehaviour lighter;
+    GameObject player;
+
     ParticleSystem ps;
     SpriteRenderer lighterRenderer;
     
@@ -35,6 +37,7 @@ public class OnHandState : BaseState
         lighterRenderer = gameObject.GetComponent<SpriteRenderer>();
         
         hud = GameObject.FindGameObjectWithTag("LighterImg").GetComponent<ItemsUIBehaviour>();
+        player = GameObject.FindGameObjectWithTag("Player");
 
         inputManager = new InputManager();
         holdOffset = new Vector3(baseDistanceX, 0f, 0f);
@@ -125,13 +128,16 @@ public class OnHandState : BaseState
 
     private async void FireCoroutine(float t)
     {
+        player.GetComponent<Animator>().SetTrigger("Interact");
         canFire = true;
         lighter.gameObject.GetComponent<BoxCollider>().enabled = true;
+        lighterRenderer.enabled = true;
 
         await Task.Delay(TimeSpan.FromSeconds(t));
 
         canFire = false;
         lighter.gameObject.GetComponent<BoxCollider>().enabled = false;
+        lighterRenderer.enabled = false;
     }
 
 }

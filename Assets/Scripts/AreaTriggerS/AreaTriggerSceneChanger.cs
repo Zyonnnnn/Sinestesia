@@ -11,7 +11,10 @@ public class AreaTriggerSceneChanger : MonoBehaviour, IHitable
     }
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
     {
-        uiFadeOut.GetComponentInChildren<FadeOut>().enabled = true;
+        if (uiFadeOut == null)
+        {
+            uiFadeOut.GetComponentInChildren<FadeOut>().enabled = true;
+        }
 
         if (i == 1)
         {
