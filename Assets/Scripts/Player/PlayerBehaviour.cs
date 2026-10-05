@@ -83,8 +83,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     private void FixedUpdate()
     {
-        Debug.Log($"canMove: {canMove} | isKnockedBack: {isKnockedBack} | Velocidade Y: {rb.linearVelocity.y}");
-
         if (!isKnockedBack && canMove)
         {
             HandleMovement();
@@ -113,8 +111,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     #endregion
 
     #region Handlers
-
-    // ReSharper disable Unity.PerformanceAnalysis
     private void HandleMovement()
     {
         var inputDirection = inputManager.GetInputDirection();
@@ -169,14 +165,11 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     void HandleInteract()
     {
-        if (!onHand)
-        {
-            canPick = true;
-        }
-        else
+        if (canPick)
         {
             canPick = false;
-            onHand = false;
+            IHitable hit = GameObject.FindGameObjectWithTag("Lighter").GetComponent<IHitable>();
+            hit.Execute(transform, rb, 0);
         }
 
         rb.AddForce(Vector3.up * 1, ForceMode.Impulse);
@@ -269,15 +262,9 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             hit.Execute(transform, rb, 0);
         }
 
-        if (canPick)
+        if (collision.GetComponent<Collider>().CompareTag("Lighter"))
         {
-            if (collision.GetComponent<Collider>().CompareTag("Lighter"))
-            {
-                onHand = true;
-                canPick = false;
-                IHitable hit = collision.gameObject.GetComponent<IHitable>();
-                hit.Execute(transform, rb, 0);
-            }
+            canPick = true;
         }
     }
 
@@ -306,6 +293,11 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, rb, 2);
+        }
+
+        if (collision.CompareTag("Lighter"))
+        {
+            canPick = false;
         }
     }
 

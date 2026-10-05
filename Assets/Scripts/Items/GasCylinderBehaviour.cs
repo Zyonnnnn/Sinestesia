@@ -16,18 +16,18 @@ public class GasCylinderBehaviour : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] Collider parentTriggerCollider;
     InputManager inputManager;
+    AreaTriggerSnapGas areaTriggerSnapGas;
 
     ParticleSystem ps;
     Rigidbody rb;
     SpriteRenderer sp;
-    AreaTriggerSnapGas areaTriggerSnapGas;
 
     GameObject player, wall;
     [SerializeField] GameObject light;
 
     [SerializeField] List<GameObject> explosionPs = new();
 
-    bool exploded, picked, fogDiminish;
+    bool exploded, picked, fogDiminish, snapped;
 
     Vector3 holdOffset;
 
@@ -57,10 +57,15 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     private void Update()
     {
-        //if (areaTriggerSnapGas.snapped)
-        //{
-        //    rb.linearVelocity = Vector3.zero;
-        //}
+        snapped = areaTriggerSnapGas.snapped;
+
+        if (snapped)
+        {
+            Debug.Log("Snapped");
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            picked = false;
+        }
+
         if (picked)
         {
             if (Vector3.Distance(player.transform.position, transform.position) < grabRadius)
@@ -174,7 +179,10 @@ public class GasCylinderBehaviour : MonoBehaviour
     }
     private void HandlePicked()
     {
-        picked = !picked;
+        if (!snapped)
+        {
+            picked = !picked;
+        }
     }
 
     private void OnDrawGizmos()
