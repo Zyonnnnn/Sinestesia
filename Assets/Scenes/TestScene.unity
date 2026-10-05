@@ -529,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3438425688002887257, guid: 1e3bbdac57dd3654ab56debc5828b883, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5465,6 +5465,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   mMenu: {fileID: 0}
   cMenu: {fileID: 0}
+  deathMenu: {fileID: 0}
+  fadeImg: {fileID: 0}
 --- !u!4 &1390625541
 Transform:
   m_ObjectHideFlags: 0
@@ -5826,6 +5828,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   olhoSinestesia: {fileID: 0}
   animator: {fileID: 0}
+  animatorP: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1001 &1798496699546034635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5844,7 +5848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4639248281555431899, guid: 3d5c877c3cd65e64e84d1e69d4529511, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4785945925494440137, guid: 3d5c877c3cd65e64e84d1e69d4529511, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6133,11 +6137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3856041112996346752, guid: 201d76bc2d4a6dd41a865f6837d1dc9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.11
+      value: 6.753138
       objectReference: {fileID: 0}
     - target: {fileID: 3856041112996346752, guid: 201d76bc2d4a6dd41a865f6837d1dc9a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -38.25
+      value: -15.291858
       objectReference: {fileID: 0}
     - target: {fileID: 3856041112996346752, guid: 201d76bc2d4a6dd41a865f6837d1dc9a, type: 3}
       propertyPath: m_LocalRotation.w

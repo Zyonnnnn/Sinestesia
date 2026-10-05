@@ -3,13 +3,14 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerWakeSMB : StateMachineBehaviour
 {
+    GameObject gameManager;
+    void OnEnable()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+    }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            player.SetActive(true);
-            player.transform.position = animator.transform.position;
-        }
+        gameManager.GetComponent<GameManager>().WakePlayer(animator);
+        Destroy(animator.gameObject);
     }
 }
