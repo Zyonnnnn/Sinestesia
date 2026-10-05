@@ -37,6 +37,7 @@ TagManager:
   - Fog
   - AreaDamage
   - Fade
+  - CutScene
   layers:
   - Default
   - TransparentFX

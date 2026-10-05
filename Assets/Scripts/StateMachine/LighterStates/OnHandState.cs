@@ -18,8 +18,7 @@ public class OnHandState : BaseState
     
     ItemsUIBehaviour hud;
 
-    float baseDistanceX = 0.6f;
-    float baseDistanceZ = 0.2f;
+    float baseDistanceX = 0.6f, baseDistanceZ = 0.2f;
 
     bool inArea;
 
@@ -30,6 +29,7 @@ public class OnHandState : BaseState
 
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
     {
+        Debug.Log("OnHandState started");
         this.stateMachine = stateMachine;
 
         lighter = gameObject.GetComponent<LighterBehaviour>();
