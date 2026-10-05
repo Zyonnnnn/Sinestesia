@@ -122,4 +122,9 @@ public class GameManager : MonoBehaviour
         dialogue.StopDialogue();
     }
 
+    public void WakePlayer(Animator animator)
+    {
+        playerBehaviour.SetActive(true);
+        playerBehaviour.transform.position = animator.transform.position;
+    }
 }

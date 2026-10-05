@@ -83,6 +83,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     private void FixedUpdate()
     {
+        Debug.Log($"canMove: {canMove} | isKnockedBack: {isKnockedBack} | Velocidade Y: {rb.linearVelocity.y}");
+
         if (!isKnockedBack && canMove)
         {
             HandleMovement();
@@ -96,7 +98,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         }
         else
         {
-            rb.linearVelocity = Vector3.zero;
+            rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
             knockbackTimer -= Time.fixedDeltaTime;
 
             if (knockbackTimer <= 0f)
@@ -119,7 +121,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         var targetVelocity = new Vector3(inputDirection.x, 0f, inputDirection.y) * (moveSpeed * 100 * Time.deltaTime);
         var speedChangeRate = inputDirection.sqrMagnitude > 0f ? acc : decc;
 
-        hVelocity = Vector3.MoveTowards(hVelocity, targetVelocity, speedChangeRate * Time.deltaTime);
+        hVelocity = Vector3.MoveTowards(hVelocity, targetVelocity, speedChangeRate * Time.fixedDeltaTime);
+
 
         rb.linearVelocity = new Vector3(hVelocity.x, rb.linearVelocity.y, hVelocity.z);
 
