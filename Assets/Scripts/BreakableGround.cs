@@ -34,6 +34,8 @@ public class BreakableGround : MonoBehaviour
                 rb.isKinematic = false;
             }
             area.SetActive(true);
+            var ps = area.GetComponentInChildren<ParticleSystem>();
+            ps.Play();
         }
         else
         {
@@ -42,6 +44,8 @@ public class BreakableGround : MonoBehaviour
                 rb.isKinematic = true;
             }
             area.SetActive(false);
+            var ps = area.GetComponentInChildren<ParticleSystem>();
+            ps.Stop();
         }
     }
 

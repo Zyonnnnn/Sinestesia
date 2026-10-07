@@ -171,6 +171,15 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FX"",
+                    ""type"": ""Button"",
+                    ""id"": ""1c50bfe5-e348-46cf-a742-5b8f84c04346"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -512,6 +521,50 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a28c4f77-2dfc-4bff-a588-beaa42425df2"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ed2a2d1-335c-48e4-8e5c-e6df3cd85ffe"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd9d410a-fc25-4fcc-b75d-f77a94d8b719"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0306bb4-741b-4cb0-b2f4-a010946865ee"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1108,6 +1161,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Synesthesy = m_Player.FindAction("Synesthesy", throwIfNotFound: true);
         m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
+        m_Player_FX = m_Player.FindAction("FX", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1210,6 +1264,7 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Synesthesy;
     private readonly InputAction m_Player_Use;
+    private readonly InputAction m_Player_FX;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1257,6 +1312,10 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Use".
         /// </summary>
         public InputAction @Use => m_Wrapper.m_Player_Use;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/FX".
+        /// </summary>
+        public InputAction @FX => m_Wrapper.m_Player_FX;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1310,6 +1369,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Use.started += instance.OnUse;
             @Use.performed += instance.OnUse;
             @Use.canceled += instance.OnUse;
+            @FX.started += instance.OnFX;
+            @FX.performed += instance.OnFX;
+            @FX.canceled += instance.OnFX;
         }
 
         /// <summary>
@@ -1348,6 +1410,9 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
             @Use.started -= instance.OnUse;
             @Use.performed -= instance.OnUse;
             @Use.canceled -= instance.OnUse;
+            @FX.started -= instance.OnFX;
+            @FX.performed -= instance.OnFX;
+            @FX.canceled -= instance.OnFX;
         }
 
         /// <summary>
@@ -1711,6 +1776,13 @@ public partial class @InputControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnUse(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "FX" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFX(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -15,7 +15,7 @@ public class OnHandState : BaseState
 
     ParticleSystem ps;
     SpriteRenderer lighterRenderer;
-    
+
     ItemsUIBehaviour hud;
 
     float baseDistanceX = 0.6f, baseDistanceZ = 0.2f;
@@ -24,7 +24,7 @@ public class OnHandState : BaseState
 
     Vector3 holdOffset;
 
-    private bool canFire;
+    private bool canFire, toDrop;
     public bool isFired;
 
     public override void OnStart(GameObject gameObject, StateMachine stateMachine)
@@ -35,7 +35,7 @@ public class OnHandState : BaseState
         lighter = gameObject.GetComponent<LighterBehaviour>();
         ps = gameObject.GetComponent<ParticleSystem>();
         lighterRenderer = gameObject.GetComponent<SpriteRenderer>();
-        
+
         hud = GameObject.FindGameObjectWithTag("LighterImg").GetComponent<ItemsUIBehaviour>();
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -43,9 +43,11 @@ public class OnHandState : BaseState
         holdOffset = new Vector3(baseDistanceX, 0f, 0f);
 
         PlayerBehaviour.OnPicked += HandlePicked;
-        
+
         lighterRenderer.enabled = false;
         hud.lighterImage.enabled = true;
+
+        Wait();
     }
 
 
@@ -62,9 +64,9 @@ public class OnHandState : BaseState
     {
         hud.lighterImage.enabled = false;
         lighterRenderer.enabled = true;
-        
+
         ps.Stop();
-        
+
         PlayerBehaviour.OnPicked -= HandlePicked;
     }
 
@@ -122,7 +124,11 @@ public class OnHandState : BaseState
         }
         else
         {
-            stateMachine.TransitionTo<FreeState>();
+            if (toDrop)
+            {
+                toDrop = false;
+                stateMachine.TransitionTo<FreeState>();
+            }
         }
     }
 
@@ -140,4 +146,9 @@ public class OnHandState : BaseState
         lighterRenderer.enabled = false;
     }
 
+    private async void Wait()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(0.5f));
+        toDrop = true;
+    }
 }

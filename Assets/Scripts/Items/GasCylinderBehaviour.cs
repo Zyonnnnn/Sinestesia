@@ -97,11 +97,6 @@ public class GasCylinderBehaviour : MonoBehaviour
         {
             RenderSettings.fogDensity -= 0.002f;
         }
-        var fogPs = GameObject.FindGameObjectWithTag("Fog");
-        if (fogPs != null)
-        {
-            Destroy(fogPs);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -135,6 +130,12 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     IEnumerator Explode()
     {
+        var fogPs = GameObject.FindGameObjectWithTag("Fog");
+        if (fogPs != null)
+        {
+            Destroy(fogPs);
+        }
+
         ps.Play();
         light.SetActive(true);
 

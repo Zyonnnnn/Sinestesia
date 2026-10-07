@@ -15,25 +15,23 @@ public class FadeIn : MonoBehaviour
     void Awake()
     {
         image = GetComponent<Image>();
-        cutSceneBehaviour = GameObject.Find("CutScene").GetComponent<CutSceneBehaviour>();
     }
 
     private void Update()
     {
         if (SceneManager.GetActiveScene().name == "FloorsScene")
         {
-            if (cutSceneBehaviour != null)
+            if (!finish)
             {
-                if (!finish)
+                var cutSceneBehaviour = GameObject.Find("CutScene").GetComponent<CutSceneBehaviour>();
+                if (cutSceneBehaviour.cutsceneFinished)
                 {
-                    if (cutSceneBehaviour.cutsceneFinished)
-                    {
-                        StartCoroutine(FadeInRoutine());
-                    }
+                    StartCoroutine(FadeInRoutine());
                 }
             }
+
         }
-        else if (SceneManager.GetActiveScene().name == "PuzzlesScene")
+        else
         {
             StartCoroutine(OtherFadeInRoutine());
         }

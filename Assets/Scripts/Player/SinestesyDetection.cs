@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,4 +60,8 @@ public class SinestesyDetection : MonoBehaviour
         }
     }
 
+    internal void Shake(float v, AnimationCurve sinestesyCurve)
+    {
+        throw new NotImplementedException();
+    }
 }

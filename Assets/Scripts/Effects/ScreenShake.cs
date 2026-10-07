@@ -21,11 +21,11 @@ public class ScreenShake : MonoBehaviour
         {
             Debug.Log("Screen shake started");
             start = false;
-            StartCoroutine(Shake());
+            StartCoroutine(Shake(curve));
         }
     }
 
-    IEnumerator Shake()
+    IEnumerator Shake(AnimationCurve curve)
     {
         var startPos = cinemachine.Composition.ScreenPosition;
         var elapsed = 0.0f;

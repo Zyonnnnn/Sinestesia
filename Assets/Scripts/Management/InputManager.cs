@@ -8,9 +8,7 @@ public class InputManager
 
     private Vector2 InputDirection => inputControls.Player.Move.ReadValue<Vector2>();
 
-    public event Action OnJumpPressed;
-    public event Action OnSinestesyPressed;
-    public event Action OnPickPressed;
+    public event Action OnJumpPressed, OnSinestesyPressed, OnPickPressed, onShakePressed, onShakeReleased;
 
     public InputManager()
     {
@@ -20,11 +18,23 @@ public class InputManager
         inputControls.Player.Jump.performed += OnJumpPerformed;
         inputControls.Player.Synesthesy.performed += OnSinestesyPerformed;
         inputControls.Player.Interact.performed += OnPickPerformed;
+        inputControls.Player.FX.performed += OnShakePerformed;
+        inputControls.Player.FX.canceled += OnShakeCanceled;
     }
+
 
     private void OnPickPerformed(InputAction.CallbackContext obj)
     {
         OnPickPressed?.Invoke();
+    }
+
+    private void OnShakePerformed(InputAction.CallbackContext obj)
+    {
+        onShakePressed?.Invoke();
+    }
+    private void OnShakeCanceled(InputAction.CallbackContext context)
+    {
+        onShakeReleased?.Invoke();
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext obj)

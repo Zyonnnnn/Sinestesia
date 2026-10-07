@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AreaTriggerClickToGetUp : MonoBehaviour, IHitable
@@ -37,14 +39,34 @@ public class AreaTriggerClickToGetUp : MonoBehaviour, IHitable
             canGetUp = true;
             if (getUp)
             {
-                Debug.Log("é pra subir");
                 getUp = false;
-                player.transform.position = new Vector3(39, 12, 0);
+                StartCoroutine(GetUpAnimation());
             }
         }
         if (key == 2)
         {
             canGetUp = false;
         }
+    }
+
+    private IEnumerator GetUpAnimation()
+    {
+        var animator = player.GetComponent<Animator>();
+        var rb = player.GetComponent<Rigidbody>();
+
+        animator.SetTrigger("Climb");
+        rb.isKinematic = true;
+
+        yield return new WaitForSeconds(1f);
+
+        while (Vector3.Distance(player.transform.position, new Vector3(48.5f, 11.75f, 0)) > 0.1f)
+        {
+            Vector3 newPosition = Vector3.MoveTowards(player.transform.position, new Vector3(48.5f, 11.75f, 0), Time.deltaTime * 5);
+            player.transform.position = newPosition;
+            yield return null;
+        }   
+
+        rb.isKinematic = false;
+        player.transform.position = new Vector3(48.5f, 11.75f, 0);
     }
 }

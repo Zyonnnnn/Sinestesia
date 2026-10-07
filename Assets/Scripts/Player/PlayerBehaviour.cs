@@ -15,6 +15,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     public static bool canInteract { get; private set; }
     public static Vector3 playerPosition { get; private set; }
 
+    [SerializeField] AnimationCurve sinestesyCurve;
+
     public static event Action OnPicked;
 
     [SerializeField] GameObject gc;
@@ -41,6 +43,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         inputManager.OnJumpPressed += HandleJump;
         inputManager.OnSinestesyPressed += HandleSinestesy;
         inputManager.OnPickPressed += HandleInteract;
+        inputManager.onShakePressed += HandleShakeOn;
+        inputManager.onShakeReleased += HandleShakeOff;
 
     }
 
@@ -153,7 +157,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         canMove = false;
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1);
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
     }
     IEnumerator DamageAnim()
     {
@@ -178,6 +182,9 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     private void HandleSinestesy()
     {
+        SinestesyShake sinestesyShake = GameObject.FindObjectOfType<SinestesyShake>();
+        sinestesyShake.StopShake();
+
         var ps = sd.GetClosestParticleSystem();
 
         if (ps != null)
@@ -195,6 +202,18 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
                 canMove = true;
             }
         }
+    }
+
+    private void HandleShakeOn()
+    {
+        SinestesyShake sinestesyShake = GameObject.FindObjectOfType<SinestesyShake>();
+        sinestesyShake.StartShake();
+    }
+    
+    private void HandleShakeOff()
+    {
+        SinestesyShake sinestesyShake = GameObject.FindObjectOfType<SinestesyShake>();
+        sinestesyShake.StopShake();
     }
 
     private void HandleFlip()
