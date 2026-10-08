@@ -99,7 +99,7 @@ public class SceneChanger : MonoBehaviour
     {
         Application.Quit();
 
-#if UNITY_EDITOR //Importa funções exclusivas do editor da Unity.
+#if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #endif
     }    

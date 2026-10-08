@@ -10,7 +10,20 @@ public class PlayerWakeSMB : StateMachineBehaviour
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        gameManager.GetComponent<GameManager>().WakePlayer(animator);
+        if (animator == null)
+        {
+            return;
+        }
+
+        if (gameManager != null)
+        {
+            GameManager manager = gameManager.GetComponent<GameManager>();
+            if (manager != null)
+            {
+                manager.WakePlayer(animator);
+            }
+        }
+
         Destroy(animator.gameObject);
     }
 }

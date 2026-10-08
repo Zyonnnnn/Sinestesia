@@ -17,15 +17,17 @@ public class GameManager : MonoBehaviour
 
     InputManager inputManager;
 
-    [Header("Time Stats")]
-    [SerializeField] private float sinestesyFadeOutTime = 0.5f;
+    [Header("Time Stats")] [SerializeField]
+    private float sinestesyFadeOutTime = 0.5f;
 
-    [Header("References")]
-    [SerializeField] private ScriptableRendererFeature sinestesyEffect;
+    [Header("References")] [SerializeField]
+    private ScriptableRendererFeature sinestesyEffect;
+
     [SerializeField] private Material material;
 
-    [Header("Intensity Stats")]
-    [SerializeField] private float voronoiIntensityStat;
+    [Header("Intensity Stats")] [SerializeField]
+    private float voronoiIntensityStat;
+
     [SerializeField] private float vignetteIntensityStat;
 
     private int voronoiIntensity = Shader.PropertyToID("VoronoiPower");
@@ -33,9 +35,17 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        //dialogue = GameObject.Find("Dialogue").GetComponent<Dialogue>();
+        GameObject dialogueObject = GameObject.Find("Dialogue");
+        if (dialogueObject != null)
+        {
+            dialogue = dialogueObject.GetComponentInChildren<Dialogue>();
+        }
+
         playerBehaviour = GameObject.Find("Player");
-        sinestesyDetection = playerBehaviour.GetComponentInChildren<SinestesyDetection>();
+        if (playerBehaviour != null)
+        {
+            sinestesyDetection = playerBehaviour.GetComponentInChildren<SinestesyDetection>();
+        }
 
         inputManager = new InputManager();
     }
@@ -44,17 +54,26 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "FloorsScene")
         {
-            playerBehaviour.SetActive(false);
+            if (playerBehaviour != null)
+            {
+                playerBehaviour.SetActive(false);
+            }
         }
-        //dialogue.gameObject.SetActive(false);
-        sinestesyEffect.SetActive(false);
 
-        inputManager.OnSinestesyPressed += HandleSinestesy;
+        if (sinestesyEffect != null)
+        {
+            sinestesyEffect.SetActive(false);
+        }
+
+        if (inputManager != null)
+        {
+            inputManager.OnSinestesyPressed += HandleSinestesy;
+        }
     }
 
     private void HandleSinestesy()
     {
-        if (sinestesyDetection.isSinestesiaActive)
+        if (sinestesyDetection != null && sinestesyDetection.isSinestesiaActive)
         {
             if (!isFading)
             {
@@ -62,8 +81,14 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
     private IEnumerator SinestesyRoutine()
     {
+        if (sinestesyEffect == null || material == null)
+        {
+            yield break;
+        }
+
         isFading = true;
         sinestesyEffect.SetActive(true);
 
@@ -114,17 +139,26 @@ public class GameManager : MonoBehaviour
 
     public void ActivateDialogue()
     {
-        dialogue.StartDialogue();
+        if (dialogue != null)
+        {
+            dialogue.StartDialogue();
+        }
     }
 
     public void DeactivateDialogue()
     {
-        dialogue.StopDialogue();
+        if (dialogue != null)
+        {
+            dialogue.StopDialogue();
+        }
     }
 
     public void WakePlayer(Animator animator)
     {
-        playerBehaviour.SetActive(true);
-        playerBehaviour.transform.position = animator.transform.position;
+        if (playerBehaviour != null && animator != null)
+        {
+            playerBehaviour.SetActive(true);
+            playerBehaviour.transform.position = animator.transform.position;
+        }
     }
 }
