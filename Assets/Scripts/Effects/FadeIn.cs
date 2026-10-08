@@ -54,6 +54,7 @@ public class FadeIn : MonoBehaviour
         }
 
         image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+        Destroy(gameObject);
     }
 
     IEnumerator OtherFadeInRoutine()
@@ -69,5 +70,6 @@ public class FadeIn : MonoBehaviour
         }
 
         image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
+        Destroy(gameObject);
     }
 }
