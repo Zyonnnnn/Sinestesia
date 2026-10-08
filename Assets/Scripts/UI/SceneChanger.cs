@@ -16,7 +16,6 @@ public class SceneChanger : MonoBehaviour
     private GameObject playerObj;
 
     PlayerBehaviour playerBehaviour;
-    float health;
 
     public Image fadeImg;
 
@@ -37,7 +36,7 @@ public class SceneChanger : MonoBehaviour
         if (playerObj != null)
         {
             playerBehaviour = playerObj.GetComponent<PlayerBehaviour>();
-            health = playerBehaviour.GetHealth();
+            playerBehaviour.OnDie += DeathMenuSetActive;
         }
 
         mMenu.SetActive(true);
@@ -49,7 +48,6 @@ public class SceneChanger : MonoBehaviour
     private void Update()
     {
         MenuSetActive();
-        CheckHealth();
     }
 
     public static void SceneChange(string sceneName)
@@ -57,24 +55,15 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    private void CheckHealth()
-    {
-        if (health <= 0)
-        {
-            DeathMenuSetActive();
-        }
-    }
-
     public void Reiniciar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        health = playerBehaviour.GetHealth();
     }
 
 
     private void DeathMenuSetActive()
     {
-        Debug.LogWarning("LIGANDO TELA DE MENU!");
+        Debug.LogWarning("LIGANDO TELA DE MENU MORTE!");
         deathMenu.SetActive(true);
     }
 
@@ -106,5 +95,5 @@ public class SceneChanger : MonoBehaviour
 #if UNITY_EDITOR //Importa funções exclusivas do editor da Unity.
         EditorApplication.isPlaying = false;
 #endif
-    }
+    }    
 }
