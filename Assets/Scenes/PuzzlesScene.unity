@@ -37355,7 +37355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3109051483410746528, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: sinestesyCurve.m_Curve.Array.data[1].time
-      value: 0.9984283
+      value: 0.9948272
       objectReference: {fileID: 0}
     - target: {fileID: 3109051483410746528, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: sinestesyCurve.m_Curve.Array.data[2].time
@@ -37363,7 +37363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3109051483410746528, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: sinestesyCurve.m_Curve.Array.data[1].value
-      value: 0.027306238
+      value: 0.011269251
       objectReference: {fileID: 0}
     - target: {fileID: 3109051483410746528, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: sinestesyCurve.m_Curve.Array.data[2].value
@@ -37375,7 +37375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3109051483410746528, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: sinestesyCurve.m_Curve.Array.data[1].inSlope
-      value: 0.079703964
+      value: 0.01486735
       objectReference: {fileID: 0}
     - target: {fileID: 3109051483410746528, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: sinestesyCurve.m_Curve.Array.data[2].inSlope
@@ -37387,11 +37387,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3109051483410746528, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: sinestesyCurve.m_Curve.Array.data[1].inWeight
-      value: 0.03796041
+      value: 0.07801446
       objectReference: {fileID: 0}
     - target: {fileID: 3109051483410746528, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: sinestesyCurve.m_Curve.Array.data[1].outSlope
-      value: 0.079703964
+      value: 0.01486735
       objectReference: {fileID: 0}
     - target: {fileID: 3109051483410746528, guid: 1f219d3ac00e4c74ab0a759c09f3100a, type: 3}
       propertyPath: sinestesyCurve.m_Curve.Array.data[2].inWeight
