@@ -46,7 +46,7 @@ public class Dialogue : MonoBehaviour
     {
         canStart = true;
         index = 0;
-
+        
         StartCoroutine(TypeLine());
     }
 
