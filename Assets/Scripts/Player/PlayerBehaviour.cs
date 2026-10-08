@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerBehaviour : MonoBehaviour, IHitable
 {
     #region Variables
-    [SerializeField] public float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, health, knockbackStrenght, knockbackDuration;
+    [SerializeField] public float moveSpeed, jumpForce, rayLenght, flipSpeed, acc, decc, knockbackStrenght, knockbackDuration;
 
+    [SerializeField] private int health;
+    
     private bool canJump, canMove, jumping, flipped, isKnockedBack, canPick, onHand;
     private float knockbackTimer;
     private Vector3 hVelocity;
@@ -29,6 +32,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
+
+    public event Action OnDie;
 
     #endregion
 
@@ -82,7 +87,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             HandleFlip();
         }
-        HandleHealth();
+        
+        Debug.Log("Vida: " + health);
     }
 
     private void FixedUpdate()
@@ -141,14 +147,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             jumping = true;
             canJump = false;
-        }
-    }
-
-    void HandleHealth()
-    {
-        if (health <= 0)
-        {
-            StartCoroutine(Die());
         }
     }
 
@@ -243,24 +241,23 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     }
 
     #endregion
-
+    
     #region Collision
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("EyeJump"))
         {
-            StartCoroutine(DamageAnim());
-            health--;
+            TakeDamage(1);
         }
     }
 
-    void OnTriggerEnter(Collider collision)
+    
+    
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("AreaDamage"))
         {
-            StartCoroutine(DamageAnim());
-            health--;
+            TakeDamage(1);
         }
 
         if (collision.CompareTag("1to2level"))
@@ -275,7 +272,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
             hit.Execute(transform, rb, 2);
         }
 
-        if (collision.CompareTag("Death"))
+        if (collision.CompareTag("areaDeath"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, rb, 0);
@@ -328,11 +325,30 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
     #endregion
 
-    #region Get
+    private void TakeDamage(int damage)
+    {
+        health -= damage;
+        CheckHealth();
+    }
 
-    public float GetHealth() => health;
+    public void EliminatePlayer()
+    {
+        TakeDamage(health);
+    }
 
-    #endregion
+    private void CheckHealth()
+    {
+        if (health <= 0)
+        {
+            Debug.LogWarning("MORREU! Avisando geral");
+            StartCoroutine(Die());
+            OnDie?.Invoke();
+        }
+        else
+        {
+            StartCoroutine(DamageAnim());
+        }
+    }
 
     #region Debug
 

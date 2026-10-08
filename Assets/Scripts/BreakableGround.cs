@@ -6,6 +6,8 @@ using UnityEngine.InputSystem.Switch;
 public class BreakableGround : MonoBehaviour
 {
     GameObject area;
+    GameObject areaDeath;
+
     bool isBroken;
 
     private List<Rigidbody> childrenRb;
@@ -23,6 +25,7 @@ public class BreakableGround : MonoBehaviour
             child.gameObject.AddComponent<BrokenPieceBehaviour>();
         }
         area = GameObject.FindGameObjectWithTag("1to2level");
+        areaDeath = GameObject.FindGameObjectWithTag("areaDeath");
     }
 
     void Update()
@@ -34,6 +37,8 @@ public class BreakableGround : MonoBehaviour
                 rb.isKinematic = false;
             }
             area.SetActive(true);
+            areaDeath.SetActive(false);
+
             var ps = area.GetComponentInChildren<ParticleSystem>();
             ps.Play();
         }
@@ -44,6 +49,8 @@ public class BreakableGround : MonoBehaviour
                 rb.isKinematic = true;
             }
             area.SetActive(false);
+            areaDeath.SetActive(true);
+
             var ps = area.GetComponentInChildren<ParticleSystem>();
             ps.Stop();
         }
