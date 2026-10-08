@@ -39,6 +39,7 @@ TagManager:
   - Fade
   - CutScene
   - areaDeath
+  - ControlsMenu
   layers:
   - Default
   - TransparentFX

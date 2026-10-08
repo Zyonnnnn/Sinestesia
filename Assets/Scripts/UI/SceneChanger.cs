@@ -9,7 +9,7 @@ using System.Collections;
 public class SceneChanger : MonoBehaviour
 {
     public GameObject uiImage;
-    public GameObject pauseMenu;
+    public GameObject controlsMenu;
     public GameObject mMenu;
     public GameObject cMenu;
     public GameObject deathMenu;
@@ -27,6 +27,7 @@ public class SceneChanger : MonoBehaviour
         mMenu = GameObject.FindGameObjectWithTag("MainMenu");
         cMenu = GameObject.FindGameObjectWithTag("ConfigMenu");
         deathMenu = GameObject.FindGameObjectWithTag("DeathM");
+        controlsMenu = GameObject.FindGameObjectWithTag("ControlsMenu");
 
         playerObj = GameObject.FindGameObjectWithTag("Player");
     }
@@ -43,6 +44,7 @@ public class SceneChanger : MonoBehaviour
         cMenu.SetActive(false);
         uiImage.SetActive(false);
         deathMenu.SetActive(false);
+        controlsMenu.SetActive(false);
     }
 
     private void Update()
@@ -58,6 +60,11 @@ public class SceneChanger : MonoBehaviour
     public void Reiniciar()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ControlsMenuSetActive()
+    {
+        controlsMenu.SetActive(!controlsMenu.activeSelf);
     }
 
 
