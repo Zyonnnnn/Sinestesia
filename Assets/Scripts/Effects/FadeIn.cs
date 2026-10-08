@@ -9,6 +9,7 @@ public class FadeIn : MonoBehaviour
 {
     Image image;
     bool finish = false;
+    bool loading = false;
 
     CutSceneBehaviour cutSceneBehaviour;
 
@@ -29,11 +30,13 @@ public class FadeIn : MonoBehaviour
                     StartCoroutine(FadeInRoutine());
                 }
             }
-
         }
         else
         {
-            StartCoroutine(OtherFadeInRoutine());
+            if (!loading)
+            {
+                StartCoroutine(OtherFadeInRoutine());
+            }
         }
     }
 
@@ -52,8 +55,10 @@ public class FadeIn : MonoBehaviour
 
         image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
     }
+
     IEnumerator OtherFadeInRoutine()
     {
+        loading = true;
         var timer = 0f;
 
         while (timer < 1f)

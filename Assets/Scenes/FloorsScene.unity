@@ -6680,8 +6680,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.1390894
-      value: 0.19274837
+      time: 0.1307581
+      value: 0.105151474
       inSlope: -0.37477586
       outSlope: -0.37477586
       tangentMode: 0
@@ -10079,6 +10079,7 @@ GameObject:
   - component: {fileID: 473948160}
   - component: {fileID: 473948159}
   - component: {fileID: 473948158}
+  - component: {fileID: 473948161}
   m_Layer: 3
   m_Name: Cube (21)
   m_TagString: Ground
@@ -10175,6 +10176,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473948156}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &473948161
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473948156}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.67}
+  m_Center: {x: 0, y: 0, z: 1.23}
 --- !u!1 &483533218
 GameObject:
   m_ObjectHideFlags: 0
@@ -21628,6 +21650,10 @@ PrefabInstance:
     - target: {fileID: 3765348262832306182, guid: 46b82ac80108b8e4fb28b56a6faced08, type: 3}
       propertyPath: m_Name
       value: '[UI] Transition'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3765348262832306182, guid: 46b82ac80108b8e4fb28b56a6faced08, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

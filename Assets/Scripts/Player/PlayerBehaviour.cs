@@ -15,8 +15,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     public static bool canInteract { get; private set; }
     public static Vector3 playerPosition { get; private set; }
 
-    [SerializeField] AnimationCurve sinestesyCurve;
-
     public static event Action OnPicked;
 
     [SerializeField] GameObject gc;
@@ -27,6 +25,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private SinestesyDetection sd;
     private Rigidbody rb;
     private InputManager inputManager;
+    GameManager gameManager;
 
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
@@ -55,6 +54,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        gameManager = FindObjectOfType<GameManager>();
 
         var menuDie = GameObject.FindGameObjectWithTag("DeathM");
 
@@ -284,6 +284,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         if (collision.GetComponent<Collider>().CompareTag("Lighter"))
         {
             canPick = true;
+        }
+
+        if (collision.GetComponent<Collider>().CompareTag("text"))
+        {
+            gameManager.ActivateDialogue();
+            Destroy(collision.gameObject);
         }
     }
 
