@@ -25,6 +25,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
 
+    private SceneChanger sceneChanger;
     private SinestesyDetection sd;
     private Rigidbody rb;
     private InputManager inputManager;
@@ -60,8 +61,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = FindObjectOfType<GameManager>();
-
-        var menuDie = GameObject.FindGameObjectWithTag("DeathM");
+        sceneChanger = FindObjectOfType<SceneChanger>();
 
         canMove = true;
         initColor = spriteRenderer.material.color;
@@ -87,8 +87,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             HandleFlip();
         }
-        
-        Debug.Log("Vida: " + health);
     }
 
     private void FixedUpdate()
@@ -153,10 +151,13 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     IEnumerator Die()
     {
         canMove = false;
+        sceneChanger.DeathMenuSetActive();
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1);
         Time.timeScale = 0f;
+        
     }
+    
     IEnumerator DamageAnim()
     {
         spriteRenderer.material.color = Color.red;
