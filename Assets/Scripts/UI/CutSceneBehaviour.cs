@@ -7,35 +7,54 @@ public class CutSceneBehaviour : MonoBehaviour
 {
     Animator animator;
     Image image;
+    InputManager inputManager;
+
     int i = 0;
 
     public bool cutsceneFinished = false;
+    private void Awake()
+    {
+        inputManager = new InputManager();
+    }
     void Start()
     {
+        inputManager.onPassDialoguePressed += HandlePassDialogue;
+
         animator = GetComponent<Animator>();
         image = GetComponent<Image>();
     }
+
+    private void HandlePassDialogue()
+    {
+        PassAnimation();
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (i == 0)
-            {
-                animator.SetTrigger("Next0");
-                i++;
-            }
-            else if (i == 1)
-            {
-                animator.SetTrigger("Next1");
-                i++;
-            }
-            else if (i == 2)
-            {
-                animator.SetTrigger("Next2");
-                i++;
-                cutsceneFinished = true;
-                StartCoroutine(WaitAndDestroy());
-            }
+            PassAnimation();
+        }
+    }
+
+    void PassAnimation()
+    {
+        if (i == 0)
+        {
+            animator.SetTrigger("Next0");
+            i++;
+        }
+        else if (i == 1)
+        {
+            animator.SetTrigger("Next1");
+            i++;
+        }
+        else if (i == 2)
+        {
+            animator.SetTrigger("Next2");
+            i++;
+            cutsceneFinished = true;
+            StartCoroutine(WaitAndDestroy());
         }
     }
 
