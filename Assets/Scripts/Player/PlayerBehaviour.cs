@@ -121,6 +121,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     #endregion
 
     #region Handlers
+
+    public void HandleStop()
+    {
+        canMove = !canMove;
+    }
+
     private void HandleMovement()
     {
         var inputDirection = inputManager.GetInputDirection();

@@ -27,7 +27,7 @@ public class BreakableGround : MonoBehaviour
         area = GameObject.FindGameObjectWithTag("1to2level");
         areaDeath = GameObject.FindGameObjectWithTag("areaDeath");
     }
-
+    
     void Update()
     {
         if (isBroken)
@@ -40,6 +40,7 @@ public class BreakableGround : MonoBehaviour
             areaDeath.SetActive(false);
 
             var ps = area.GetComponentInChildren<ParticleSystem>();
+            Debug.Log("Particle System: " + ps.name);
             ps.Play();
         }
         else
@@ -52,6 +53,7 @@ public class BreakableGround : MonoBehaviour
             areaDeath.SetActive(true);
 
             var ps = area.GetComponentInChildren<ParticleSystem>();
+            Debug.Log("Particle System: " + ps.name);
             ps.Stop();
         }
     }

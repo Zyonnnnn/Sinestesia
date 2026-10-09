@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class Dialogue : MonoBehaviour
 {
     TextMeshProUGUI text;
+    InputManager inputManager;
 
     [SerializeField] private string[] lines;
     [SerializeField] private float textSpeed;
@@ -16,13 +17,33 @@ public class Dialogue : MonoBehaviour
 
     void Awake()
     {
+        inputManager = new InputManager();
         text = GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
     {
+        inputManager.onPassDialoguePressed += HandleDialogue;
+
         text.text = string.Empty;
     }
+
+    private void HandleDialogue()
+    {
+        if (canStart)
+        {
+            if (text.text == lines[index])
+            {
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                text.text = lines[index];
+            }
+        }
+    }
+
     void Update()
     {
         if (canStart)
@@ -46,7 +67,7 @@ public class Dialogue : MonoBehaviour
     {
         canStart = true;
         index = 0;
-        
+
         StartCoroutine(TypeLine());
     }
 
@@ -65,6 +86,7 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+            inputManager.onPassDialoguePressed -= HandleDialogue;
             gameObject.SetActive(false);
             Destroy(gameObject);
         }

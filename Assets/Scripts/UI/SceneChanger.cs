@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -8,27 +10,36 @@ using System.Collections;
 
 public class SceneChanger : MonoBehaviour
 {
-    public GameObject uiImage;
-    public GameObject pauseMenu;
-    public GameObject mMenu;
-    public GameObject cMenu;
-    public GameObject deathMenu;
-    private GameObject playerObj;
-
+    public GameObject uiImage, pauseMenu, mMenu, cMenu, deathMenu, playerObj;
     PlayerBehaviour playerBehaviour;
-
+    InputManager inputManager;
     public Image fadeImg;
 
     private void Awake()
     {
         Time.timeScale = 1.0f;
 
+        inputManager = new InputManager();
+
+        inputManager.onPausePressed += HandlePause;
+
         uiImage = GameObject.FindGameObjectWithTag("PauseImg");
         mMenu = GameObject.FindGameObjectWithTag("MainMenu");
         cMenu = GameObject.FindGameObjectWithTag("ConfigMenu");
         deathMenu = GameObject.FindGameObjectWithTag("DeathM");
-
         playerObj = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void HandlePause()
+    {
+        if(uiImage != null)
+        {
+            uiImage.SetActive(!uiImage.activeSelf);
+            mMenu.SetActive(true);
+            cMenu.SetActive(false);
+
+            Time.timeScale = uiImage.activeSelf ? 0f : 1f;
+        }
     }
 
     private void Start()
@@ -59,7 +70,6 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
 
     private void DeathMenuSetActive()
     {
