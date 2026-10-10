@@ -85,7 +85,8 @@ public class GasCylinderBehaviour : MonoBehaviour
         }
         else
         {
-            player.GetComponent<Rigidbody>().linearVelocity = playerVel;
+            // Não sobrescrever a velocidade do jogador quando o cilindro não estiver sendo carregado.
+            // Apenas restaurar animação/visibilidade do objeto.
             player.GetComponent<Animator>().SetBool("BujaoWalk", false);
             sp.enabled = true;
         }

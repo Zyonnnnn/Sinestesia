@@ -22059,7 +22059,6 @@ GameObject:
   m_Component:
   - component: {fileID: 794490422}
   - component: {fileID: 794490421}
-  - component: {fileID: 794490423}
   m_Layer: 0
   m_Name: areatrigger death
   m_TagString: areaDeath
@@ -22097,25 +22096,12 @@ Transform:
   m_GameObject: {fileID: 794490420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.94, y: -1.96, z: -2.07}
-  m_LocalScale: {x: 11.15, y: 1, z: 4.33}
+  m_LocalPosition: {x: 24.96, y: -0.58, z: -2.5}
+  m_LocalScale: {x: 11.33, y: 1, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &794490423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794490420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba65f8190b1437840b37015dd85d6ea6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerObj: {fileID: 0}
 --- !u!1001 &796755967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61600,3 +61586,4 @@ SceneRoots:
   - {fileID: 1505471252}
   - {fileID: 52719583}
   - {fileID: 201529845}
+  - {fileID: 2093050269}

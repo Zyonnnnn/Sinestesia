@@ -10,10 +10,11 @@ using System.Collections;
 
 public class SceneChanger : MonoBehaviour
 {
-    public GameObject uiImage, pauseMenu, mMenu, cMenu, deathMenu, playerObj;
+    public GameObject uiImage, pauseMenu, mMenu, cMenu, deathMenu, playerObj, controlsMenu;
     PlayerBehaviour playerBehaviour;
     InputManager inputManager;
     public Image fadeImg;
+    private bool deathMenuShown = false;
 
     private void Awake()
     {
@@ -29,12 +30,13 @@ public class SceneChanger : MonoBehaviour
         deathMenu = GameObject.FindGameObjectWithTag("DeathM");
         controlsMenu = GameObject.FindGameObjectWithTag("ControlsMenu");
         playerObj = GameObject.FindGameObjectWithTag("Player");
-        
-        mMenu.SetActive(true);
-        cMenu.SetActive(false);
-        uiImage.SetActive(false);
-        deathMenu.SetActive(false);
-        controlsMenu.SetActive(false);
+
+        // inicializa estados seguros se objetos foram encontrados
+        if (mMenu != null) mMenu.SetActive(true);
+        if (cMenu != null) cMenu.SetActive(false);
+        if (uiImage != null) uiImage.SetActive(false);
+        if (deathMenu != null) deathMenu.SetActive(false);
+        if (controlsMenu != null) controlsMenu.SetActive(false);
     }
 
     private void HandlePause()
@@ -42,8 +44,8 @@ public class SceneChanger : MonoBehaviour
         if(uiImage != null)
         {
             uiImage.SetActive(!uiImage.activeSelf);
-            mMenu.SetActive(true);
-            cMenu.SetActive(false);
+            if (mMenu != null) mMenu.SetActive(true);
+            if (cMenu != null) cMenu.SetActive(false);
 
             Time.timeScale = uiImage.activeSelf ? 0f : 1f;
         }
@@ -54,14 +56,9 @@ public class SceneChanger : MonoBehaviour
         if (playerObj != null)
         {
             playerBehaviour = playerObj.GetComponent<PlayerBehaviour>();
-            playerBehaviour.OnDie += DeathMenuSetActive;
+            if (playerBehaviour != null)
+                playerBehaviour.OnDie += DeathMenuSetActive;
         }
-        
-        mMenu.SetActive(true);
-        cMenu.SetActive(false);
-        uiImage.SetActive(false);
-        deathMenu.SetActive(false);
-        controlsMenu.SetActive(false);
     }
 
     private void Update()
@@ -81,16 +78,27 @@ public class SceneChanger : MonoBehaviour
 
     public void ControlsMenuSetActive()
     {
-        controlsMenu.SetActive(!controlsMenu.activeSelf);
-        mMenu.SetActive(!mMenu.activeSelf);
+        if (controlsMenu != null) controlsMenu.SetActive(!controlsMenu.activeSelf);
+        if (mMenu != null) mMenu.SetActive(!mMenu.activeSelf);
     }
 
 
     public void DeathMenuSetActive()
     {
+        if (deathMenuShown) return;
+        deathMenuShown = true;
+
         Debug.LogWarning("LIGANDO TELA DE MENU MORTE!");
-        uiImage.SetActive(true);
-        deathMenu.SetActive(true);
+        if (uiImage != null) uiImage.SetActive(true);
+        if (deathMenu != null) deathMenu.SetActive(true);
+
+        Time.timeScale = 0f;
+    }
+
+    private void OnDestroy()
+    {
+        if (playerBehaviour != null)
+            playerBehaviour.OnDie -= DeathMenuSetActive;
     }
 
     public void MenuSetActive()
@@ -98,8 +106,8 @@ public class SceneChanger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && uiImage != null)
         {
             uiImage.SetActive(!uiImage.activeSelf);
-            mMenu.SetActive(true);
-            cMenu.SetActive(false);
+            if (mMenu != null) mMenu.SetActive(true);
+            if (cMenu != null) cMenu.SetActive(false);
 
             Time.timeScale = uiImage.activeSelf ? 0f : 1f;
         }
