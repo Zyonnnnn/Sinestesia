@@ -42,8 +42,7 @@ public class SceneChanger : MonoBehaviour
         if (playerObj != null)
         {
             playerBehaviour = playerObj.GetComponent<PlayerBehaviour>();
-            if (playerBehaviour != null)
-                if (playerBehaviour != null) playerBehaviour.OnDie += DeathMenuSetActive;
+            if (playerBehaviour != null) playerBehaviour.OnDie += DeathMenuSetActive;
         }
 
         ResetMenus();
@@ -138,21 +137,9 @@ public class SceneChanger : MonoBehaviour
         bool showConfig = !cMenu.activeSelf;
         cMenu.SetActive(showConfig);
         mMenu.SetActive(!showConfig);
-        if (deathMenuShown) return;
-        deathMenuShown = true;
-
-        Debug.LogWarning("LIGANDO TELA DE MENU MORTE!");
-        if (uiImage != null) uiImage.SetActive(true);
-        if (deathMenu != null) deathMenu.SetActive(true);
-
-        Time.timeScale = 0f;
     }
 
-    private void OnDestroy()
-    {
-        if (playerBehaviour != null)
-            playerBehaviour.OnDie -= DeathMenuSetActive;
-    }
+    // OnDestroy definido acima (mantém unsubscribe e restaura Time.timeScale);
 
     public void ControlsMenuSetActive()
     {
@@ -172,9 +159,15 @@ public class SceneChanger : MonoBehaviour
 
     public void DeathMenuSetActive()
     {
+        if (deathMenuShown) return;
+        deathMenuShown = true;
+
+        Debug.LogWarning("LIGANDO TELA DE MENU MORTE!");
         HidePanels();
         SetActive(uiImage, true);
         SetActive(deathMenu, true);
+
+        Time.timeScale = 0f;
     }
 
     public void ExitGame()
