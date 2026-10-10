@@ -50490,15 +50490,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3460471558758741842, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
       propertyPath: lines.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3460471558758741842, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
       propertyPath: 'lines.Array.data[0]'
-      value: Aperte E para subir
+      value: "\"Que hotel exc\xEAntrico, n\xE3o? Elevador bloqueado, devo tentar
+        descer de outro jeito...\""
       objectReference: {fileID: 0}
     - target: {fileID: 3460471558758741842, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
       propertyPath: 'lines.Array.data[1]'
-      value: Segure Q para usar a sinestesia ao abrir do olho
+      value: Aperte E para subir
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460471558758741842, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
+      propertyPath: 'lines.Array.data[2]'
+      value: "\"Talvez uma escada de escombros caisse bem, tamb\xE9m\""
       objectReference: {fileID: 0}
     - target: {fileID: 4689012204461629018, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
       propertyPath: m_Pivot.x
