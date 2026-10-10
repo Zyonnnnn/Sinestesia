@@ -19,6 +19,7 @@ public class SceneChanger : MonoBehaviour
 
     private PlayerBehaviour playerBehaviour;
     private int lastPauseFrame = -1;
+    private bool deathMenuShown = false;
 
     private void Awake()
     {
@@ -41,7 +42,8 @@ public class SceneChanger : MonoBehaviour
         if (playerObj != null)
         {
             playerBehaviour = playerObj.GetComponent<PlayerBehaviour>();
-            if (playerBehaviour != null) playerBehaviour.OnDie += DeathMenuSetActive;
+            if (playerBehaviour != null)
+                if (playerBehaviour != null) playerBehaviour.OnDie += DeathMenuSetActive;
         }
 
         ResetMenus();
@@ -125,7 +127,10 @@ public class SceneChanger : MonoBehaviour
     public void ResumeGame()
     {
         if (uiImage != null && uiImage.activeSelf) HandlePause();
+        if (controlsMenu != null) controlsMenu.SetActive(!controlsMenu.activeSelf);
+        if (mMenu != null) mMenu.SetActive(!mMenu.activeSelf);
     }
+
 
     public void ConfigMenu()
     {
@@ -133,6 +138,20 @@ public class SceneChanger : MonoBehaviour
         bool showConfig = !cMenu.activeSelf;
         cMenu.SetActive(showConfig);
         mMenu.SetActive(!showConfig);
+        if (deathMenuShown) return;
+        deathMenuShown = true;
+
+        Debug.LogWarning("LIGANDO TELA DE MENU MORTE!");
+        if (uiImage != null) uiImage.SetActive(true);
+        if (deathMenu != null) deathMenu.SetActive(true);
+
+        Time.timeScale = 0f;
+    }
+
+    private void OnDestroy()
+    {
+        if (playerBehaviour != null)
+            playerBehaviour.OnDie -= DeathMenuSetActive;
     }
 
     public void ControlsMenuSetActive()
@@ -141,6 +160,14 @@ public class SceneChanger : MonoBehaviour
         bool showControls = !controlsMenu.activeSelf;
         controlsMenu.SetActive(showControls);
         mMenu.SetActive(!showControls);
+        if (Input.GetKeyDown(KeyCode.Escape) && uiImage != null)
+        {
+            uiImage.SetActive(!uiImage.activeSelf);
+            if (mMenu != null) mMenu.SetActive(true);
+            if (cMenu != null) cMenu.SetActive(false);
+
+            Time.timeScale = uiImage.activeSelf ? 0f : 1f;
+        }
     }
 
     public void DeathMenuSetActive()

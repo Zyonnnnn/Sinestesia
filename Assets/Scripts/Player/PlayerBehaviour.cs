@@ -35,6 +35,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
 
     public event Action OnDie;
+    private bool hasDied = false;
 
     #endregion
 
@@ -65,6 +66,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
         canMove = true;
         initColor = spriteRenderer.material.color;
+        Debug.Log("PlayerBehaviour.Start: health=" + health);
     }
 
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)
@@ -157,10 +159,11 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     IEnumerator Die()
     {
         canMove = false;
-        sceneChanger.DeathMenuSetActive();
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1);
-        Time.timeScale = 0f;
+        // Após animação, notifica ouvintes que o jogador morreu (ex.: UI)
+        Debug.Log("PlayerBehaviour.Die: death animation finished, invoking OnDie. Time=" + Time.time);
+        OnDie?.Invoke();
         
     }
     
@@ -283,6 +286,8 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, rb, 0);
+
+            EliminatePlayer();
         }
 
         if (collision.GetComponent<Collider>().CompareTag("Lighter"))
@@ -347,9 +352,12 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     {
         if (health <= 0)
         {
+            if (hasDied) return;
+            hasDied = true;
             Debug.LogWarning("MORREU! Avisando geral");
+            Debug.Log("PlayerBehaviour.CheckHealth: starting Die coroutine. health=" + health + " Time=" + Time.time);
             StartCoroutine(Die());
-            OnDie?.Invoke();
+            Debug.Log("PlayerBehaviour.CheckHealth: death coroutine started; OnDie will be invoked after death animation.");
         }
         else
         {

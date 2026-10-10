@@ -9,6 +9,5 @@ public class AreaTriggerDeath : MonoBehaviour, IHitable
     { 
         playerBehaviour = rb.gameObject.GetComponent<PlayerBehaviour>();
         Debug.LogWarning("MORREU Pelo veneno!");
-        playerBehaviour.EliminatePlayer();
     }
 }
