@@ -41,6 +41,8 @@ TagManager:
   - areaDeath
   - ControlsMenu
   - text
+  - Music
+  - End
   layers:
   - Default
   - TransparentFX

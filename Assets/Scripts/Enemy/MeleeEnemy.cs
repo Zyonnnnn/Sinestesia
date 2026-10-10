@@ -4,13 +4,17 @@ using UnityEngine;
 public class MeleeEnemy : BaseEnemy
 {
     private StateMachine StateMachine;
-
+    EndBehaviour end;
+    Animator anim;
     [SerializeField] public static LayerMask layerMask;
 
     public PlayerBehaviour Player { get; private set; }
 
     private void Awake()
     {
+        anim = GetComponent<Animator>();
+
+        end = FindAnyObjectByType<EndBehaviour>();
         Player = FindFirstObjectByType<PlayerBehaviour>();
     }
     private void Start()
@@ -21,6 +25,11 @@ public class MeleeEnemy : BaseEnemy
 
     private void Update()
     {
+        if (end.isEnd)
+        {
+            anim.SetTrigger("End");
+        }
+
         StateMachine.OnTick();
     }
 

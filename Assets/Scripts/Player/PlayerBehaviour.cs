@@ -261,8 +261,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         }
     }
 
-    
-    
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("AreaDamage"))
@@ -284,17 +282,20 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
         if (collision.CompareTag("areaDeath"))
         {
+            EliminatePlayer();
+        }
+
+        if (collision.CompareTag("End"))
+        {
+            canMove = false;
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, rb, 0);
-
-            EliminatePlayer();
         }
 
         if (collision.GetComponent<Collider>().CompareTag("Lighter"))
         {
             canPick = true;
         }
-
         if (collision.GetComponent<Collider>().CompareTag("text"))
         {
             gameManager.ActivateDialogue();

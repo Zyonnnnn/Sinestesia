@@ -9,12 +9,15 @@ public class CutSceneBehaviour : MonoBehaviour
     Image image;
     InputManager inputManager;
 
+    SoundManager soundManager;
+
     int i = 0;
 
     public bool cutsceneFinished = false;
     private void Awake()
     {
         inputManager = new InputManager();
+        soundManager = FindAnyObjectByType<SoundManager>();
     }
     void Start()
     {
@@ -54,6 +57,8 @@ public class CutSceneBehaviour : MonoBehaviour
             animator.SetTrigger("Next2");
             i++;
             cutsceneFinished = true;
+
+            soundManager.StartMusicAfterScene();
             StartCoroutine(WaitAndDestroy());
         }
     }

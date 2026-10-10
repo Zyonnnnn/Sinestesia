@@ -14,16 +14,13 @@ public class VolumeScript : MonoBehaviour
  
     private void Start()
     {
-        // Busca o AudioMixer direto da pasta Resources, sem precisar arrastar no Inspector
         audioMixer = Resources.Load<AudioMixer>(mixerResourceName);
  
         if (audioMixer == null)
         {
-            Debug.LogError($"AudioMixer '{mixerResourceName}' não encontrado em uma pasta Resources.");
             return;
         }
  
-        // Carrega o volume salvo (ou 0 dB, volume normal, se não houver nada salvo)
         float savedVolume = PlayerPrefs.GetFloat(parameterName, 0f);
         audioMixer.SetFloat(parameterName, savedVolume);
  
