@@ -17,6 +17,7 @@ class RangedEnemy : BaseEnemy
     ParticleSystem ps;
 
     public GameObject areaDmg;
+    [SerializeField] GameObject exp1, exp2;
 
     public event System.Action OnLanded;
     public bool isFalling;
@@ -75,5 +76,11 @@ class RangedEnemy : BaseEnemy
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, null, 0);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(exp1, transform);
+        Instantiate(exp2, transform);
     }
 }

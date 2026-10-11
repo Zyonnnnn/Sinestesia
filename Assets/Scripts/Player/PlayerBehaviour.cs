@@ -366,6 +366,15 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         }
     }
 
+    private void OnDestroy()
+    {
+        inputManager.OnJumpPressed -= HandleJump;
+        inputManager.OnSinestesyPressed -= HandleSinestesy;
+        inputManager.OnPickPressed -= HandleInteract;
+        inputManager.onShakePressed -= HandleShakeOn;
+        inputManager.onShakeReleased -= HandleShakeOff;
+    }
+
     #region Debug
 
     private void OnDrawGizmosSelected()

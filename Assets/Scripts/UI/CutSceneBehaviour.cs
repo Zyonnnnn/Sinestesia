@@ -58,7 +58,6 @@ public class CutSceneBehaviour : MonoBehaviour
             i++;
             cutsceneFinished = true;
 
-            soundManager.StartMusicAfterScene();
             StartCoroutine(WaitAndDestroy());
         }
     }
@@ -78,6 +77,7 @@ public class CutSceneBehaviour : MonoBehaviour
 
         image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
 
+        soundManager.StartMusicAfterScene();
         Destroy(gameObject);
     }
 }

@@ -1,13 +1,19 @@
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class AnimationBehaviour : MonoBehaviour
 {
     VideoPlayer videoPlayer;
-    void Start()
+    void Awake()
     {
         videoPlayer = GetComponent<VideoPlayer>();
+    }
+
+    void Start()
+    {
+        StartCoroutine(PlayDelay());
     }
 
     void Update()
@@ -16,5 +22,11 @@ public class AnimationBehaviour : MonoBehaviour
         {
             SceneManager.LoadScene("StartScene");
         }
+    }
+
+    IEnumerator PlayDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        videoPlayer.Play();
     }
 }

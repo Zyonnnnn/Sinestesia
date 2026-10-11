@@ -5,13 +5,12 @@ using UnityEngine.InputSystem.Switch;
 
 public class BreakableGround : MonoBehaviour
 {
-    GameObject area;
-    GameObject areaDeath;
+    [SerializeField] GameObject rock1, rock2, rock3;
+    GameObject area, areaDeath;
 
     bool isBroken;
 
     private List<Rigidbody> childrenRb;
-    private List<GameObject> children;
 
     void Awake()
     {
@@ -27,20 +26,20 @@ public class BreakableGround : MonoBehaviour
         area = GameObject.FindGameObjectWithTag("1to2level");
         areaDeath = GameObject.FindGameObjectWithTag("areaDeath");
     }
-    
+
     void Update()
     {
         if (isBroken)
         {
             foreach (Rigidbody rb in childrenRb)
             {
+
                 rb.isKinematic = false;
             }
             area.SetActive(true);
             areaDeath.SetActive(false);
 
             var ps = area.GetComponentInChildren<ParticleSystem>();
-            Debug.Log("Particle System: " + ps.name);
             ps.Play();
         }
         else
@@ -64,7 +63,15 @@ public class BreakableGround : MonoBehaviour
         {
             if (other.gameObject.GetComponent<RangedEnemy>().inAttack)
             {
+                foreach (Rigidbody rb in childrenRb)
+                {
+                    Instantiate(rock1, rb.gameObject.transform);
+                    Instantiate(rock2, rb.gameObject.transform);
+                    Instantiate(rock3, rb.gameObject.transform);
+                }
+
                 isBroken = true;
+                Destroy(other.gameObject);
             }
         }
     }

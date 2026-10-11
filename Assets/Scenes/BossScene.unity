@@ -4088,7 +4088,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1459331978}
-  - component: {fileID: 1459331975}
   - component: {fileID: 1459331979}
   - component: {fileID: 1459331980}
   - component: {fileID: 1459331981}
@@ -4099,27 +4098,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1459331975
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459331974}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.95, y: 1, z: 1}
-  m_Center: {x: 0, y: -0.41, z: 0}
 --- !u!4 &1459331978
 Transform:
   m_ObjectHideFlags: 0
@@ -4130,7 +4108,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.43090045, y: 6.8, z: 3.74}
-  m_LocalScale: {x: 10, y: 7, z: 0.31}
+  m_LocalScale: {x: 7.5, y: 7, z: 0.31}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2140560958}
@@ -5398,6 +5376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinemachine: {fileID: 0}
   vel: 2
+  isEnd: 0
 --- !u!65 &1923154710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5413,12 +5392,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.27, y: 1, z: 1}
-  m_Center: {x: -6.05, y: 0, z: -4.53}
+  m_Size: {x: 11.27, y: 7.5, z: 1}
+  m_Center: {x: -6.05, y: 3, z: -4.53}
 --- !u!65 &1923154711
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5438,8 +5417,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 10.07}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 7.5, z: 10.07}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!4 &1923154712
 Transform:
   m_ObjectHideFlags: 0
@@ -5951,7 +5930,7 @@ Transform:
   m_GameObject: {fileID: 2140560957}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.10367401, y: -0.114789, z: -16.227558}
+  m_LocalPosition: {x: -0.037, y: -0.443, z: 13.8}
   m_LocalScale: {x: 0.12059321, y: 0.15842, z: 3.738429}
   m_ConstrainProportionsScale: 0
   m_Children:

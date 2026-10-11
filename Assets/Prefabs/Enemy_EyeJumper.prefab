@@ -111,6 +111,8 @@ MonoBehaviour:
   inAttack: 0
   flipSpeed: 7
   areaDmg: {fileID: 0}
+  exp1: {fileID: 2853923025152900446, guid: 037e2cf12fad80b4e84b42c6714d73cc, type: 3}
+  exp2: {fileID: 4542586380856972586, guid: de6088a1807dc2b4c9b54ef9a33b5281, type: 3}
   isFalling: 0
 --- !u!95 &3722791462583481279
 Animator:

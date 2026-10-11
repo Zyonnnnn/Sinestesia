@@ -19,6 +19,7 @@ public class SoundManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "FloorsScene")
         {
             music.clip = music1;
+            mixer.SetFloat("Lowpass", 300);
         }
         else if (SceneManager.GetActiveScene().name == "PuzzlesScene")
         {
@@ -35,13 +36,12 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
-        mixer.SetFloat("Lowpass", 600);
-        var lowpass = 600f;
+        var lowpass = 300f;
 
         while (lowpass < 22000f)
         {
             mixer.SetFloat("Lowpass", lowpass);
-            lowpass += 500f;
+            lowpass += 125;
             yield return null;
         }
 

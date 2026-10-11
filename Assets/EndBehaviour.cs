@@ -6,7 +6,7 @@ using Unity.Cinemachine;
 
 public class EndBehaviour : MonoBehaviour, IHitable
 {
-    [SerializeField] GameObject cinemachine;
+    [SerializeField] GameObject cinemachine, boss;
     [SerializeField] float vel;
     Vector3 finalPos;
 
@@ -15,6 +15,7 @@ public class EndBehaviour : MonoBehaviour, IHitable
     private void Awake()
     {
         cinemachine = GameObject.FindGameObjectWithTag("MainCamera");
+        boss = FindAnyObjectByType<MeleeEnemy>().gameObject;
     }
 
     private void Start()
@@ -41,6 +42,9 @@ public class EndBehaviour : MonoBehaviour, IHitable
         }
 
         cinemachine.transform.position = finalPos;
+
+        var animator = boss.GetComponent<Animator>();
+        animator.SetTrigger("End");
 
         yield return new WaitForSeconds(3f);
 
