@@ -57,6 +57,10 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position.y < -3f)
+        {
+            transform.position = new Vector3(transform.position.x, 2f, transform.position.z);
+        }
         snapped = areaTriggerSnapGas.snapped;
 
         if (snapped)
@@ -68,6 +72,8 @@ public class GasCylinderBehaviour : MonoBehaviour
 
         if (picked)
         {
+            var collider = GetComponent<CapsuleCollider>();
+
             if (Vector3.Distance(player.transform.position, transform.position) < grabRadius)
             {
                 player.GetComponent<Rigidbody>().linearVelocity -= playerVel * 0.5f;
@@ -76,7 +82,7 @@ public class GasCylinderBehaviour : MonoBehaviour
                 holdOffset = new Vector3(baseDistanceX, 0f, baseDistanceZ);
                 transform.position = player.transform.position + holdOffset;
                 sp.enabled = false;
-
+                collider.enabled = false;
             }
             else
             {
@@ -85,8 +91,7 @@ public class GasCylinderBehaviour : MonoBehaviour
         }
         else
         {
-            // Não sobrescrever a velocidade do jogador quando o cilindro não estiver sendo carregado.
-            // Apenas restaurar animação/visibilidade do objeto.
+            GetComponent<Collider>().enabled = true;
             player.GetComponent<Animator>().SetBool("BujaoWalk", false);
             sp.enabled = true;
         }

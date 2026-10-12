@@ -78,6 +78,11 @@ public class PlayerRaycastPickup : MonoBehaviour
                 newObjectGrabbable = null;
             }
         }
+
+    }
+    void OnDestroy()
+    {
+        PlayerBehaviour.OnPicked -= HandleRaycast;
     }
     private void OnDrawGizmos()
     {
