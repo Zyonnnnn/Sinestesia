@@ -57,16 +57,13 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < -3f)
-        {
-            transform.position = new Vector3(transform.position.x, 2f, transform.position.z);
-        }
         snapped = areaTriggerSnapGas.snapped;
 
         if (snapped)
         {
             Debug.Log("Snapped");
             rb.constraints = RigidbodyConstraints.FreezeAll;
+            rb.isKinematic = true;
             picked = false;
         }
 
@@ -80,6 +77,9 @@ public class GasCylinderBehaviour : MonoBehaviour
                 player.GetComponent<Animator>().SetBool("BujaoWalk", true);
 
                 holdOffset = new Vector3(baseDistanceX, 0f, baseDistanceZ);
+                // Coloca o objeto junto ao jogador usando f�sica desativada para evitar conflitos de for�a
+                rb.isKinematic = true;
+                rb.useGravity = false;
                 transform.position = player.transform.position + holdOffset;
                 sp.enabled = false;
                 collider.enabled = false;
@@ -91,7 +91,12 @@ public class GasCylinderBehaviour : MonoBehaviour
         }
         else
         {
-            GetComponent<Collider>().enabled = true;
+            // Restaurar f�sica ao soltar
+            var col = GetComponent<Collider>();
+            if (col != null) col.enabled = true;
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.linearVelocity = Vector3.zero;
             player.GetComponent<Animator>().SetBool("BujaoWalk", false);
             sp.enabled = true;
         }

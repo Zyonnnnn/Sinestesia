@@ -63,10 +63,10 @@ public class AreaTriggerClickToGetUp : MonoBehaviour, IHitable
 
         yield return new WaitForSeconds(1f);
 
-        while (Vector3.Distance(player.transform.position, new Vector3(35.3f, player.transform.position.y, -0.3f)) > 0.1f)
+        while (Vector3.Distance(player.transform.position, new Vector3(36.3f, player.transform.position.y, -0.3f)) > 0.1f)
         {
             animator.SetBool("Walk", true);
-            Vector3 newPosition = Vector3.MoveTowards(player.transform.position, new Vector3(35.3f, player.transform.position.y, -0.3f), Time.deltaTime * 5);
+            Vector3 newPosition = Vector3.MoveTowards(player.transform.position, new Vector3(36.3f, player.transform.position.y, -0.3f), Time.deltaTime * 5);
             player.transform.position = newPosition;
             yield return null;
         }

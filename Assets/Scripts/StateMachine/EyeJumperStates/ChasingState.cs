@@ -55,7 +55,7 @@ public class ChasingState : BaseState
                 eyeAnim.SetBool("isWalking", true);
             }
 
-            eye.transform.position = Vector3.MoveTowards(eye.transform.position, playerPosition,
+            eye.transform.position = Vector3.MoveTowards(eye.transform.position, new(playerPosition.x, eye.transform.position.y, playerPosition.z),
                 eye.GetMoveSpeed() * Time.deltaTime);
         }
     }

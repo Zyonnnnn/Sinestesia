@@ -36,6 +36,19 @@ public class OnHandState : BaseState
         ps = gameObject.GetComponent<ParticleSystem>();
         lighterRenderer = gameObject.GetComponent<SpriteRenderer>();
 
+        // Desativar f�sica enquanto estiver na m�o do jogador
+        var rb = gameObject.GetComponent<Rigidbody>();
+        var col = gameObject.GetComponent<Collider>();
+        if (col != null)
+            col.enabled = false;
+
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+            rb.linearVelocity = Vector3.zero;
+        }
+
         hud = GameObject.FindGameObjectWithTag("LighterImg").GetComponent<ItemsUIBehaviour>();
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -68,6 +81,19 @@ public class OnHandState : BaseState
         ps.Stop();
 
         PlayerBehaviour.OnPicked -= HandlePicked;
+
+        // Restaurar f�sica ao soltar/terminar estado
+        var rb = lighter.gameObject.GetComponent<Rigidbody>();
+        var col = lighter.gameObject.GetComponent<Collider>();
+        if (col != null)
+            col.enabled = true;
+
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.linearVelocity = Vector3.zero;
+        }
     }
 
     void HandlePosAndRot()
@@ -150,5 +176,10 @@ public class OnHandState : BaseState
     {
         await Task.Delay(TimeSpan.FromSeconds(0.5f));
         toDrop = true;
+    }
+
+    void OnDestroy()
+    {
+        PlayerBehaviour.OnPicked -= HandlePicked;
     }
 }

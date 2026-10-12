@@ -25,6 +25,15 @@ public class BreakableGround : MonoBehaviour
         }
         area = GameObject.FindGameObjectWithTag("1to2level");
         areaDeath = GameObject.FindGameObjectWithTag("areaDeath");
+
+        if (area == null)
+        {
+            Debug.LogWarning("BreakableGround: no GameObject found with tag '1to2level'", this);
+        }
+        if (areaDeath == null)
+        {
+            Debug.LogWarning("BreakableGround: no GameObject found with tag 'areaDeath'", this);
+        }
     }
 
     void Update()
@@ -36,11 +45,14 @@ public class BreakableGround : MonoBehaviour
 
                 rb.isKinematic = false;
             }
-            area.SetActive(true);
-            areaDeath.SetActive(false);
+            if (area != null) area.SetActive(true);
+            if (areaDeath != null) areaDeath.SetActive(false);
 
-            var ps = area.GetComponentInChildren<ParticleSystem>();
-            ps.Play();
+            if (area != null)
+            {
+                var ps = area.GetComponentInChildren<ParticleSystem>();
+                if (ps != null) ps.Play();
+            }
         }
         else
         {
@@ -48,12 +60,18 @@ public class BreakableGround : MonoBehaviour
             {
                 rb.isKinematic = true;
             }
-            area.SetActive(false);
-            areaDeath.SetActive(true);
+            if (area != null) area.SetActive(false);
+            if (areaDeath != null) areaDeath.SetActive(true);
 
-            var ps = area.GetComponentInChildren<ParticleSystem>();
-            Debug.Log("Particle System: " + ps.name);
-            ps.Stop();
+            if (area != null)
+            {
+                var ps = area.GetComponentInChildren<ParticleSystem>();
+                if (ps != null)
+                {
+                    Debug.Log("Particle System: " + ps.name);
+                    ps.Stop();
+                }
+            }
         }
     }
 
@@ -61,17 +79,24 @@ public class BreakableGround : MonoBehaviour
     {
         if (other.CompareTag("EyeJump"))
         {
-            if (other.gameObject.GetComponent<RangedEnemy>().inAttack)
+            var ranged = other.gameObject.GetComponentInParent<RangedEnemy>();
+            if (ranged == null)
+            {
+                Debug.LogWarning("BreakableGround: collided EyeJump has no RangedEnemy in parents", other.gameObject);
+                return;
+            }
+
+            if (ranged.inAttack)
             {
                 foreach (Rigidbody rb in childrenRb)
                 {
-                    Instantiate(rock1, rb.gameObject.transform);
-                    Instantiate(rock2, rb.gameObject.transform);
-                    Instantiate(rock3, rb.gameObject.transform);
+                    if (rock1 != null) Instantiate(rock1, rb.gameObject.transform);
+                    if (rock2 != null) Instantiate(rock2, rb.gameObject.transform);
+                    if (rock3 != null) Instantiate(rock3, rb.gameObject.transform);
                 }
 
                 isBroken = true;
-                Destroy(other.gameObject);
+                Destroy(ranged.gameObject);
             }
         }
     }

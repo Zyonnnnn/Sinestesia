@@ -9,7 +9,7 @@ public class AreaTriggerSnapGas : MonoBehaviour
         if (other.gameObject.CompareTag("GasCollision"))
         {
             snapped = true;
-            other.transform.position = new Vector3(37.25f, 1.5f, 20f);
+            other.transform.position = new Vector3(42, 1.5f, 20f);
         }
     }
     private void OnTriggerExit(Collider other)

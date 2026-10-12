@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 class RangedEnemy : BaseEnemy
@@ -8,6 +10,10 @@ class RangedEnemy : BaseEnemy
     private Quaternion flipLeft = Quaternion.Euler(0, -180, 0);
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
     [SerializeField] private float flipSpeed = 10f;
+
+    [SerializeField] private float groundCheckDistance = 0.6f;
+    [SerializeField] private LayerMask groundLayer = ~0;
+    private bool groundedPreviously = true;
 
     private Rigidbody rb;
     private StateMachine StateMachine;
@@ -33,6 +39,16 @@ class RangedEnemy : BaseEnemy
         animator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         ps = GetComponent<ParticleSystem>();
+        // Debug: log animator presence and parameter names to help diagnose animation issues
+        if (animator == null)
+        {
+            Debug.LogWarning($"RangedEnemy '{name}' has no Animator component assigned.");
+        }
+        else
+        {
+            var paramNames = animator.parameters.Select(p => p.name).ToArray();
+            Debug.Log($"RangedEnemy '{name}' Animator parameters: {string.Join(",", paramNames)}");
+        }
     }
 
     protected void Start()
@@ -46,7 +62,39 @@ class RangedEnemy : BaseEnemy
     private void Update()
     {
         HandleFlip();
+        CheckGrounded();
         StateMachine.OnTick();
+    }
+
+    private void CheckGrounded()
+    {
+        // Raycast down to reliably detect ground instead of relying only on collision events
+        Vector3 origin = transform.position + Vector3.up * 0.1f;
+        bool grounded = Physics.Raycast(origin, Vector3.down, groundCheckDistance, groundLayer);
+
+        // isFalling is true when not grounded
+        bool nowFalling = !grounded;
+
+        // Started falling this frame
+        if (nowFalling && groundedPreviously)
+        {
+            animator?.SetTrigger("fall");
+        }
+
+        // Landed this frame
+        if (grounded && groundedPreviously == false)
+        {
+            isFalling = false;
+            // ensure walking animation is reset on land
+            animator?.SetBool("isWalking", false);
+            // clear jump-related triggers so animator can transition cleanly
+            animator?.ResetTrigger("jump");
+            animator?.ResetTrigger("prepareJump");
+            OnLanded?.Invoke();
+        }
+
+        isFalling = nowFalling;
+        groundedPreviously = grounded;
     }
 
     private void HandleFlip()
@@ -61,26 +109,10 @@ class RangedEnemy : BaseEnemy
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            if (collision.gameObject.name == "coiso")
-            {
-                isFalling = true;
-                animator.SetTrigger("fall");
-            }
-
-            OnLanded?.Invoke();
-        }
-        else if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, null, 0);
         }
-    }
-
-    private void OnDestroy()
-    {
-        Instantiate(exp1, transform);
-        Instantiate(exp2, transform);
     }
 }

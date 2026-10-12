@@ -27,6 +27,15 @@ public class AttackingState : BaseState
 
         hasReachedApex = false;
 
+        // Ensure animator parameters are set so animations play correctly
+        if (eyeAnim != null)
+        {
+            eyeAnim.ResetTrigger("fall");
+            eyeAnim.ResetTrigger("prepareJump");
+            eyeAnim.SetBool("isWalking", false);
+            eyeAnim.SetTrigger("jump");
+        }
+
         if (stateMachine.HasParam("adaptedStrenght"))
         {
             var _strenght = stateMachine.GetParam<float>("adaptedStrenght");
@@ -47,6 +56,8 @@ public class AttackingState : BaseState
 
         Vector3 jumpForce = (Vector3.up * jumpHeight) + (direction * forwardForce);
 
+        // Mark as airborne before applying force so other states/animations know
+        eye.isFalling = true;
         eyeRb.AddForce(jumpForce, ForceMode.Impulse);
     }
 
