@@ -11,7 +11,7 @@ public class AreaTriggerSceneChanger : MonoBehaviour, IHitable
         }
         else if (i == 2)
         {
-            SceneChanger.SceneChange("BossScene");
+            SceneChanger.SceneChange("EndScene");
         }
     }
 }
