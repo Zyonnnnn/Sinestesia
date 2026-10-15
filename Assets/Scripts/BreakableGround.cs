@@ -68,7 +68,6 @@ public class BreakableGround : MonoBehaviour
                 var ps = area.GetComponentInChildren<ParticleSystem>();
                 if (ps != null)
                 {
-                    Debug.Log("Particle System: " + ps.name);
                     ps.Stop();
                 }
             }

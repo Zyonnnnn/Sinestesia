@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Dialogue : MonoBehaviour
 {
     TextMeshProUGUI text;
     InputManager inputManager;
+
+    public Image image;
 
     [SerializeField] private string[] lines;
     [SerializeField] private float textSpeed;
@@ -24,6 +26,7 @@ public class Dialogue : MonoBehaviour
     private void Start()
     {
         inputManager.onPassDialoguePressed += HandleDialogue;
+        image.enabled = false;
 
         text.text = string.Empty;
     }
@@ -32,6 +35,7 @@ public class Dialogue : MonoBehaviour
     {
         if (canStart)
         {
+            image.enabled = true;
             if (text.text == lines[index])
             {
                 NextLine();
@@ -48,6 +52,7 @@ public class Dialogue : MonoBehaviour
     {
         if (canStart)
         {
+            image.enabled = true;
             if (Input.GetMouseButtonDown(0))
             {
                 if (text.text == lines[index])
@@ -88,6 +93,7 @@ public class Dialogue : MonoBehaviour
         {
             inputManager.onPassDialoguePressed -= HandleDialogue;
             gameObject.SetActive(false);
+            Destroy(image.gameObject);
             Destroy(gameObject);
         }
     }

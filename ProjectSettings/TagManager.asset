@@ -43,6 +43,7 @@ TagManager:
   - text
   - Music
   - End
+  - DialogueBox
   layers:
   - Default
   - TransparentFX

@@ -39,16 +39,6 @@ class RangedEnemy : BaseEnemy
         animator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         ps = GetComponent<ParticleSystem>();
-        // Debug: log animator presence and parameter names to help diagnose animation issues
-        if (animator == null)
-        {
-            Debug.LogWarning($"RangedEnemy '{name}' has no Animator component assigned.");
-        }
-        else
-        {
-            var paramNames = animator.parameters.Select(p => p.name).ToArray();
-            Debug.Log($"RangedEnemy '{name}' Animator parameters: {string.Join(",", paramNames)}");
-        }
     }
 
     protected void Start()

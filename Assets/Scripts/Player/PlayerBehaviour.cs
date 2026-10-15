@@ -66,7 +66,6 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
 
         canMove = true;
         initColor = spriteRenderer.material.color;
-        Debug.Log("PlayerBehaviour.Start: health=" + health);
     }
 
     public void Execute(Transform executionSoruce, Rigidbody rb, int i)

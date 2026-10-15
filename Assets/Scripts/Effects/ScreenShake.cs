@@ -19,7 +19,6 @@ public class ScreenShake : MonoBehaviour
     {
         if (start)
         {
-            Debug.Log("Screen shake started");
             start = false;
             StartCoroutine(Shake(curve));
         }

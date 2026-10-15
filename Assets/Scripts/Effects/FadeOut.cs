@@ -11,7 +11,6 @@ public class FadeOut : MonoBehaviour
     void Awake()
     {
         image = GetComponent<Image>();
-        Debug.Log("sou hetero");
     }
 
     void Start()
