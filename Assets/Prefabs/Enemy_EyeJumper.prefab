@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6615879468127562386}
   m_Layer: 0
   m_Name: Enemy_EyeJumper
-  m_TagString: Player
+  m_TagString: EyeJump
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,15 +101,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   strength: 3
-  detectRange: 12
+  detectRange: 12.2
   jumpStrenght: 3.35
   moveSpeed: 3.5
   _isTouching: 0
-  attackRange: 5
+  attackRange: 3
   jumpHeight: 6.3
   jumpFactor: 6
   inAttack: 0
   flipSpeed: 7
+  groundCheckDistance: 0.6
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
   areaDmg: {fileID: 0}
   exp1: {fileID: 2853923025152900446, guid: 037e2cf12fad80b4e84b42c6714d73cc, type: 3}
   exp2: {fileID: 4542586380856972586, guid: de6088a1807dc2b4c9b54ef9a33b5281, type: 3}

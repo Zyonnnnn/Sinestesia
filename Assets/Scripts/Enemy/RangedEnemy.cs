@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 class RangedEnemy : BaseEnemy
@@ -11,8 +12,8 @@ class RangedEnemy : BaseEnemy
     private Quaternion flipRight = Quaternion.Euler(0, 0, 0);
     [SerializeField] private float flipSpeed = 10f;
 
-    [SerializeField] private float groundCheckDistance = 0.6f;
-    [SerializeField] private LayerMask groundLayer = ~0;
+    [SerializeField] private float groundCheckDistance;
+    [SerializeField] private LayerMask groundLayer;
     private bool groundedPreviously = true;
 
     private Rigidbody rb;
@@ -59,27 +60,16 @@ class RangedEnemy : BaseEnemy
     private void CheckGrounded()
     {
         // Raycast down to reliably detect ground instead of relying only on collision events
-        Vector3 origin = transform.position + Vector3.up * 0.1f;
+        Vector3 origin = transform.position + Vector3.down * 0.5f;
         bool grounded = Physics.Raycast(origin, Vector3.down, groundCheckDistance, groundLayer);
 
         // isFalling is true when not grounded
         bool nowFalling = !grounded;
-
-        // Started falling this frame
-        if (nowFalling && groundedPreviously)
-        {
-            animator?.SetTrigger("fall");
-        }
-
+        
         // Landed this frame
         if (grounded && groundedPreviously == false)
         {
             isFalling = false;
-            // ensure walking animation is reset on land
-            animator?.SetBool("isWalking", false);
-            // clear jump-related triggers so animator can transition cleanly
-            animator?.ResetTrigger("jump");
-            animator?.ResetTrigger("prepareJump");
             OnLanded?.Invoke();
         }
 
@@ -104,5 +94,10 @@ class RangedEnemy : BaseEnemy
             IHitable hit = collision.gameObject.GetComponent<IHitable>();
             hit.Execute(transform, null, 0);
         }
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position + Vector3.down * 0.5f, groundCheckDistance * Vector3.down);
     }
 }

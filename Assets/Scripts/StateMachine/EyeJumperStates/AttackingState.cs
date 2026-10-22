@@ -36,11 +36,10 @@ public class AttackingState : BaseState
             eyeAnim.SetTrigger("jump");
         }
 
-        if (stateMachine.HasParam("adaptedStrenght"))
-        {
-            var _strenght = stateMachine.GetParam<float>("adaptedStrenght");
-            JumpTowards(eye.transform.position, eye.jumpHeight, _strenght);
-        }
+        // Keep the jump reliable even if the chase state did not set its optional
+        // distance-adapted force parameter.
+        float forwardForce = stateMachine.GetParam("adaptedStrenght", eye.GetJumpStrenght());
+        JumpTowards(eye.transform.position, eye.jumpHeight, forwardForce);
 
         mass = eyeRb.mass;
 
@@ -53,6 +52,12 @@ public class AttackingState : BaseState
         Vector3 direction = playerPosition - eyePosition;
         direction.y = 0f;
         direction.Normalize();
+
+        // Remove residual vertical speed from the previous landing/fall so it
+        // cannot cancel the upward impulse at takeoff.
+        Vector3 velocity = eyeRb.linearVelocity;
+        velocity.y = 0f;
+        eyeRb.linearVelocity = velocity;
 
         Vector3 jumpForce = (Vector3.up * jumpHeight) + (direction * forwardForce);
 

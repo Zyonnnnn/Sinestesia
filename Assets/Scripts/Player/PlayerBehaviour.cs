@@ -160,7 +160,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         canMove = false;
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1);
-        // Após animação, notifica ouvintes que o jogador morreu (ex.: UI)
+        // Apï¿½s animaï¿½ï¿½o, notifica ouvintes que o jogador morreu (ex.: UI)
         Debug.Log("PlayerBehaviour.Die: death animation finished, invoking OnDie. Time=" + Time.time);
         OnDie?.Invoke();
         

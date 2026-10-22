@@ -14,8 +14,9 @@ public class PreparingAttackState : BaseState
         this.stateMachine = stateMachine;
         eye = gameObject.GetComponent<RangedEnemy>();
         eyeAnim = eye.GetComponent<Animator>();
+        timer = 0f;
 
-        if (eye.isFalling == false)
+        if (!eye.isFalling)
         {
             eyeAnim.SetTrigger("prepareJump");
         }
@@ -26,13 +27,7 @@ public class PreparingAttackState : BaseState
         timer += Time.deltaTime;
         if (timer >= preparingTime)
         {
-            if (eye.isFalling == false)
-            {
-                eyeAnim.SetTrigger("jump");
-            }
-
             stateMachine.TransitionTo<AttackingState>();
-            timer = 0;
         }
     }
 
