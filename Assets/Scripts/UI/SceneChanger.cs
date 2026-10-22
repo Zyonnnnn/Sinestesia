@@ -17,6 +17,8 @@ public class SceneChanger : MonoBehaviour
     public GameObject playerObj;
     public Image fadeImg;
 
+    [SerializeField] private Button retryButton;
+
     private PlayerBehaviour playerBehaviour;
     private int lastPauseFrame = -1;
     private bool deathMenuShown = false;
