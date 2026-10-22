@@ -622,7 +622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Play -
+  m_text: '- Jogar -
 
 '
   m_isRightToLeft: 0
@@ -1280,9 +1280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Language
-
-'
+  m_text: Linguagem
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
   m_sharedMaterial: {fileID: 1401183770304477537, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
@@ -2145,7 +2143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Back -
+  m_text: '- Voltar -
 
 '
   m_isRightToLeft: 0
@@ -2190,7 +2188,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2469,7 +2467,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Back -
+  m_text: '- Voltar -
 
 '
   m_isRightToLeft: 0
@@ -2686,7 +2684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 867671258}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2768,7 +2766,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Controls -
+  m_text: '- Controles -
 
 '
   m_isRightToLeft: 0
@@ -3360,7 +3358,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main volume
+  m_text: Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
   m_sharedMaterial: {fileID: 1401183770304477537, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
@@ -3827,6 +3825,7 @@ MonoBehaviour:
   deathMenu: {fileID: 0}
   playerObj: {fileID: 0}
   fadeImg: {fileID: 0}
+  retryButton: {fileID: 0}
 --- !u!4 &1476699688
 Transform:
   m_ObjectHideFlags: 0
@@ -3899,7 +3898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Exit -
+  m_text: '- Sair -
 
 '
   m_isRightToLeft: 0
@@ -4037,7 +4036,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Interact
+  m_text: Interagir
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
   m_sharedMaterial: {fileID: 1401183770304477537, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
@@ -5713,7 +5712,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Walk
+  m_text: Andar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
   m_sharedMaterial: {fileID: 1401183770304477537, guid: 22f51537796a1d249a240b406f8eaf10, type: 2}
