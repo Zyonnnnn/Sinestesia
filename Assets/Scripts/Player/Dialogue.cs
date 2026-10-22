@@ -10,6 +10,7 @@ public class Dialogue : MonoBehaviour
     InputManager inputManager;
 
     public Image image;
+    public TextMeshProUGUI text2;
 
     [SerializeField] private string[] lines;
     [SerializeField] private float textSpeed;
@@ -26,6 +27,7 @@ public class Dialogue : MonoBehaviour
     private void Start()
     {
         inputManager.onPassDialoguePressed += HandleDialogue;
+        text2.enabled = false;
         image.enabled = false;
 
         text.text = string.Empty;
@@ -36,6 +38,7 @@ public class Dialogue : MonoBehaviour
         if (canStart)
         {
             image.enabled = true;
+            text2.enabled = true;
             if (text.text == lines[index])
             {
                 NextLine();
@@ -53,7 +56,8 @@ public class Dialogue : MonoBehaviour
         if (canStart)
         {
             image.enabled = true;
-            if (Input.GetMouseButtonDown(0))
+            text2.enabled = true;
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (text.text == lines[index])
                 {
@@ -94,6 +98,7 @@ public class Dialogue : MonoBehaviour
             inputManager.onPassDialoguePressed -= HandleDialogue;
             gameObject.SetActive(false);
             Destroy(image.gameObject);
+            Destroy(text2.gameObject);
             Destroy(gameObject);
         }
     }

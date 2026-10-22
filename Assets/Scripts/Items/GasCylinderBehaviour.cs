@@ -152,11 +152,12 @@ public class GasCylinderBehaviour : MonoBehaviour
 
         yield return new WaitForSeconds(explosionDelay);
 
+        Destroy(wall);
+
         SpawnExplosion();
 
         ExplodeNonAlloc();
 
-        Destroy(wall);
         Destroy(gameObject);
     }
 
@@ -180,6 +181,13 @@ public class GasCylinderBehaviour : MonoBehaviour
                 if (colliders[i].TryGetComponent(out Rigidbody rb))
                 {
                     rb.AddExplosionForce(explosionForce * 1000, transform.position, explosionRadius);
+
+                    var bx = rb.gameObject.GetComponent<BoxBehaviour>();
+
+                    if (bx != null)
+                    {
+                        bx.Fire();
+                    }
 
                     if (UnityEngine.Random.Range(0, 2) == 0)
                     {
