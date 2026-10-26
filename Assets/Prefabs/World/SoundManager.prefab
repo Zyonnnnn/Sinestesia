@@ -50,6 +50,10 @@ MonoBehaviour:
   sfx: {fileID: 388293645766933668}
   music1: {fileID: 8300000, guid: 02f14237feeaed64c82a17ce0ffad052, type: 3}
   music2: {fileID: 8300000, guid: fb62da33c7d2e2c499a70b171e6933bf, type: 3}
+  crack: {fileID: 8300000, guid: 3da6660fab471f749b7b428eb2e033d2, type: 3}
+  gas: {fileID: 8300000, guid: 3e150deb55f910b419ea08d90d23f9ee, type: 3}
+  explosion: {fileID: 8300000, guid: 7973641329309eb4c88af2154621fda8, type: 3}
+  eye: {fileID: 8300000, guid: cb2452237305c1a4b8bdfe89e88bfd5e, type: 3}
 --- !u!1 &2284380084515041204
 GameObject:
   m_ObjectHideFlags: 0

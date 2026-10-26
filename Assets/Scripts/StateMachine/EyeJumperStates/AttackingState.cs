@@ -1,7 +1,4 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class AttackingState : BaseState
 {
@@ -69,6 +66,9 @@ public class AttackingState : BaseState
     private void HandleLanded()
     {
         ScreenShake screenShake = GameObject.FindObjectOfType<ScreenShake>();
+        SoundManager audio = GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>();
+
+        audio.PlaySFX(audio.eye);
         
         if (screenShake != null)
         {

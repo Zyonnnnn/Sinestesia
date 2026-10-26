@@ -94,6 +94,9 @@ public class BreakableGround : MonoBehaviour
                     if (rock3 != null) Instantiate(rock3, rb.gameObject.transform);
                 }
 
+                SoundManager audio = GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>();
+                audio.PlaySFX(audio.crack);
+
                 isBroken = true;
                 Destroy(ranged.gameObject);
             }
