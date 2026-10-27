@@ -42,6 +42,8 @@ public class CutSceneBehaviour : MonoBehaviour
 
     void PassAnimation()
     {
+        soundManager.PlaySFX(soundManager.squish);
+
         if (i == 0)
         {
             animator.SetTrigger("Next0");

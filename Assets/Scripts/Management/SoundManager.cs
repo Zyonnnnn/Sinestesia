@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] AudioSource music, sfx;
     [SerializeField] AudioClip music1, music2;
-    public AudioClip crack, gas, explosion, eye;
+    public AudioClip crack, gas, explosion, eye, sniff, squish;
     AudioMixer mixer;
 
     private void Awake()
