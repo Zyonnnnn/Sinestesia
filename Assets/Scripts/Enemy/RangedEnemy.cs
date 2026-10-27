@@ -69,6 +69,7 @@ class RangedEnemy : BaseEnemy
         // Landed this frame
         if (grounded && groundedPreviously == false)
         {
+            animator.SetBool("isWalking", false);
             isFalling = false;
             OnLanded?.Invoke();
         }
