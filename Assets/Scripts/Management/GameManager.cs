@@ -14,19 +14,23 @@ public class GameManager : MonoBehaviour
 
     Dialogue dialogue;
     GameObject playerBehaviour;
+    BreakableGround breakGround;
     SinestesyDetection sinestesyDetection;
 
     InputManager inputManager;
 
-    [Header("Time Stats")] [SerializeField]
+    [Header("Time Stats")]
+    [SerializeField]
     private float sinestesyFadeOutTime = 0.5f;
 
-    [Header("References")] [SerializeField]
+    [Header("References")]
+    [SerializeField]
     private ScriptableRendererFeature sinestesyEffect;
 
     [SerializeField] private Material material;
 
-    [Header("Intensity Stats")] [SerializeField]
+    [Header("Intensity Stats")]
+    [SerializeField]
     private float voronoiIntensityStat;
 
     [SerializeField] private float vignetteIntensityStat;
@@ -43,6 +47,12 @@ public class GameManager : MonoBehaviour
         }
 
         playerBehaviour = GameObject.Find("Player");
+
+        if (SceneManager.GetActiveScene().name == "FloorsScene")
+        {
+            breakGround = GameObject.FindAnyObjectByType<BreakableGround>().GetComponent<BreakableGround>();
+        }
+
         if (playerBehaviour != null)
         {
             sinestesyDetection = playerBehaviour.GetComponentInChildren<SinestesyDetection>();
@@ -72,6 +82,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            breakGround.isBroken = true;
+        }
+    }
     private void HandleSinestesy()
     {
         if (sinestesyDetection != null && sinestesyDetection.isSinestesiaActive)

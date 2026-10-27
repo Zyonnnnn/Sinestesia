@@ -27,7 +27,7 @@ public class FadeIn : MonoBehaviour
                 var cutSceneBehaviour = GameObject.Find("CutScene").GetComponent<CutSceneBehaviour>();
                 if (cutSceneBehaviour.cutsceneFinished)
                 {
-                    StartCoroutine(FadeInRoutine());
+                    StartCoroutine(FadeInRoutine(1f));
                 }
             }
         }
@@ -35,21 +35,21 @@ public class FadeIn : MonoBehaviour
         {
             if (!loading)
             {
-                StartCoroutine(OtherFadeInRoutine());
+                StartCoroutine(OtherFadeInRoutine(2.5f));
             }
         }
     }
 
-    private IEnumerator FadeInRoutine()
+    private IEnumerator FadeInRoutine(float t)
     {
         finish = true;
         yield return new WaitForSeconds(3f);
         var timer = 0f;
 
-        while (timer < 1f)
+        while (timer < t)
         {
             timer += Time.deltaTime;
-            image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(1f, 0f, timer));
+            image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(t, 0f, timer));
             yield return null;
         }
 
@@ -57,15 +57,15 @@ public class FadeIn : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator OtherFadeInRoutine()
+    IEnumerator OtherFadeInRoutine(float t)
     {
         loading = true;
         var timer = 0f;
 
-        while (timer < 1f)
+        while (timer < t)
         {
             timer += Time.deltaTime;
-            image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(1f, 0f, timer));
+            image.color = new Color(image.color.r, image.color.g, image.color.b, Mathf.Lerp(t, 0f, timer));
             yield return null;
         }
 

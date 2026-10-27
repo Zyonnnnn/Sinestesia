@@ -8,7 +8,7 @@ public class BreakableGround : MonoBehaviour
     [SerializeField] GameObject rock1, rock2, rock3;
     GameObject area, areaDeath;
 
-    bool isBroken;
+    public bool isBroken;
 
     private List<Rigidbody> childrenRb;
 
@@ -87,13 +87,6 @@ public class BreakableGround : MonoBehaviour
 
             if (ranged.inAttack)
             {
-                foreach (Rigidbody rb in childrenRb)
-                {
-                    if (rock1 != null) Instantiate(rock1, rb.gameObject.transform);
-                    if (rock2 != null) Instantiate(rock2, rb.gameObject.transform);
-                    if (rock3 != null) Instantiate(rock3, rb.gameObject.transform);
-                }
-
                 SoundManager audio = GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>();
                 audio.PlaySFX(audio.crack);
 

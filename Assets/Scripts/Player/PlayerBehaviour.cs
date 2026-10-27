@@ -26,6 +26,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     [SerializeField] private Animator animator;
 
     private SceneChanger sceneChanger;
+    private SoundManager sound;
     private SinestesyDetection sd;
     private Rigidbody rb;
     private InputManager inputManager;
@@ -63,6 +64,7 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
         spriteRenderer = GetComponent<SpriteRenderer>();
         gameManager = FindObjectOfType<GameManager>();
         sceneChanger = FindObjectOfType<SceneChanger>();
+        sound = GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>();
 
         canMove = true;
         initColor = spriteRenderer.material.color;
@@ -190,7 +192,9 @@ public class PlayerBehaviour : MonoBehaviour, IHitable
     private void HandleSinestesy()
     {
         SinestesyShake sinestesyShake = GameObject.FindObjectOfType<SinestesyShake>();
+
         sinestesyShake.StopShake();
+        sound.PlaySFX(sound.sniff);
 
         var ps = sd.GetClosestParticleSystem();
 

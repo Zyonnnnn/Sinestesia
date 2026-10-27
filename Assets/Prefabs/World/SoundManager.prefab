@@ -54,6 +54,8 @@ MonoBehaviour:
   gas: {fileID: 8300000, guid: 3e150deb55f910b419ea08d90d23f9ee, type: 3}
   explosion: {fileID: 8300000, guid: 7973641329309eb4c88af2154621fda8, type: 3}
   eye: {fileID: 8300000, guid: cb2452237305c1a4b8bdfe89e88bfd5e, type: 3}
+  sniff: {fileID: 8300000, guid: 120d1f3eb1d530c4ba2c0883138dd9c1, type: 3}
+  squish: {fileID: 8300000, guid: 8692eac2c69b4d64d9719ef54d08c2ac, type: 3}
 --- !u!1 &2284380084515041204
 GameObject:
   m_ObjectHideFlags: 0
