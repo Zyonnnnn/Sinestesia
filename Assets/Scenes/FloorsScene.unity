@@ -50378,7 +50378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3460471558758741842, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
       propertyPath: 'lines.Array.data[2]'
-      value: "\"O buraco do meio leva para o t\xE9rreo, mas ele \xE9 fundo de mais.\""
+      value: "\"O buraco do meio leva para o t\xE9rreo, mas ele \xE9 fundo demais.\""
       objectReference: {fileID: 0}
     - target: {fileID: 3460471558758741842, guid: 7857d9df8f6b54f4d9e43113ae7aca21, type: 3}
       propertyPath: 'lines.Array.data[3]'
