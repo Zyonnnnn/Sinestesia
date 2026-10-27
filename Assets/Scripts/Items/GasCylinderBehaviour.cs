@@ -141,6 +141,8 @@ public class GasCylinderBehaviour : MonoBehaviour
 
     IEnumerator Explode()
     {
+        SoundManager audio = GameObject.FindGameObjectWithTag("Music").GetComponent<SoundManager>();
+
         var fogPs = GameObject.FindGameObjectWithTag("Fog");
         if (fogPs != null)
         {
@@ -149,9 +151,11 @@ public class GasCylinderBehaviour : MonoBehaviour
 
         ps.Play();
         light.SetActive(true);
+        audio.PlaySFX(audio.gas);
 
         yield return new WaitForSeconds(explosionDelay);
 
+        audio.PlaySFX(audio.explosion);
         Destroy(wall);
 
         SpawnExplosion();

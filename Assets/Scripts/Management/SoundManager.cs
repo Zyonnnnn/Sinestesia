@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] AudioSource music, sfx;
     [SerializeField] AudioClip music1, music2;
+    public AudioClip crack, gas, explosion, eye;
     AudioMixer mixer;
 
     private void Awake()
@@ -32,6 +33,11 @@ public class SoundManager : MonoBehaviour
     public void StartMusicAfterScene()
     {
         StartCoroutine(FadeIn());
+    }
+
+    public void PlaySFX(AudioClip audioClip)
+    {
+        sfx.PlayOneShot(audioClip);
     }
 
     private IEnumerator FadeIn()
