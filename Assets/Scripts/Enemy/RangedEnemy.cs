@@ -44,6 +44,7 @@ class RangedEnemy : BaseEnemy
 
     protected void Start()
     {
+        Cursor.visible = false;
         ps.Stop();
 
         StateMachine = new StateMachine(this.gameObject);
